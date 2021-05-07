@@ -1,0 +1,4 @@
+baseURL = "https://yoooo.fun/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
