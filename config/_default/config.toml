@@ -2,9 +2,8 @@ baseURL = "https://yoooo.fun/"
 title = "Aurora"
 languageCode = "en-us"
 footnoteReturnLinkContents = "↩"
-#theme = ["github.com/wangchucheng/hugo-eureka"]
-#theme = ["github.com/razonyang/hugo-theme-bootstrap"]
-theme = ["github.com/reuixiy/hugo-theme-meme"]
+#theme = ["github.com/reuixiy/hugo-theme-meme"]
+theme = ["github.com/CaiJimmy/hugo-theme-stack"]
 
 [params]
 AuthorName = "Mystic"
