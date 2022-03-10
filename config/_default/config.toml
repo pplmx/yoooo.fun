@@ -3,7 +3,8 @@ title = "Aurora"
 languageCode = "en-us"
 footnoteReturnLinkContents = "↩"
 #theme = ["github.com/reuixiy/hugo-theme-meme"]
-theme = ["github.com/CaiJimmy/hugo-theme-stack"]
+#theme = ["github.com/CaiJimmy/hugo-theme-stack"]
+theme = ["github.com/miiiku/hugo-theme-kagome"]
 
 [params]
 AuthorName = "Mystic"
