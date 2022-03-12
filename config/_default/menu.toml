@@ -1,0 +1,35 @@
+# 顶部导航栏
+[[main]]
+identifier = "/"
+name = "🏠 HOME"
+title = "HOME"
+url = "/"
+weight = 1
+
+[[main]]
+identifier = "/posts"
+name = "🗂️ POSTS"
+title = "POSTS"
+url = "/posts"
+weight = 2
+
+[[main]]
+identifier = "/about"
+name = "😈 ABOUT"
+title = "ABOUT"
+url = "/about"
+weight = 3
+
+[[main]]
+identifier = "/link"
+name = "🔗 LINK"
+title = "LINK"
+url = "/link"
+weight = 4
+
+# 底部社交图标
+[[social]]
+identifier = "github"
+name = "github"
+url = "https://github.com/pplmx"
+weight = 1

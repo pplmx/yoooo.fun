@@ -24,7 +24,7 @@ series = "series"
 
 # URL格式
 [permalinks]
-posts = "/:section/:year:month:day:15:04/"
+posts = "/:slug"
 
 # 作者信息
 [author]
@@ -32,65 +32,3 @@ name = "Mystic"
 email = "215104920@qq.com"
 description = "To infinity and beyond"
 avatar = "https://www.gravatar.com/avatar/8c115c6bc6688216bed0f053c506ff58?s=200&r=g&d=retro"
-
-# 菜单/导航栏
-[menu]
-# 顶部导航栏
-[[menu.main]]
-identifier = "/"
-name = "🏠 HOME"
-title = "HOME"
-url = "/"
-weight = 1
-[[menu.main]]
-identifier = "/posts"
-name = "🗂️ POSTS"
-title = "POSTS"
-url = "/posts"
-weight = 2
-[[menu.main]]
-identifier = "/about"
-name = "😈 ABOUT"
-title = "ABOUT"
-url = "/about"
-weight = 3
-[[menu.main]]
-identifier = "/link"
-name = "🔗 LINK"
-title = "LINK"
-url = "/link"
-weight = 4
-
-# 底部社交图标
-[[menu.social]]
-identifier = "github"
-name = "github"
-url = "https://github.com/pplmx"
-weight = 1
-
-# 主题相关配置项
-[params]
-keywords = ["yoooo.fun", "caoyu.info", "hugo", "blog", "个人博客", "主题"]
-description = "To infinity and beyond"
-mainSections = ["posts"]
-toc_show_len = 300
-
-[params.analytics]
-baidu = ""
-
-[params.widget]
-articles_count = 6
-categories_count = 6
-tags_count = 12
-
-[params.aplayer]
-theme = "#b7daff"
-autoplay = false
-loop = "none"
-mutex = true
-
-[params.dplayer]
-theme = "#b7daff"
-autoplay = false
-loop = false
-mutex = true
