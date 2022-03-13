@@ -1,9 +1,9 @@
 ---
 title: Adapter Pattern in Design Pattern
 date: 2020-06-06T20:58:54+08:00
-lastmod: 2020-06-06T22:48:36+08:00
 slug: 256f31fbdc22228ea78c8e02b3053f67
 draft: false
+lastmod: 2020-06-06T22:48:36+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: adapter pattern, design pattern, java

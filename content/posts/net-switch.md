@@ -1,9 +1,9 @@
 ---
 title: Switch
 date: 2020-04-18T21:08:13+08:00
-lastmod: 2020-04-19T18:12:04+08:00
 slug: 71d4ff32808ffe99457dcca86a1109e1
 draft: false
+lastmod: 2020-04-19T18:12:04+08:00
 categories: [network]
 tags: [device]
 keywords: switch, trunk port, access port

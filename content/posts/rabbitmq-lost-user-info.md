@@ -1,9 +1,9 @@
 ---
 title: RabbitMQ lost user info
 date: 2020-06-23T10:02:28+08:00
-lastmod: 2020-06-23T10:45:43+08:00
 slug: 9e91456c87b8da5a298415872fdd55ab
 draft: false
+lastmod: 2020-06-23T10:45:43+08:00
 categories: [troubleshooting]
 tags: [troubleshooting, rabbitmq]
 keywords: rabbit, user info, reboot

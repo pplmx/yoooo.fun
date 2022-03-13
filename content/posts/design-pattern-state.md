@@ -1,9 +1,9 @@
 ---
 title: State Pattern in Design Pattern
 date: 2020-06-12T16:49:39+08:00
-lastmod: 2020-06-12T16:55:45+08:00
 slug: 21c155711c41eddfff250855d401a8e4
 draft: false
+lastmod: 2020-06-12T16:55:45+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: state pattern, design pattern, java

@@ -1,12 +1,12 @@
 ---
 title: Some repos in aliyun
 date: 2020-04-18T20:02:12+08:00
-lastmod: 2020-06-24T11:04:34+08:00
 slug: 59632d3d4355a000dd7a19f3bc3c663a
 draft: false
+lastmod: 2020-06-24T11:04:34+08:00
 categories: [general]
 tags: [repo, pip, centos, ubuntu]
-keywords: pip source, rpm repo, centos, ubuntu,
+keywords: pip source, rpm repo, centos, ubuntu, 
 description: Some aliyun repo sources
 ---
 

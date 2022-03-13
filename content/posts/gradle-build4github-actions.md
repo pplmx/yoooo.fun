@@ -1,9 +1,9 @@
 ---
 title: How to configure gradle build on Github Actions
 date: 2020-04-26T15:21:04+08:00
-lastmod: 2020-04-26T15:30:42+08:00
 slug: 0e2db3fdfcfc75269c913796137a37ff
 draft: false
+lastmod: 2020-04-26T15:30:42+08:00
 categories: [general]
 tags: [gradle]
 keywords: gradle, github actions, java, build

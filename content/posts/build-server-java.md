@@ -1,9 +1,9 @@
 ---
 title: linux服务器初建之java环境
 date: 2017-10-13T09:48:25+08:00
-lastmod: 2020-01-16T21:25:04+08:00
 slug: b036ba57118089ead22ff5dbf78fd4ea
 draft: false
+lastmod: 2020-01-16T21:25:04+08:00
 categories: [linux]
 tags: [java]
 keywords: java, linux

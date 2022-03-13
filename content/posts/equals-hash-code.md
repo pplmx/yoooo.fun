@@ -1,9 +1,9 @@
 ---
 title: equals() and hashCode() in Java
 date: 2020-05-13T14:32:32+08:00
-lastmod: 2020-05-13T14:53:35+08:00
 slug: 8f0a6eaaf8b294c2d39b51ed226d26e7
 draft: false
+lastmod: 2020-05-13T14:53:35+08:00
 categories: [java]
 tags: [hash]
 keywords: hashCode, equals, 31 

@@ -1,9 +1,9 @@
 ---
 title: Time complexity in isEmpty() and size()
 date: 2020-05-06T14:55:08+08:00
-lastmod: 2020-05-06T15:05:32+08:00
 slug: 76cb693819e47819d3fc64da34c9785a
 draft: false
+lastmod: 2020-05-06T15:05:32+08:00
 categories: [java]
 tags: [complexity]
 keywords: time complexity, complexity

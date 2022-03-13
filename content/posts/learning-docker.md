@@ -1,9 +1,9 @@
 ---
 title: Learning Docker
 date: 2020-06-05T16:42:36+08:00
-lastmod: 2020-11-23T10:00:59+08:00
 slug: 6195694198c849fbb661f4746beb101b
 draft: false
+lastmod: 2020-11-23T10:00:59+08:00
 categories: [general]
 tags: [docker,cli]
 keywords: docker cli, common cli

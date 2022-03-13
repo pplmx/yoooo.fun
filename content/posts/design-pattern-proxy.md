@@ -1,9 +1,9 @@
 ---
 title: Proxy Pattern in Design Pattern
 date: 2020-05-19T15:42:27+08:00
-lastmod: 2020-06-06T22:48:36+08:00
 slug: 98f5e2a74b35c88347b6eff71e0c47da
 draft: false
+lastmod: 2020-06-06T22:48:36+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: proxy pattern, design pattern, java

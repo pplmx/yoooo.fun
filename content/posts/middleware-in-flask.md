@@ -1,9 +1,9 @@
 ---
 title: Create a middleware in Flask
 date: 2020-09-18T11:14:26+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: ba1ef4cd5419bf1516aa15ef23570a07
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [python]
 tags: [flask, wsgi, middleware]
 keywords: flask, wsgi, middleware, django

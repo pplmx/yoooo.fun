@@ -1,9 +1,9 @@
 ---
 title: Observer Pattern in Design Pattern
 date: 2020-06-01T16:12:19+08:00
-lastmod: 2020-06-01T16:30:23+08:00
 slug: a8777c0d2adcfd80991cf81402651e5c
 draft: false
+lastmod: 2020-06-01T16:30:23+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: observer pattern, design pattern, java

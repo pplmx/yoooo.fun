@@ -1,9 +1,9 @@
 ---
 title: Hexo with Nginx on CentOS
 date: 2019-02-12T19:47:51+08:00
-lastmod: 2020-01-16T21:25:04+08:00
 slug: 496a857ab31e94bdf445f289c157f037
 draft: false
+lastmod: 2020-01-16T21:25:04+08:00
 categories: [linux]
 tags: [hexo,nginx]
 keywords: nginx, centos, hexo

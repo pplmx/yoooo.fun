@@ -1,9 +1,9 @@
 ---
 title: linux服务器初建之tomcat安装
 date: 2017-10-13T10:31:14+08:00
-lastmod: 2020-01-16T21:25:04+08:00
 slug: e74cc8557d0bd85d1b5f86efe14a4798
 draft: false
+lastmod: 2020-01-16T21:25:04+08:00
 categories: [linux]
 tags: [tomcat]
 keywords: tomcat, linux

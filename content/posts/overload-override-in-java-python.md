@@ -1,9 +1,9 @@
 ---
 title: Override&Overload in Java and Python
 date: 2020-04-25T21:56:25+08:00
-lastmod: 2020-04-25T22:28:18+08:00
 slug: 0b982bfffbc69e5e89e25f1b238187e3
 draft: false
+lastmod: 2020-04-25T22:28:18+08:00
 categories: [general]
 tags: [java, python]
 keywords: override, overload, difference, java, python

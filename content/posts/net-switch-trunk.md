@@ -1,9 +1,9 @@
 ---
 title: trunk in switch
 date: 2020-04-18T21:18:09+08:00
-lastmod: 2020-04-28T15:44:02+08:00
 slug: aa2af77525d5417425517d8ca07d1006
 draft: false
+lastmod: 2020-04-28T15:44:02+08:00
 categories: [network]
 tags: [device]
 keywords: trunk port, switch

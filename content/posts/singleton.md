@@ -1,9 +1,9 @@
 ---
 title: Let's learn what's singleton
 date: 2020-04-30T16:12:37+08:00
-lastmod: 2020-04-30T16:17:43+08:00
 slug: 2ed500a3529637175e675a8791b7c56e
 draft: false
+lastmod: 2020-04-30T16:17:43+08:00
 categories: [java]
 tags: [design pattern]
 keywords: singleton, design pattern, java

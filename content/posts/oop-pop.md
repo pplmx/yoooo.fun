@@ -1,9 +1,9 @@
 ---
 title: Difference between OOP and POP
 date: 2020-03-22T21:10:26+08:00
-lastmod: 2020-03-22T21:28:11+08:00
 slug: aa1a40ba6005de4e334c1c527ff8efae
 draft: false
+lastmod: 2020-03-22T21:28:11+08:00
 categories: [general]
 tags: [OOP,POP]
 keywords: OOP, POP

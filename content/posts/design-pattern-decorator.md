@@ -1,9 +1,9 @@
 ---
 title: Decorator Pattern in Design Pattern
 date: 2020-05-24T21:12:03+08:00
-lastmod: 2020-06-06T22:48:36+08:00
 slug: 2ea5649cdc51e91b7274d87de7e73b0d
 draft: false
+lastmod: 2020-06-06T22:48:36+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: decorator pattern, design pattern, java

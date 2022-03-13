@@ -1,9 +1,9 @@
 ---
 title: deploy springboot to external container(JBoss)
 date: 2019-10-09T20:21:45+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: 588dc6a365d445a82757e32411e8a819
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [java]
 tags: [spring, gradle, jboss]
 keywords: webflux, gradle, jboss

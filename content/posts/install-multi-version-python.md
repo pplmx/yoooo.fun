@@ -1,9 +1,9 @@
 ---
 title: Let's install multiple python versions in linux
 date: 2020-04-25T21:55:12+08:00
-lastmod: 2020-04-30T10:13:20+08:00
 slug: cc1b9056bc70732925b5e708439b487b
 draft: false
+lastmod: 2020-04-30T10:13:20+08:00
 categories: [python]
 tags: [python]
 keywords: python, alternatives, multi versions

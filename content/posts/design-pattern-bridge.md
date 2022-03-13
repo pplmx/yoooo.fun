@@ -1,9 +1,9 @@
 ---
 title: Bridge Pattern in Design Pattern
 date: 2020-06-10T18:24:49+08:00
-lastmod: 2020-06-10T18:27:22+08:00
 slug: a6e1761a2f6d06b4ecaaa7ce50659bf1
 draft: false
+lastmod: 2020-06-10T18:27:22+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: bridge pattern, design pattern, java

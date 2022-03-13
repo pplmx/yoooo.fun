@@ -1,9 +1,9 @@
 ---
 title: Let's understand class and static method in Python for a Java-er
 date: 2020-05-08T16:20:48+08:00
-lastmod: 2020-05-08T16:34:11+08:00
 slug: e034ce7185dbcbd648c3a4750ef8b566
 draft: false
+lastmod: 2020-05-08T16:34:11+08:00
 categories: [python]
 tags: [python]
 keywords: classmethod, staticmethod, java

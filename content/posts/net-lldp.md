@@ -1,9 +1,9 @@
 ---
 title: Let's understand what's lldp.
 date: 2020-04-18T21:08:20+08:00
-lastmod: 2020-04-19T18:12:04+08:00
 slug: afd61c5e54eeb52aeafbfb646bbcd0af
 draft: false
+lastmod: 2020-04-19T18:12:04+08:00
 categories: [network]
 tags: [protocol]
 keywords: lldp, TCP/IP

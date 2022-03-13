@@ -1,9 +1,9 @@
 ---
 title: Chain of Responsibility in Design Pattern
 date: 2020-06-04T08:50:47+08:00
-lastmod: 2020-06-04T08:57:56+08:00
 slug: 4fae490d7a714e9e4791f432b0e99894
 draft: false
+lastmod: 2020-06-04T08:57:56+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: Chain of Responsibility Pattern, design pattern, java

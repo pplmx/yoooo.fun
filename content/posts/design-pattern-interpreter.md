@@ -1,9 +1,9 @@
 ---
 title: Interpreter Pattern in Design Pattern
 date: 2020-06-16T15:51:51+08:00
-lastmod: 2020-06-16T15:54:37+08:00
 slug: 7b00f7652e4216c3948dc9a7d5333c15
 draft: false
+lastmod: 2020-06-16T15:54:37+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: interpreter pattern, design pattern, java

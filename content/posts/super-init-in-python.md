@@ -1,9 +1,9 @@
 ---
 title: Call to __init__ of super class is missed
 date: 2020-09-03T09:06:03+08:00
-lastmod: 2020-09-04T16:24:29+08:00
 slug: 84434c8d5d320a366d48e50658887a05
 draft: false
+lastmod: 2020-09-04T16:24:29+08:00
 categories: [python]
 tags: [general]
 keywords: __init__, init, inherit, multi-inherit, python

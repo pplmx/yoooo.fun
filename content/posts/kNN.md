@@ -1,9 +1,9 @@
 ---
 title: kNN分类算法(python实现)
 date: 2017-12-14T10:51:53+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: 7c257c3d4910d6de610183a603dd330f
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [algorithm]
 tags: [python,classification]
 keywords: kNN, python

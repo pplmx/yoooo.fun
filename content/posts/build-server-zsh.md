@@ -1,9 +1,9 @@
 ---
 title: linux服务器初建之zsh安装
 date: 2017-10-13T11:10:44+08:00
-lastmod: 2021-11-30T10:20:00+08:00
 slug: 70b23e561300acc0e2d6419494ef264f
 draft: false
+lastmod: 2021-11-30T10:20:00+08:00
 categories: [linux]
 tags: [linux]
 keywords: zsh, linux

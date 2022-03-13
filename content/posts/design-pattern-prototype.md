@@ -1,9 +1,9 @@
 ---
 title: Prototype Pattern in Design Pattern
 date: 2020-06-10T17:20:16+08:00
-lastmod: 2020-06-10T17:22:33+08:00
 slug: 59c60e86bc99f837b14dfe572ea0efec
 draft: false
+lastmod: 2020-06-10T17:22:33+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: prototype pattern, design pattern, java

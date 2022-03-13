@@ -1,9 +1,9 @@
 ---
 title: XShell highlights
 date: 2020-09-18T11:14:09+08:00
-lastmod: 2021-03-18T11:17:00+08:00
 slug: 04ba82719be9726e412a403c0a595888
 draft: false
+lastmod: 2021-03-18T11:17:00+08:00
 categories: [general]
 tags: [terminal]
 keywords: xshell, highlights, configuration

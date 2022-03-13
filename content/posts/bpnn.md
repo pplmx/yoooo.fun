@@ -1,9 +1,9 @@
 ---
 title: BP神经网络算法(python实现)
 date: 2017-12-14T11:09:39+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: 7b24a66d8b4e76d31c8a3f367ecdec1e
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [algorithm]
 tags: [python,classification]
 keywords: BP, Neural Network, python

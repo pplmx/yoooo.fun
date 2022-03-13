@@ -1,9 +1,9 @@
 ---
 title: Run a specified role in ansible
 date: 2020-04-30T09:59:05+08:00
-lastmod: 2020-05-11T13:55:25+08:00
 slug: 04b1bf529f7636034eb1e8ac03a4f75c
 draft: false
+lastmod: 2020-05-11T13:55:25+08:00
 categories: [automation]
 tags: [ansible]
 keywords: ansible, role, tags

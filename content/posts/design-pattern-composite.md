@@ -1,9 +1,9 @@
 ---
 title: Composite Pattern in Design Pattern
 date: 2020-06-17T18:08:39+08:00
-lastmod: 2020-06-17T18:10:28+08:00
 slug: eae0d7ae830b5aa84d5bbda7c8a5c80c
 draft: false
+lastmod: 2020-06-17T18:10:28+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: Composite pattern, design pattern, java

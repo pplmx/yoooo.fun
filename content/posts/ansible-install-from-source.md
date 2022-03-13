@@ -1,9 +1,9 @@
 ---
 title: ansible install software from source
 date: 2020-04-30T09:55:47+08:00
-lastmod: 2020-04-30T10:45:50+08:00
 slug: 9db2b2702552495f2669a1cb3de45e66
 draft: false
+lastmod: 2020-04-30T10:45:50+08:00
 categories: [automation]
 tags: [ansible]
 keywords: ansible, install from source, lldpd

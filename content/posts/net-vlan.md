@@ -1,9 +1,9 @@
 ---
 title: VLAN
 date: 2020-04-18T21:20:37+08:00
-lastmod: 2020-04-19T18:12:04+08:00
 slug: 36dff8e50ad540a6afa36151873ad028
 draft: false
+lastmod: 2020-04-19T18:12:04+08:00
 categories: [network]
 tags: [device]
 keywords: vlan

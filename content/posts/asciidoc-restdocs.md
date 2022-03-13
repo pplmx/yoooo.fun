@@ -1,9 +1,9 @@
 ---
 title: Asciidoc with Spring Restdocs
 date: 2020-04-27T15:02:01+08:00
-lastmod: 2020-04-28T15:44:02+08:00
 slug: 0435ab51f5edf36584b1f5c47cd496ba
 draft: false
+lastmod: 2020-04-28T15:44:02+08:00
 categories: [java]
 tags: [spring, springboot]
 keywords: spring, springboot, restdocs, asciidoc, 

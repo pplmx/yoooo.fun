@@ -1,9 +1,9 @@
 ---
 title: Http Version Comparison
 date: 2020-09-16T10:53:10+08:00
-lastmod: 2020-09-16T11:02:02+08:00
 slug: 215a8e96a09ea1b4b76a8b7fa6ddc142
 draft: false
+lastmod: 2020-09-16T11:02:02+08:00
 categories: [network]
 tags: [http]
 keywords: http/1.0, http/1.1, http/2.0, http/3.0

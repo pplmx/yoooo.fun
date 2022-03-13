@@ -1,9 +1,9 @@
 ---
 title: Design Pattern in Java
 date: 2020-05-17T15:38:37+08:00
-lastmod: 2020-06-01T21:20:17+08:00
 slug: 7c298a76a6bb2b300b8c3acf391dc6df
 draft: false
+lastmod: 2020-06-01T21:20:17+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: design pattern, java

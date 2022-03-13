@@ -1,9 +1,9 @@
 ---
 title: deploy ejb with restful service to jboss
 date: 2019-10-23T20:28:20+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: c7ee0c75c94fae71c929a21ba94b86d1
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [java]
 tags: [ejb, restful, jboss, gradle, maven]
 keywords: ejb, restful, jboss

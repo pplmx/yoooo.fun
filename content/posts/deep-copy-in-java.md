@@ -1,9 +1,9 @@
 ---
 title: Deepcopy by Serializable in Java
 date: 2020-06-23T15:00:41+08:00
-lastmod: 2020-06-23T15:04:56+08:00
 slug: f39f57330d1c56e77cfb87c6f7e1fb3a
 draft: false
+lastmod: 2020-06-23T15:04:56+08:00
 categories: [java]
 tags: [notes]
 keywords: deepcopy, serializable, java

@@ -1,9 +1,9 @@
 ---
 title: 决策树算法(python实现)
 date: 2017-12-14T14:20:30+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: 63f3ee3218f127d3aefbbac2e4a081f2
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [algorithm]
 tags: [python,classification]
 keywords: decision tree, python

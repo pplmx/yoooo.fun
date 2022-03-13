@@ -1,9 +1,9 @@
 ---
 title: Compile-time and Runtime Constants
 date: 2020-05-16T21:32:52+08:00
-lastmod: 2020-05-16T22:25:38+08:00
 slug: d626f04a53f10244a23f70d793610123
 draft: false
+lastmod: 2020-05-16T22:25:38+08:00
 categories: [java]
 tags: [compile,runtime]
 keywords: constants, runtime, compile, compile time

@@ -1,9 +1,9 @@
 ---
 title: Builder Pattern in Design Pattern
 date: 2020-05-22T16:38:43+08:00
-lastmod: 2020-06-06T22:48:36+08:00
 slug: c7150c3f1a16e2cbf090f737c9a8e6c1
 draft: false
+lastmod: 2020-06-06T22:48:36+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: builder pattern, design pattern, java

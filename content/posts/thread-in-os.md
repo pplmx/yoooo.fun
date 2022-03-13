@@ -1,9 +1,9 @@
 ---
 title: Thread in OS
 date: 2020-05-15T14:55:32+08:00
-lastmod: 2020-05-15T15:25:01+08:00
 slug: 4dd9c49996f8b1dc7c8127ad0820ddab
 draft: false
+lastmod: 2020-05-15T15:25:01+08:00
 categories: [general]
 tags: [thread,os]
 keywords: thread, multi-thread, os

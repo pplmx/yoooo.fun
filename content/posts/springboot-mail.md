@@ -1,9 +1,9 @@
 ---
 title: springboot整合Mail服务
 date: 2017-11-13T14:18:09+08:00
-lastmod: 2020-04-27T22:06:51+08:00
 slug: 4a628b6f900046a84a2040ceb1653f04
 draft: false
+lastmod: 2020-04-27T22:06:51+08:00
 categories: [java]
 tags: [spring,springboot]
 keywords: mail, springboot, spring, java

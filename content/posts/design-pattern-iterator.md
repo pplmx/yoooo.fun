@@ -1,9 +1,9 @@
 ---
 title: Iterator Pattern in Design Pattern
 date: 2020-06-10T14:26:19+08:00
-lastmod: 2020-06-10T14:33:08+08:00
 slug: 9e29831f15a95af26a76bdc7f5bf18d6
 draft: false
+lastmod: 2020-06-10T14:33:08+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: Iterator Pattern, design pattern, java

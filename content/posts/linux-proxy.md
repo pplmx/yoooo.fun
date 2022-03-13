@@ -1,9 +1,9 @@
 ---
 title: proxy in linux
 date: 2020-04-18T21:00:15+08:00
-lastmod: 2020-04-19T18:12:04+08:00
 slug: 2785cfce9493dbf7745d9c15b2edcbaf
 draft: false
+lastmod: 2020-04-19T18:12:04+08:00
 categories: [linux]
 tags: [proxy]
 keywords: linux, proxy

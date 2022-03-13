@@ -1,9 +1,9 @@
 ---
 title: IDEA对@Autowired的使用提示警告
 date: 2017-10-16T15:41:38+08:00
-lastmod: 2020-01-16T21:25:04+08:00
 slug: c128e70b9e7a30ebfb683056f24bceda
 draft: false
+lastmod: 2020-01-16T21:25:04+08:00
 categories: [java]
 tags: [spring]
 keywords: autowired, spring, java

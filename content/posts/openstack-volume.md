@@ -1,9 +1,9 @@
 ---
 title: OpenStack Volume
 date: 2020-07-24T15:18:53+08:00
-lastmod: 2020-10-23T10:37:50+08:00
 slug: 4fac985f9e2437c47a11e691dfac8d4c
 draft: false
+lastmod: 2020-10-23T10:37:50+08:00
 categories: [openstack]
 tags: [storage,cinder]
 keywords: OpenStack, cinder, storage, volume

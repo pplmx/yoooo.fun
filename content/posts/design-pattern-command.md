@@ -1,9 +1,9 @@
 ---
 title: Command Pattern in Design Pattern
 date: 2020-06-15T13:57:46+08:00
-lastmod: 2020-06-15T14:00:07+08:00
 slug: 63380428c5c51bec051a13c88b470685
 draft: false
+lastmod: 2020-06-15T14:00:07+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: command pattern, design pattern, java

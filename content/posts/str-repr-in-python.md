@@ -1,9 +1,9 @@
 ---
 title: __str__ and __repr__ in Python
 date: 2020-06-07T22:05:53+08:00
-lastmod: 2020-06-07T22:47:00+08:00
 slug: b846a9692479a22f110ff7652a517dd2
 draft: false
+lastmod: 2020-06-07T22:47:00+08:00
 categories: [python]
 tags: [general]
 keywords: __str__, __repr__, python

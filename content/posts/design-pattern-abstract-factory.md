@@ -1,9 +1,9 @@
 ---
 title: Abstract Factory Pattern in Design Pattern
 date: 2020-05-22T13:28:40+08:00
-lastmod: 2020-06-06T22:48:36+08:00
 slug: 4bac4bad3282cf57d0c4721157675b90
 draft: false
+lastmod: 2020-06-06T22:48:36+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: abstract factory pattern, design pattern, java

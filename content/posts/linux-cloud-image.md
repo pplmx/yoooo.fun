@@ -1,9 +1,9 @@
 ---
 title: config in cloud image
 date: 2020-04-18T20:56:44+08:00
-lastmod: 2020-04-19T18:12:04+08:00
 slug: f24e99646f63ca83acf6b2b94f13effb
 draft: false
+lastmod: 2020-04-19T18:12:04+08:00
 categories: [linux]
 tags: [image]
 keywords: cloud image, image, reset password

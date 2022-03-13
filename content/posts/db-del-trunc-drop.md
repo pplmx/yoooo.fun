@@ -1,9 +1,9 @@
 ---
 title: delete, truncate and drop
 date: 2020-06-23T08:57:45+08:00
-lastmod: 2020-06-23T09:17:37+08:00
 slug: 4016a111fefda9bb7d584e48a8f36696
 draft: false
+lastmod: 2020-06-23T09:17:37+08:00
 categories: [database]
 tags: [sql]
 keywords: delete, truncate, drop, DDL, DML

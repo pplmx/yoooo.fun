@@ -1,9 +1,9 @@
 ---
 title: How to set schedule by github actions?
 date: 2020-04-25T21:58:58+08:00
-lastmod: 2020-11-11T16:31:07+08:00
 slug: 9d9caf2b4baa7c326d9d4e94c545b7a4
 draft: false
+lastmod: 2020-11-11T16:31:07+08:00
 categories: [general]
 tags: [schedule, github]
 keywords: schedule, github actions

@@ -1,6 +1,8 @@
 ---
 title: Install the Latest Packages by Ubuntu PPA
 date: 2021-03-18T11:12:08+08:00
+slug: b3f0fae3d10599763864b18042a4776c
+draft: false
 categories: [linux]
 tags: [ubuntu]
 keywords: apt, apt-get, git, jdk, gradle

@@ -1,9 +1,9 @@
 ---
 title: Horizon Image Based on Mitaka
 date: 2020-08-27T17:06:35+08:00
-lastmod: 2020-08-27T17:14:39+08:00
 slug: 5bf999f26e032a3831707c8be992934f
 draft: false
+lastmod: 2020-08-27T17:14:39+08:00
 categories: [openstack]
 tags: [horizon,dashboard]
 keywords: OpenStack, horizon, dashboard

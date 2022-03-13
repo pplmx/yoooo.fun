@@ -1,9 +1,9 @@
 ---
 title: Factory Pattern in Design Pattern
 date: 2020-05-21T13:34:16+08:00
-lastmod: 2020-06-06T22:48:36+08:00
 slug: b73f607fb347bf4a645e6d1240f7b927
 draft: false
+lastmod: 2020-06-06T22:48:36+08:00
 categories: [java]
 tags: [general, design pattern]
 keywords: factory pattern, design pattern, java

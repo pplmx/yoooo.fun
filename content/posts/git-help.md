@@ -1,9 +1,9 @@
 ---
 title: some helpful git cmd & alias
 date: 2020-03-24T20:55:10+08:00
-lastmod: 2021-04-08T17:44:31+08:00
 slug: 0d64a6e8aa87901388673dc7d314cb9e
 draft: false
+lastmod: 2021-04-08T17:44:31+08:00
 categories: [general]
 tags: [git,help]
 keywords: git log, git submodules, list top n committers

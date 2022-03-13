@@ -1,9 +1,9 @@
 ---
 title: ansible
 date: 2020-04-18T20:24:55+08:00
-lastmod: 2020-04-30T10:13:20+08:00
 slug: 640c8a5376aa12fa15cf02130ce239a6
 draft: false
+lastmod: 2020-04-30T10:13:20+08:00
 categories: [automation]
 tags: [ansible]
 keywords: ansible, directory layout, hello world

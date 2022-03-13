@@ -1,9 +1,9 @@
 ---
 title: expand IPv6 by shell
 date: 2020-04-26T15:21:38+08:00
-lastmod: 2020-04-26T15:30:42+08:00
 slug: ee868e029739ddae71e6a50a4c667d23
 draft: false
+lastmod: 2020-04-26T15:30:42+08:00
 categories: [shell]
 tags: [IPv6, shell]
 keywords: expand, IPv6, shell 

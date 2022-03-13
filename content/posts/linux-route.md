@@ -1,9 +1,9 @@
 ---
 title: set route on linux
 date: 2019-05-31T20:13:55+08:00
-lastmod: 2020-03-25T20:23:46+08:00
 slug: 3359169a677bbc26a7757faf5b035b86
 draft: false
+lastmod: 2020-03-25T20:23:46+08:00
 categories: [linux]
 tags: [network]
 keywords: route, network, linux

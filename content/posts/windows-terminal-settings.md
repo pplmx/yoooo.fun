@@ -1,9 +1,9 @@
 ---
 title: A settings.json file for Windows Terminal
 date: 2020-10-08T19:53:32+08:00
-lastmod: 2021-01-22T16:45:24+08:00
 slug: 4c9d01f93b1df0891f61fab4dcb155d6
 draft: false
+lastmod: 2021-01-22T16:45:24+08:00
 categories: [general]
 tags: [win]
 keywords: windows terminal 

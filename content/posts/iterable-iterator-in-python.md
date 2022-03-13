@@ -1,9 +1,9 @@
 ---
 title: Difference among Iterable, Iterator and Generator
 date: 2020-05-06T16:16:51+08:00
-lastmod: 2020-05-06T16:39:53+08:00
 slug: 04251a163bb269d4bcefd67e766c3ef5
 draft: false
+lastmod: 2020-05-06T16:39:53+08:00
 categories: [python]
 tags: [source]
 keywords: iterable, iterator, generator

@@ -1,9 +1,9 @@
 ---
 title: linux服务器初建之mysql安装
 date: 2017-10-13T08:33:23+08:00
-lastmod: 2020-01-16T21:25:04+08:00
 slug: 467986a3333fded16813a0238a76f154
 draft: false
+lastmod: 2020-01-16T21:25:04+08:00
 categories: [linux]
 tags: [database]
 keywords: mysql, linux
