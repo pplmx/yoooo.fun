@@ -44,7 +44,7 @@ description: Let's begin to learn what's Factory Pattern.
 
 ## 实现
 
-![Factory Pattern](assets/factory-pattern.png)
+![Factory Pattern](/assets/factory-pattern.png)
 
 ### Shape and Subclass
 

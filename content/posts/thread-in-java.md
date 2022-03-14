@@ -11,9 +11,9 @@ description: Let's learn and create thread in Java.
 ---
 # Lifecycle of a thread in Java
 
-![Life cycle of a thread in Java](assets/thread-life-cycle.png)
+![Life cycle of a thread in Java](/assets/thread-life-cycle.png)
 
-![Lifecycle and States of a Thread in Java](assets/threadLifeCycle.jpg)
+![Lifecycle and States of a Thread in Java](/assets/threadLifeCycle.jpg)
 
 # How?
 

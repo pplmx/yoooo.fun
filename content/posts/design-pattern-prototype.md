@@ -48,7 +48,7 @@ description: Let's begin to learn what's Prototype Pattern.
 
 ## 实现
 
-![Prototype Pattern](assets/prototype-pattern.png)
+![Prototype Pattern](/assets/prototype-pattern.png)
 
 ### BaseShape
 

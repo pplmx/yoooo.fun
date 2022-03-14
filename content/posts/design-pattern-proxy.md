@@ -46,7 +46,7 @@ description: Let's begin to learn what's Proxy Pattern.
 
 ## 实现
 
-![Proxy Pattern](assets/proxy-pattern.png)
+![Proxy Pattern](/assets/proxy-pattern.png)
 
 ### Designer Interface
 

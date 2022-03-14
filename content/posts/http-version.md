@@ -22,11 +22,11 @@ description: HTTP Evolution in 1.0, 2.0, 3.0
 | 2015 |          [2.0](https://tools.ietf.org/html/rfc7540)          |
 | ???  | [3.0 Draft](https://tools.ietf.org/html/draft-ietf-quic-http) |
 
-![HTTP_Version](assets/HTTP-v1-v2-v3-stacks.png)
+![HTTP_Version](/assets/HTTP-v1-v2-v3-stacks.png)
 
 |                                             |                                                 |                                             |
 | ------------------------------------------- | ----------------------------------------------- | ------------------------------------------- |
-| ![HTTP1 Protocol](assets/http1-265x300.png) | ![HTTP1.1 Protocol](assets/http1.1-265x300.png) | ![HTTP2 Protocol](assets/http2-283x300.png) |
+| ![HTTP1 Protocol](/assets/http1-265x300.png) | ![HTTP1.1 Protocol](/assets/http1.1-265x300.png) | ![HTTP2 Protocol](/assets/http2-283x300.png) |
 
 - HTTP/1.0
 
@@ -46,7 +46,7 @@ description: HTTP Evolution in 1.0, 2.0, 3.0
     >
     > It also provides a feature called server push that allows the server to send data that the client will need but has not yet requested.
 
-![Comparison of HTTP versions](assets/Comparison-of-HTTP-versions.jpg)
+![Comparison of HTTP versions](/assets/Comparison-of-HTTP-versions.jpg)
 
 ## http 1.0
 

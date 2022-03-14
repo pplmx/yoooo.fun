@@ -27,7 +27,7 @@ description: Let's learn What's thread.
 >
 >   Each thread belongs to exactly one process and no thread can exist outside a process. Each thread represents a separate flow of control. Threads have been successfully used in implementing network servers and web server. They also provide a suitable foundation for parallel execution of applications on shared memory multiprocessors. The following figure shows the working of a single-threaded and a multithreaded process.
 
-![Single Threaded and Multithreaded Process](assets/single-and-multithreaded-process.png)
+![Single Threaded and Multithreaded Process](/assets/single-and-multithreaded-process.png)
 
 ## Why multithreading?
 
@@ -82,4 +82,3 @@ description: Let's learn What's thread.
 
 -   Dead
 
-    

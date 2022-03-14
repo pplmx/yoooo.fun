@@ -18,7 +18,7 @@ description: What's Trunk port?
 
 ## vlan between switches
 
-![trunk](assets/trunk.png)
+![trunk](/assets/trunk.png)
 
 PC1 sends traffic to PC2 after processing its host routing table. These nodes are in the same VLAN but they are connected to different switches. The basic process:
 
@@ -31,7 +31,7 @@ PC1 sends traffic to PC2 after processing its host routing table. These nodes ar
 
 ## Openstack Trunk
 
-![openstack trunk port](assets/20200424170120849.png)
+![openstack trunk port](/assets/20200424170120849.png)
 
 
 

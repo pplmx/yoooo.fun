@@ -44,7 +44,7 @@ description: Let's begin to learn what's Adapter Pattern.
 
 ## 实现
 
-![Adapter Pattern](assets/adapter-pattern.png)
+![Adapter Pattern](/assets/adapter-pattern.png)
 
 ### Player Interface
 

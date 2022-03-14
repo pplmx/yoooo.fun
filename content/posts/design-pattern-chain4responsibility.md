@@ -45,7 +45,7 @@ description: Let's begin to learn what's Chain of Responsibility Pattern.
 
 ## 实现
 
-![Chain of Responsibility Pattern](assets/chain4responsibility-pattern.png)
+![Chain of Responsibility Pattern](/assets/chain4responsibility-pattern.png)
 
 ### Logger
 

@@ -37,11 +37,11 @@ description: Let's begin to learn what's Decorator Pattern.
 
 ## 实现
 
-![Decorator Pattern](assets/decorator-pattern.png)
+![Decorator Pattern](/assets/decorator-pattern.png)
 
 ### Shape
 
-#### Shape Interface 
+#### Shape Interface
 
 ```java
 package individual.cy.learn.pattern.structural.decorator;

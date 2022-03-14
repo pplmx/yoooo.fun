@@ -82,7 +82,7 @@ l Used for connection between switches, or switch and computer.
 | Trunk     | single untagged VLAN & multiple tagged VLANs | switch/hypervisor to switch                                  | VLAN 1 can be Tagged (Untagged by default)                   |
 | Hybrid    | Support Untagged VLANs & Tagged VLANs        | 1. Physical Connection: IP Phone to Network Switch Port & a PC to IP Phone’s Switch port; 2. Logical Connection: Voice VLAN as Tagged & Data VLAN as Untagged & Switch port in Trunk mode | 1. Usually the Untagged VLAN number = Native/Default VLAN number; 2. Support for multi-Untagged Frames, usually require the use of protocol-based VLANs; 3. VLAN 1 can be Tagged (Untagged by default) |
 
-![switch-egg](assets/switch-egg.jpg)
+![switch-egg](/assets/switch-egg.jpg)
 
 
 [Reference from here]: https://www.utepo.net/article/detail/251.html	"Difference among Switch ports"

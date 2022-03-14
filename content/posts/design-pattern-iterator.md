@@ -40,7 +40,7 @@ description: Let's begin to learn what's Iterator Pattern.
 
 ## 实现
 
-![Iterator Pattern](assets/iterator-pattern.png)
+![Iterator Pattern](/assets/iterator-pattern.png)
 
 ### Iterator
 

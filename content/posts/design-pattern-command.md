@@ -40,7 +40,7 @@ description: Let's begin to learn what's Command Pattern.
 
 ## 实现
 
-![Command Pattern](assets/command-pattern.png)
+![Command Pattern](/assets/command-pattern.png)
 
 ### Command
 

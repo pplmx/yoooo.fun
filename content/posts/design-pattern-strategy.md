@@ -49,7 +49,7 @@ description: Let's begin to learn what's strategy Pattern.
 
 ## 实现
 
-![Strategy Pattern](assets/strategy-pattern.png)
+![Strategy Pattern](/assets/strategy-pattern.png)
 
 ### Behavior
 

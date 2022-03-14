@@ -6,7 +6,7 @@ draft: false
 lastmod: 2020-04-28T15:44:02+08:00
 categories: [java]
 tags: [spring, springboot]
-keywords: spring, springboot, restdocs, asciidoc, 
+keywords: spring, springboot, restdocs, asciidoc,
 description: integrate asciidoc with spring restdocs
 ---
 # Integrate Asciidoc with Spring Restdocs
@@ -86,7 +86,7 @@ bootJar {
 
 like this
 
-![directory_layout](assets/20200427131513411.png)
+![directory_layout](/assets/20200427131513411.png)
 
 ### index.adoc & updateUser.adoc(e.g.)
 

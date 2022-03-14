@@ -41,7 +41,7 @@ description: Let's begin to learn what's State Pattern.
 
 ## 实现
 
-![State Pattern](assets/state-pattern.png)
+![State Pattern](/assets/state-pattern.png)
 
 ### Package State
 

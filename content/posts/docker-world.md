@@ -13,15 +13,15 @@ description: Docker Architecture
 
 [Referenced from here.](https://www.docker.com/blog/introducing-docker-engine-18-09/)
 
-![Introducing Docker Engine 18.09 - Docker Blog](assets/DockerEngineDiagram-1.png)
+![Introducing Docker Engine 18.09 - Docker Blog](/assets/DockerEngineDiagram-1.png)
 
 [Referenced from here.](https://mkdev.me/en/posts/the-tool-that-really-runs-your-containers-deep-dive-into-runc-and-oci-specifications)
 
-![Differ Container](assets/differ-container.png)
+![Differ Container](/assets/differ-container.png)
 
 [Referenced from here.](https://medium.com/@avijitsarkar123/docker-and-oci-runtimes-a9c23a5646d6)
 
-![Docker and OCI Runtimes.](assets/docker_oci.png)
+![Docker and OCI Runtimes.](/assets/docker_oci.png)
 
 ## Components
 
@@ -142,7 +142,7 @@ ID                                                                 PID         S
     "org.opencontainers.image.stopSignal": "3"
   },
   "owner": ""
-}# 
+}#
 
 ❯ ps -ef --forest
 root      188797       1  0 14:36 ?        00:00:00 /usr/bin/conmon --api-version 1 -c 75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832 -u 75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832 -r /usr/bin/runc -b /var/lib/containers/storage/overlay-containers/75103237f3d5f8d78f1d34cd32747c08/run/containers/storage/overlay-containers/75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832/userdata/conmon.pid --exit-command /usr/bin/podman --exit-command-arg --root --exit-command-arg /var/lib/containers/storage --exit-command-arg --runroot --exit-command-arg /var/run/containers/storage --exit-comm

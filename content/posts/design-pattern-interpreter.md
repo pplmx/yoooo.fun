@@ -42,7 +42,7 @@ description: Let's begin to learn what's Interpreter Pattern.
 
 ## 实现
 
-![Interpreter Pattern](assets/interpreter-pattern.png)
+![Interpreter Pattern](/assets/interpreter-pattern.png)
 
 ### Expression
 

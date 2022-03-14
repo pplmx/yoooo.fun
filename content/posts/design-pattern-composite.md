@@ -41,7 +41,7 @@ description: Let's begin to learn what's Composite Pattern.
 
 ## 实现
 
-![Composite Pattern](assets/composite-pattern.png)
+![Composite Pattern](/assets/composite-pattern.png)
 
 ### Employee
 

@@ -17,14 +17,14 @@ weight = 2
 identifier = "/about"
 name = "😈 ABOUT"
 title = "ABOUT"
-url = "/about"
+url = "/46b3931b9959c927df4fc65fdee94b07"
 weight = 3
 
 [[main]]
 identifier = "/link"
 name = "🔗 LINK"
 title = "LINK"
-url = "/link"
+url = "/807765384d9d5527da8848df14a4f02f"
 weight = 4
 
 # 底部社交图标

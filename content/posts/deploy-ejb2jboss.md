@@ -18,7 +18,7 @@ description: deploy ejb with restful service to jboss
 >
 > Maven: 3.6.2
 >
-> We'll deploy an ear package with two war packages(One of them uses the rest service) to jboss. 
+> We'll deploy an ear package with two war packages(One of them uses the rest service) to jboss.
 
 [Source code]( https://github.com/pplmx/DeployEjb2JBoss )
 
@@ -26,7 +26,7 @@ description: deploy ejb with restful service to jboss
 
 # Here is the project structure
 
-![1571834311583](assets/1571834311583.png)
+![1571834311583](/assets/1571834311583.png)
 
 > The base is module ejb
 >
@@ -248,13 +248,13 @@ Copy `ear module/build/libs/ear-1.0-SNAPSHOT.ear` to `JBOSS HOME/standalone/depl
 
 Run `JBOSS HOME/bin/standalone.bat` as `administrator`
 
- http://127.0.0.1:8080/web-1.0-SNAPSHOT/ 
+ http://127.0.0.1:8080/web-1.0-SNAPSHOT/
 
- http://127.0.0.1:8080/app-1.0-SNAPSHOT/services/hello 
+ http://127.0.0.1:8080/app-1.0-SNAPSHOT/services/hello
 
- https://127.0.0.1:8443/web-1.0-SNAPSHOT/ 
+ https://127.0.0.1:8443/web-1.0-SNAPSHOT/
 
- https://127.0.0.1:8443/app-1.0-SNAPSHOT/services/hello 
+ https://127.0.0.1:8443/app-1.0-SNAPSHOT/services/hello
 
 All of the above will output **hello world, EJB**
 
@@ -466,7 +466,7 @@ All of the above will output **hello world, EJB**
         </plugins>
     </build>
 
-    
+
 </project>
 ```
 
@@ -510,7 +510,7 @@ All of the above will output **hello world, EJB**
         </plugins>
     </build>
 
-    
+
 </project>
 ```
 
@@ -583,10 +583,10 @@ All of the above will output **hello world, EJB**
 
 Then deploy it to jboss, you can access the following urls:
 
-http://localhost:8080/web/ 
+http://localhost:8080/web/
 
-http://localhost:8080/app/services/hello 
+http://localhost:8080/app/services/hello
 
-https://localhost:8443/web/ 
+https://localhost:8443/web/
 
-https://localhost:8443/app/services/hello 
+https://localhost:8443/app/services/hello

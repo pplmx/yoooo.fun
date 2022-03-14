@@ -7,7 +7,7 @@ lastmod: 2020-04-27T22:06:51+08:00
 categories: [java]
 tags: [spring,springboot]
 keywords: mail, springboot, spring, java
-description: integrate mail service into springboot 
+description: integrate mail service into springboot
 ---
 # 导入mail包
 ```xml
@@ -33,9 +33,9 @@ description: integrate mail service into springboot
                             enable: true
                             required: true
 ```
-<!-- more --> 
+<!-- more -->
 端口配置信息,仅供参考
-![2017042614212226.jpg](assets/5a093b5554480.jpg)
+![2017042614212226.jpg](/assets/5a093b5554480.jpg)
 
 # Tests
 ```java
@@ -71,6 +71,6 @@ public class BlogApplicationTests {
 }
 ```
 # 关于QQ授权码
-![1.png](assets/5a093d7c436f4.png)
-![2.png](assets/5a093d7c48466.png)
+![1.png](/assets/5a093d7c436f4.png)
+![2.png](/assets/5a093d7c48466.png)
 

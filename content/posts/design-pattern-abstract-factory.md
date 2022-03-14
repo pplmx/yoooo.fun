@@ -39,7 +39,7 @@ description: Let's begin to learn what's Abstract Factory Pattern.
 
 ## 实现
 
-![Abstract Factory Pattern](assets/abstractfactory-pattern.png)
+![Abstract Factory Pattern](/assets/abstractfactory-pattern.png)
 
 ### Shape and Subclass
 

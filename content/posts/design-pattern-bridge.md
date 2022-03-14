@@ -41,7 +41,7 @@ description: Let's begin to learn what's Bridge Pattern.
 
 ## 实现
 
-![Bridge Pattern](assets/bridge-pattern.png)
+![Bridge Pattern](/assets/bridge-pattern.png)
 
 ### DrawApi
 

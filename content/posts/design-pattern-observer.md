@@ -38,7 +38,7 @@ description: Let's begin to learn what's Observer Pattern.
 
 ## 实现一
 
-![Observer Pattern](assets/observer-pattern1.png)
+![Observer Pattern](/assets/observer-pattern1.png)
 
 ### Observer
 
@@ -193,7 +193,7 @@ Breaking news in People Daily! event = Violent Parade in Canada
 
 ## 实现二
 
-![Observer Pattern](assets/observer-pattern2.png)
+![Observer Pattern](/assets/observer-pattern2.png)
 
 ### Observer
 

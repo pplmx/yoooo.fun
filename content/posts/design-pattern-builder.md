@@ -50,7 +50,7 @@ description: Let's begin to learn what's Builder Pattern.
 
 ## 实现
 
-![Builder Pattern](assets/builder-pattern.png)
+![Builder Pattern](/assets/builder-pattern.png)
 
 ### Computer
 
