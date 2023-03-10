@@ -1,30 +1,14 @@
 baseURL = "https://yoooo.fun/"
 title = "Aurora"
 languageCode = "en-us"
-footnoteReturnLinkContents = "↩"
-theme = ["github.com/miiiku/hugo-theme-kagome"]
-paginate = 7
+paginate = 5
 copyright = "© Since 2022 <a href=\"https://yoooo.fun\">Mystic</a>."
 hasCJKLanguage = true
-googleAnalytics = ""
-
-[privacy]
-[privacy.disqus]
-disable = true
-
-[markup]
-[markup.goldmark]
-[markup.goldmark.renderer]
-unsafe = true
 
 [taxonomies]
 category = "categories"
 tag = "tags"
 series = "series"
-
-# URL格式
-[permalinks]
-posts = "/:slug"
 
 # 作者信息
 [author]
