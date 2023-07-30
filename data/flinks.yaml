@@ -1,0 +1,15 @@
+# 友情链接
+# Friend's links
+
+-   FLinksTitle: 我的小伙伴们
+    FLinksDesc: 与我一起成长的小伙伴们!
+    FLinksList:
+        -   name: Mystic
+            desc: 玄之又玄, 众妙之门
+            avatar: https://gohugo.io/favicon-32x32.png
+            link: https://caoyu.info
+
+        -   name: 凡梦星尘空间站
+            desc: 再平凡的人也有属于他的梦想！
+            avatar: https://lisenhui.cn/imgs/avatar.png
+            link: https://lisenhui.cn

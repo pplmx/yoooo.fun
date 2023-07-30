@@ -1,6 +1,0 @@
-baseURL = "https://yoooo.fun/"
-title = "Aurora"
-paginate = 5
-hasCJKLanguage = true
-languageCode = "en-us"
-defaultContentLanguage = "en"
