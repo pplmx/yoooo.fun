@@ -10,24 +10,20 @@ jobs:
     deploy:
         runs-on: ubuntu-22.04
         steps:
-            -
-                uses: actions/checkout@v4
+            -   uses: actions/checkout@v4
                 with:
                     submodules: recursive  # Fetch the Docsy theme
                     fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
-            -
-                name: Setup Hugo
+            -   name: Setup Hugo
                 uses: peaceiris/actions-hugo@v2
                 with:
                     hugo-version: 'latest'
                     extended: true
 
-            -
-                run: hugo --minify
+            -   run: hugo --minify
 
-            -
-                name: Deploy
+            -   name: Deploy
                 uses: peaceiris/actions-gh-pages@v3
                 with:
                     github_token: ${{ secrets.GITHUB_TOKEN }}

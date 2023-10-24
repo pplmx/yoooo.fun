@@ -1,5 +1,5 @@
 module github.com/pplmx/yoooo.fun
 
-go 1.20
+go 1.21
 
-require github.com/CaiJimmy/hugo-theme-stack/v3 v3.16.0 // indirect
+require github.com/CaiJimmy/hugo-theme-stack/v3 v3.21.0 // indirect
