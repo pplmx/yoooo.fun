@@ -1,14 +1,18 @@
 ---
-title: Composite Pattern in Design Pattern
-date: 2020-06-17T18:08:39+08:00
-slug: eae0d7ae830b5aa84d5bbda7c8a5c80c
-draft: false
-lastmod: 2020-06-17T18:10:28+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: Composite pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-17T18:08:39Z
 description: Let's begin to learn what's Composite Pattern.
+keywords: Composite pattern, design pattern, java
+lastmod: 2020-06-17T18:10:28Z
+tags:
+    - general
+    - design pattern
+title: Composite Pattern in Design Pattern
 ---
+
+
+
 # 组合模式
 
 ## Overview
@@ -41,7 +45,7 @@ description: Let's begin to learn what's Composite Pattern.
 
 ## 实现
 
-![Composite Pattern](/assets/composite-pattern.png)
+![Composite Pattern](assets/composite-pattern.png)
 
 ### Employee
 

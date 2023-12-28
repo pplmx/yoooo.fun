@@ -1,14 +1,20 @@
 ---
-title: deploy ejb with restful service to jboss
-date: 2019-10-23T20:28:20+08:00
-slug: c7ee0c75c94fae71c929a21ba94b86d1
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [java]
-tags: [ejb, restful, jboss, gradle, maven]
-keywords: ejb, restful, jboss
+categories:
+    - java
+date: 2019-10-23T20:28:20Z
 description: deploy ejb with restful service to jboss
+keywords: ejb, restful, jboss
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - ejb
+    - restful
+    - jboss
+    - gradle
+    - maven
+title: deploy ejb with restful service to jboss
 ---
+
+
 
 > Wildfly: 18.0.1.Final
 >
@@ -26,7 +32,7 @@ description: deploy ejb with restful service to jboss
 
 # Here is the project structure
 
-![1571834311583](/assets/1571834311583.png)
+![1571834311583](assets/1571834311583.png)
 
 > The base is module ejb
 >
@@ -248,21 +254,19 @@ Copy `ear module/build/libs/ear-1.0-SNAPSHOT.ear` to `JBOSS HOME/standalone/depl
 
 Run `JBOSS HOME/bin/standalone.bat` as `administrator`
 
- http://127.0.0.1:8080/web-1.0-SNAPSHOT/
+http://127.0.0.1:8080/web-1.0-SNAPSHOT/
 
- http://127.0.0.1:8080/app-1.0-SNAPSHOT/services/hello
+http://127.0.0.1:8080/app-1.0-SNAPSHOT/services/hello
 
- https://127.0.0.1:8443/web-1.0-SNAPSHOT/
+https://127.0.0.1:8443/web-1.0-SNAPSHOT/
 
- https://127.0.0.1:8443/app-1.0-SNAPSHOT/services/hello
+https://127.0.0.1:8443/app-1.0-SNAPSHOT/services/hello
 
 All of the above will output **hello world, EJB**
 
 ---
 
 ---
-
-
 
 # if maven, replace 5 build.gradle
 

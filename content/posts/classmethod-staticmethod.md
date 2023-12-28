@@ -1,35 +1,38 @@
 ---
-title: Let's understand class and static method in Python for a Java-er
-date: 2020-05-08T16:20:48+08:00
-slug: e034ce7185dbcbd648c3a4750ef8b566
-draft: false
-lastmod: 2020-05-08T16:34:11+08:00
-categories: [python]
-tags: [python]
-keywords: classmethod, staticmethod, java
+categories:
+    - python
+date: 2020-05-08T16:20:48Z
 description: How to understand class method and static method for a Java-er.
+keywords: classmethod, staticmethod, java
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - python
+title: Let's understand class and static method in Python for a Java-er
 ---
+
+
+
 # @classmethod & @staticmethod
 
 If you had the base knowledge in Java, maybe you would have been confused with it.
 
--   What is the class method?
--   What is the static method?
--   Are they the same as each other?
+- What is the class method?
+- What is the static method?
+- Are they the same as each other?
 
 In Java, the class method does is the static method. They refer to the same thing.
 
-Personally, 
+Personally,
 
--   @classmethod is the concept of static method(class method) in Java
--   @staticmethod, Without the corresponding concept in Java, it merely belongs to Python.
+- @classmethod is the concept of static method(class method) in Java
+- @staticmethod, Without the corresponding concept in Java, it merely belongs to Python.
 
 ---
 
 In Python, they are almost identical. Most of the use of @staticmethod can be replaced with @classmethod.
 
 | @classmethod                       | @staticmethod                                    |
-| ---------------------------------- | ------------------------------------------------ |
+|------------------------------------|--------------------------------------------------|
 | <class 'method'> < bound method >  | <class 'function'> < function >                  |
 | can be extended, can be overridden | can be extended, can be overridden               |
 |                                    | can be changed with @classmethod when overridden |

@@ -1,14 +1,17 @@
 ---
-title: delete, truncate and drop
-date: 2020-06-23T08:57:45+08:00
-slug: 4016a111fefda9bb7d584e48a8f36696
-draft: false
-lastmod: 2020-06-23T09:17:37+08:00
-categories: [database]
-tags: [sql]
-keywords: delete, truncate, drop, DDL, DML
+categories:
+    - database
+date: 2020-06-23T08:57:45Z
 description: What are the difference among delete, truncate and drop?
+keywords: delete, truncate, drop, DDL, DML
+lastmod: 2020-06-23T09:17:37Z
+tags:
+    - sql
+title: delete, truncate and drop
 ---
+
+
+
 # delete truncate drop
 
 ## delete
@@ -23,7 +26,8 @@ description: What are the difference among delete, truncate and drop?
 
 1. truncate是 `DDL` ，会隐式提交，所以，不能回滚，不会触发触发器。
 
-2. truncate会删除表中所有记录，并且将重新设置高水线和所有的索引，缺省情况下将空间释放到minextents个extent，除非使用reuse storage，。不会记录日志，所以执行速度很快，但不能通过rollback撤消操作（如果一不小心把一个表truncate掉，也是可以恢复的，只是不能通过rollback来恢复）。
+2. truncate会删除表中所有记录，并且将重新设置高水线和所有的索引，缺省情况下将空间释放到minextents个extent，除非使用reuse
+   storage，。不会记录日志，所以执行速度很快，但不能通过rollback撤消操作（如果一不小心把一个表truncate掉，也是可以恢复的，只是不能通过rollback来恢复）。
 
 3. 对于外键（foreignkey ）约束引用的表，不能使用 truncate table，而应使用不带 where 子句的 delete 语句。
 
@@ -45,7 +49,7 @@ description: What are the difference among delete, truncate and drop?
 
 3. 如果想删除部分数据用delete，注意带上where子句，回滚段要足够大；
 
-* 如果想删除表，当然用drop；  
+* 如果想删除表，当然用drop；
 
 * 如果想保留表而将所有数据删除，如果和事务无关，用truncate即可；
 

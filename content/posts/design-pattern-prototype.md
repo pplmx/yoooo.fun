@@ -1,14 +1,18 @@
 ---
-title: Prototype Pattern in Design Pattern
-date: 2020-06-10T17:20:16+08:00
-slug: 59c60e86bc99f837b14dfe572ea0efec
-draft: false
-lastmod: 2020-06-10T17:22:33+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: prototype pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-10T17:20:16Z
 description: Let's begin to learn what's Prototype Pattern.
+keywords: prototype pattern, design pattern, java
+lastmod: 2020-06-10T17:22:33Z
+tags:
+    - general
+    - design pattern
+title: Prototype Pattern in Design Pattern
 ---
+
+
+
 # 原型模式
 
 ## Overview
@@ -48,7 +52,7 @@ description: Let's begin to learn what's Prototype Pattern.
 
 ## 实现
 
-![Prototype Pattern](/assets/prototype-pattern.png)
+![Prototype Pattern](assets/prototype-pattern.png)
 
 ### BaseShape
 

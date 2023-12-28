@@ -1,17 +1,20 @@
 ---
-title: ansible
-date: 2020-04-18T20:24:55+08:00
-slug: 640c8a5376aa12fa15cf02130ce239a6
-draft: false
-lastmod: 2020-04-30T10:13:20+08:00
-categories: [automation]
-tags: [ansible]
-keywords: ansible, directory layout, hello world
+categories:
+    - automation
+date: 2020-04-18T20:24:55Z
 description: Let's start a simple sample in Ansible
+keywords: ansible, directory layout, hello world
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - ansible
+title: ansible
 ---
+
+
+
 # ansible
 
->   [Directory Layout](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#directory-layout)
+> [Directory Layout](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#directory-layout)
 
 ## Directory Layout
 
@@ -105,7 +108,7 @@ roles/
     webtier/
     monitoring/
     fooapp/
-   
+
 ```
 
 # env
@@ -315,3 +318,4 @@ ansible-inventory -i inventory/prod.yml --list
         state: restarted
         args: enp2s0
 ```
+

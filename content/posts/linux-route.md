@@ -1,14 +1,16 @@
 ---
-title: set route on linux
-date: 2019-05-31T20:13:55+08:00
-slug: 3359169a677bbc26a7757faf5b035b86
-draft: false
-lastmod: 2020-03-25T20:23:46+08:00
-categories: [linux]
-tags: [network]
-keywords: route, network, linux
+categories:
+    - linux
+date: 2019-05-31T20:13:55Z
 description: some linux route operations
+keywords: route, network, linux
+lastmod: 2020-03-25T20:23:46Z
+tags:
+    - network
+title: set route on linux
 ---
+
+
 
 # linux route
 
@@ -62,3 +64,4 @@ systemctl restart network
 # change some params of existing route
 ip route change 192.192.13.1/24 dev ens32
 ```
+

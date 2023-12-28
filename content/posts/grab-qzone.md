@@ -1,21 +1,29 @@
 ---
-title: 抓取好友说说,进行简单的分析
-date: 2017-12-14T09:25:22+08:00
-slug: e55701e806387e51b27f2fe360877ccb
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [python]
-tags: [spider, data analysis]
-keywords: spider, python
+categories:
+    - python
+date: 2017-12-14T09:25:22Z
 description: spider QQ shuoshuo by python
+keywords: spider, python
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - spider
+    - data analysis
+title: 抓取好友说说,进行简单的分析
 ---
+
+
+
 # Something needed before action
+
     需要下载chromedriver.exe
     需要用到selenium,jieba,wordcloud,BeautifulSoup,xlrd,xlwt,xlutils等模块
     都可以使用pip install 模块名 方式安装,如果安装失败,可以自己下载whl文件,并将whl文件
     放在python的安装目录Scripts下,再通过pip install 本地地址.whl,安装所需模块
+
 <!-- more -->
+
 # In action
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -189,16 +197,20 @@ if __name__ == '__main__':
     # 进行说说分析,并生成词云
     shuoshuo_analysis('d:/me.csv')
 ```
+
 # Something worth noting
+
     1.python版本: 3.6.3
     2.生成的csv文件,在shuoshuo_analysis()中直接调用,会报错,至少我这边是这样的
-      解决方案: 
+      解决方案:
         对打开生成的csv文件,对其另存为普通的csv文件[不是那个utf8格式的csv]
         然后用记事本打开,复制里面的内容;再用sublime打开(应该是乱码的),
         将复制的内容覆盖原有的乱码内容,同时save as utf-8
         shuoshuo_analysis()调用这个文件
       为什么不在最初就保存为utf-8格式的csv文件呢?
         直接保存为csv utf-8格式,打开不会乱码,但是在读取时,第一行数据有问题,其他正常
-    3.制作词云图片时,选择的背景图片,最好是对比度比较明显的 
-[Github Source Code](https://github.com/pplmx/data_mining.git)   
-      
+    3.制作词云图片时,选择的背景图片,最好是对比度比较明显的
+
+[Github Source Code](https://github.com/pplmx/data_mining.git)
+
+

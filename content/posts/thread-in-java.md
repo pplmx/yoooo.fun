@@ -1,19 +1,23 @@
 ---
-title: What's thread in Java?
-date: 2020-05-15T14:55:38+08:00
-slug: 5c028c36865949156511af9e4e298593
-draft: false
-lastmod: 2020-05-15T15:25:01+08:00
-categories: [java]
-tags: [thread, java]
-keywords: thread, multi-thread, os, java
+categories:
+    - java
+date: 2020-05-15T14:55:38Z
 description: Let's learn and create thread in Java.
+keywords: thread, multi-thread, os, java
+lastmod: 2020-05-15T15:25:01Z
+tags:
+    - thread
+    - java
+title: What's thread in Java?
 ---
+
+
+
 # Lifecycle of a thread in Java
 
-![Life cycle of a thread in Java](/assets/thread-life-cycle.png)
+![Life cycle of a thread in Java](assets/thread-life-cycle.png)
 
-![Lifecycle and States of a Thread in Java](/assets/threadLifeCycle.jpg)
+![Lifecycle and States of a Thread in Java](assets/threadLifeCycle.jpg)
 
 # How?
 
@@ -120,5 +124,6 @@ public class Tester {
 }
 
 ```
+
 
 

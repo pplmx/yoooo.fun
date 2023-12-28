@@ -1,14 +1,17 @@
 ---
-title: Install Python from Source Code
-date: 2020-09-27T13:32:10+08:00
-slug: 7dd3e8847edb1f9059597408705095bf
-draft: false
-lastmod: 2020-10-28T14:02:27+08:00
-categories: [python]
-tags: [python]
-keywords: python, alternatives, multi versions
+categories:
+    - python
+date: 2020-09-27T13:32:10Z
 description: Automatically install Python, just need to set python version number
+keywords: python, alternatives, multi versions
+lastmod: 2020-10-28T14:02:27Z
+tags:
+    - python
+title: Install Python from Source Code
 ---
+
+
+
 # install Python(Optimization Version)
 
 ```bash

@@ -1,14 +1,17 @@
 ---
-title: some helpful git cmd & alias
-date: 2020-03-24T20:55:10+08:00
-slug: 0d64a6e8aa87901388673dc7d314cb9e
-draft: false
-lastmod: 2021-04-08T17:44:31+08:00
-categories: [general]
-tags: [git,help]
-keywords: git log, git submodules, list top n committers
+categories:
+    - general
+date: 2020-03-24T20:55:10Z
 description: alias git log & common git cmd
+keywords: git log, git submodules, list top n committers
+lastmod: 2021-04-08T17:44:31Z
+tags:
+    - git
+    - help
+title: some helpful git cmd & alias
 ---
+
+
 
 # Git
 
@@ -105,7 +108,6 @@ $ cat ~/.gitconfig
 [tag]
         sort = v:refname
 ```
-
 
 ## git customized log
 
@@ -241,7 +243,8 @@ git commit --amend --no-edit
 ## some error solution
 
 > git pull
-> error: cannot lock ref 'refs/remotes/origin/****': is at eaabc706c45b474e4e04e6d9de54a5a7bd2d16cb but expected c06606dd5b8c3d3fddc84f8c21f139a04586a1af
+> error: cannot lock ref 'refs/remotes/origin/****': is at eaabc706c45b474e4e04e6d9de54a5a7bd2d16cb but expected
+> c06606dd5b8c3d3fddc84f8c21f139a04586a1af
 
 ```bash
 # you should run

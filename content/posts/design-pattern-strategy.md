@@ -1,14 +1,18 @@
 ---
-title: Strategy Pattern in Design Pattern
-date: 2020-05-31T20:27:11+08:00
-slug: 160d8b999b1724c549f454fcbfa9d350
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: strategy pattern, design pattern, java
+categories:
+    - java
+date: 2020-05-31T20:27:11Z
 description: Let's begin to learn what's strategy Pattern.
+keywords: strategy pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Strategy Pattern in Design Pattern
 ---
+
+
+
 # 策略模式
 
 ## Overview
@@ -25,7 +29,6 @@ description: Let's begin to learn what's strategy Pattern.
 
 在有多种算法相似的情况下，使用 if...else 所带来的复杂和难以维护。
 
-
 ## 何时使用
 
 一个系统有许多许多类，而区分它们的只是他们直接的行为。
@@ -35,7 +38,6 @@ description: Let's begin to learn what's strategy Pattern.
 - 诸葛亮的锦囊妙计，每一个锦囊就是一个策略
 - 旅行的出游方式，选择骑自行车、坐汽车，每一种旅行方式都是一个策略
 - JAVA AWT 中的 LayoutManager
-
 
 ## 优点
 
@@ -49,7 +51,7 @@ description: Let's begin to learn what's strategy Pattern.
 
 ## 实现
 
-![Strategy Pattern](/assets/strategy-pattern.png)
+![Strategy Pattern](assets/strategy-pattern.png)
 
 ### Behavior
 

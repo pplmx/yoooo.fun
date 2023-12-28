@@ -1,14 +1,18 @@
 ---
-title: Interpreter Pattern in Design Pattern
-date: 2020-06-16T15:51:51+08:00
-slug: 7b00f7652e4216c3948dc9a7d5333c15
-draft: false
-lastmod: 2020-06-16T15:54:37+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: interpreter pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-16T15:51:51Z
 description: Let's begin to learn what's Interpreter Pattern.
+keywords: interpreter pattern, design pattern, java
+lastmod: 2020-06-16T15:54:37Z
+tags:
+    - general
+    - design pattern
+title: Interpreter Pattern in Design Pattern
 ---
+
+
+
 # 解释器模式
 
 ## Overview
@@ -42,7 +46,7 @@ description: Let's begin to learn what's Interpreter Pattern.
 
 ## 实现
 
-![Interpreter Pattern](/assets/interpreter-pattern.png)
+![Interpreter Pattern](assets/interpreter-pattern.png)
 
 ### Expression
 

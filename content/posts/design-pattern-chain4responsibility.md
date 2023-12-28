@@ -1,14 +1,18 @@
 ---
-title: Chain of Responsibility in Design Pattern
-date: 2020-06-04T08:50:47+08:00
-slug: 4fae490d7a714e9e4791f432b0e99894
-draft: false
-lastmod: 2020-06-04T08:57:56+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: Chain of Responsibility Pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-04T08:50:47Z
 description: Let's begin to learn what's Chain of Responsibility Pattern.
+keywords: Chain of Responsibility Pattern, design pattern, java
+lastmod: 2020-06-04T08:57:56Z
+tags:
+    - general
+    - design pattern
+title: Chain of Responsibility in Design Pattern
 ---
+
+
+
 # 责任链模式
 
 ## Overview
@@ -45,7 +49,7 @@ description: Let's begin to learn what's Chain of Responsibility Pattern.
 
 ## 实现
 
-![Chain of Responsibility Pattern](/assets/chain4responsibility-pattern.png)
+![Chain of Responsibility Pattern](assets/chain4responsibility-pattern.png)
 
 ### Logger
 

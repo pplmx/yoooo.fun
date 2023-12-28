@@ -1,18 +1,25 @@
 ---
-title: 抓取网易云音乐歌单
-date: 2017-12-14T10:13:45+08:00
-slug: 955aaf9aa8018a44730bcaf60457144a
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [python]
-tags: [spider]
-keywords: spider, python
+categories:
+    - python
+date: 2017-12-14T10:13:45Z
 description: spider netease music by python
+keywords: spider, python
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - spider
+title: 抓取网易云音乐歌单
 ---
+
+
+
 # Something needed before action
+
     需要使用到lxml和beautifulsoup,都可以使用pip安装
+
 <!-- more -->
+
 # In action
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -63,7 +70,10 @@ if __name__ == '__main__':
     parse_html(result)
 
 ```
+
 # Something worth noting
+
     1.python版本: 3.6.3
     2.可以结合前一篇,做个歌词分析
+
 [Github Source Code](https://github.com/pplmx/data_mining.git)

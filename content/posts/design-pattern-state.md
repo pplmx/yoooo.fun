@@ -1,14 +1,18 @@
 ---
-title: State Pattern in Design Pattern
-date: 2020-06-12T16:49:39+08:00
-slug: 21c155711c41eddfff250855d401a8e4
-draft: false
-lastmod: 2020-06-12T16:55:45+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: state pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-12T16:49:39Z
 description: Let's begin to learn what's State Pattern.
+keywords: state pattern, design pattern, java
+lastmod: 2020-06-12T16:55:45Z
+tags:
+    - general
+    - design pattern
+title: State Pattern in Design Pattern
 ---
+
+
+
 # 状态模式
 
 ## Overview
@@ -41,7 +45,7 @@ description: Let's begin to learn what's State Pattern.
 
 ## 实现
 
-![State Pattern](/assets/state-pattern.png)
+![State Pattern](assets/state-pattern.png)
 
 ### Package State
 

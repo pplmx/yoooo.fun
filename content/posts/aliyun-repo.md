@@ -1,14 +1,19 @@
 ---
-title: Some repos in aliyun
-date: 2020-04-18T20:02:12+08:00
-slug: 59632d3d4355a000dd7a19f3bc3c663a
-draft: false
-lastmod: 2020-06-24T11:04:34+08:00
-categories: [general]
-tags: [repo, pip, centos, ubuntu]
-keywords: pip source, rpm repo, centos, ubuntu, 
+categories:
+    - general
+date: 2020-04-18T20:02:12Z
 description: Some aliyun repo sources
+keywords: pip source, rpm repo, centos, ubuntu,
+lastmod: 2020-06-24T11:04:34Z
+tags:
+    - repo
+    - pip
+    - centos
+    - ubuntu
+title: Some repos in aliyun
 ---
+
+
 
 # aliyun repo
 
@@ -98,3 +103,4 @@ deb-src https://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted univ
 deb https://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src https://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 ```
+

@@ -1,14 +1,18 @@
 ---
-title: Decorator Pattern in Design Pattern
-date: 2020-05-24T21:12:03+08:00
-slug: 2ea5649cdc51e91b7274d87de7e73b0d
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: decorator pattern, design pattern, java
+categories:
+    - java
+date: 2020-05-24T21:12:03Z
 description: Let's begin to learn what's Decorator Pattern.
+keywords: decorator pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Decorator Pattern in Design Pattern
 ---
+
+
+
 # 装饰器模式
 
 ## Overview
@@ -37,7 +41,7 @@ description: Let's begin to learn what's Decorator Pattern.
 
 ## 实现
 
-![Decorator Pattern](/assets/decorator-pattern.png)
+![Decorator Pattern](assets/decorator-pattern.png)
 
 ### Shape
 

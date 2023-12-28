@@ -1,14 +1,18 @@
 ---
-title: Proxy Pattern in Design Pattern
-date: 2020-05-19T15:42:27+08:00
-slug: 98f5e2a74b35c88347b6eff71e0c47da
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: proxy pattern, design pattern, java
+categories:
+    - java
+date: 2020-05-19T15:42:27Z
 description: Let's begin to learn what's Proxy Pattern.
+keywords: proxy pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Proxy Pattern in Design Pattern
 ---
+
+
+
 # 代理模式
 
 ## Overview
@@ -35,8 +39,8 @@ description: Let's begin to learn what's Proxy Pattern.
 
 ## 应用实例
 
--   买火车票，不一定要去火车站，也可以去代售点
--   Spring AOP
+- 买火车票，不一定要去火车站，也可以去代售点
+- Spring AOP
 
 ## 优点
 
@@ -46,7 +50,7 @@ description: Let's begin to learn what's Proxy Pattern.
 
 ## 实现
 
-![Proxy Pattern](/assets/proxy-pattern.png)
+![Proxy Pattern](assets/proxy-pattern.png)
 
 ### Designer Interface
 

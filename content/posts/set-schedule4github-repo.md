@@ -1,14 +1,18 @@
 ---
-title: How to set schedule by github actions?
-date: 2020-04-25T21:58:58+08:00
-slug: 9d9caf2b4baa7c326d9d4e94c545b7a4
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [general]
-tags: [schedule, github]
-keywords: schedule, github actions
+categories:
+    - general
+date: 2020-04-25T21:58:58Z
 description: Let's start a simple schedule in github actions.
+keywords: schedule, github actions
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - schedule
+    - github
+title: How to set schedule by github actions?
 ---
+
+
+
 # Github Actions: Schedule
 
 Here is a trick to record a day the Miliky Way hasn't collided with the Andromeda Galaxy.

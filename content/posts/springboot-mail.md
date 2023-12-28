@@ -1,22 +1,29 @@
 ---
-title: springboot整合Mail服务
-date: 2017-11-13T14:18:09+08:00
-slug: 4a628b6f900046a84a2040ceb1653f04
-draft: false
-lastmod: 2020-04-27T22:06:51+08:00
-categories: [java]
-tags: [spring,springboot]
-keywords: mail, springboot, spring, java
+categories:
+    - java
+date: 2017-11-13T14:18:09Z
 description: integrate mail service into springboot
+keywords: mail, springboot, spring, java
+lastmod: 2020-04-27T22:06:51Z
+tags:
+    - spring
+    - springboot
+title: springboot整合Mail服务
 ---
+
+
+
 # 导入mail包
+
 ```xml
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
 ```
+
 # application.yml配置
+
 ```yaml
     spring:
         mail:
@@ -33,11 +40,13 @@ description: integrate mail service into springboot
                             enable: true
                             required: true
 ```
+
 <!-- more -->
 端口配置信息,仅供参考
-![2017042614212226.jpg](/assets/5a093b5554480.jpg)
+![2017042614212226.jpg](assets/5a093b5554480.jpg)
 
 # Tests
+
 ```java
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,7 +79,10 @@ public class BlogApplicationTests {
 
 }
 ```
+
 # 关于QQ授权码
-![1.png](/assets/5a093d7c436f4.png)
-![2.png](/assets/5a093d7c48466.png)
+
+![1.png](assets/5a093d7c436f4.png)
+![2.png](assets/5a093d7c48466.png)
+
 

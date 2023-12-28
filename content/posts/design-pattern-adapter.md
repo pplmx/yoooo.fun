@@ -1,14 +1,18 @@
 ---
-title: Adapter Pattern in Design Pattern
-date: 2020-06-06T20:58:54+08:00
-slug: 256f31fbdc22228ea78c8e02b3053f67
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: adapter pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-06T20:58:54Z
 description: Let's begin to learn what's Adapter Pattern.
+keywords: adapter pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Adapter Pattern in Design Pattern
 ---
+
+
+
 # 适配器模式
 
 ## Overview
@@ -31,9 +35,9 @@ description: Let's begin to learn what's Adapter Pattern.
 
 ## 应用实例
 
--   美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V
--   在 LINUX 上运行 WINDOWS 程序
--   Java中JDBC
+- 美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V
+- 在 LINUX 上运行 WINDOWS 程序
+- Java中JDBC
 
 ## 优点
 
@@ -44,7 +48,7 @@ description: Let's begin to learn what's Adapter Pattern.
 
 ## 实现
 
-![Adapter Pattern](/assets/adapter-pattern.png)
+![Adapter Pattern](assets/adapter-pattern.png)
 
 ### Player Interface
 

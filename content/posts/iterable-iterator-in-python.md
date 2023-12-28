@@ -1,14 +1,16 @@
 ---
-title: Difference among Iterable, Iterator and Generator
-date: 2020-05-06T16:16:51+08:00
-slug: 04251a163bb269d4bcefd67e766c3ef5
-draft: false
-lastmod: 2020-05-06T16:39:53+08:00
-categories: [python]
-tags: [source]
-keywords: iterable, iterator, generator
+categories:
+    - python
+date: 2020-05-06T16:16:51Z
 description: What's Iterable, Iterator, Generator in Python?
+keywords: iterable, iterator, generator
+lastmod: 2020-05-06T16:39:53Z
+tags:
+    - source
+title: Difference among Iterable, Iterator and Generator
 ---
+
+
 
 # Iterable(metaclass=ABCMeta)
 
@@ -119,3 +121,4 @@ Iterable, must implement `__iter__`
 Iterator, must implement `__iter__` and `__next__`
 
 Generator, must implement `__iter__` , `__next__`, `send`, `throw` and `close`
+

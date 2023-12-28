@@ -1,14 +1,16 @@
 ---
-title: How to Copy a List in Python
-date: 2021-01-22T16:35:46+08:00
-slug: 7366d7f9189e74f5640a9d23d5a89a7b
-draft: false
-lastmod: 2021-01-22T16:38:46+08:00
-categories: [java]
-tags: [python]
-keywords: list, python
+categories:
+    - java
+date: 2021-01-22T16:35:46Z
 description: Let's understand what are the shallow-copy and deep-copy.
+keywords: list, python
+lastmod: 2021-01-22T16:38:46Z
+tags:
+    - python
+title: How to Copy a List in Python
 ---
+
+
 
 # How to Copy a List in Python
 

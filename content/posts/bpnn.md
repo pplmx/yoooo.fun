@@ -1,29 +1,35 @@
 ---
-title: BP神经网络算法(python实现)
-date: 2017-12-14T11:09:39+08:00
-slug: 7b24a66d8b4e76d31c8a3f367ecdec1e
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [algorithm]
-tags: [python,classification]
-keywords: BP, Neural Network, python
+categories:
+    - algorithm
+date: 2017-12-14T11:09:39Z
 description: implement BPNN by python
+keywords: BP, Neural Network, python
+lastmod: 2023-08-18T12:31:07Z
+tags:
+    - python
+    - classification
+title: BP神经网络算法(python实现)
 ---
+
+
+
 # BPNN
+
     神经网络是一种运算模型，由大量的节点（或称神经元）之间相互联接构成。
     每个节点代表一种特定的输出函数，称为激励函数（activation function）。
     每两个节点间的连接都代表一个对于通过该连接信号的加权值，称之为权重，这相当于人工神经网络的记忆。
     网络的输出则依网络的连接方式，权重值和激励函数的不同而不同。
     而网络自身通常都是对自然界某种算法或者函数的逼近，也可能是对一种逻辑策略的表达。
-    
+
     神经网络主要有以下几种类型: 前向型、反馈型、随机型和竞争型。
     BPNN,Back Propagation Neural Network,属于前向型。
     前向型:
         前馈神经网络是指神经元分层排列，由输入层，隐藏层和输出层构成，其中隐藏层可能会有多层。
         这种神经网络的每一层的神经元只接受前一层神经元的输入，后面的层对于前面的层没有信号反馈。
         每一层对于输入数据进行一定的转换，然后将输出结果作为下一层的输入，直到最后输出结果。
-<!-- more -->
-# In action
+
+## In action
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -248,5 +254,7 @@ if __name__ == '__main__':
     print(predict_value)
 
 ```
-# Something worth noting
+
+## Something worth noting
+
 [Github Source Code](https://github.com/pplmx/MachineLearning.git)

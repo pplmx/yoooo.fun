@@ -1,15 +1,20 @@
 ---
-title: kNN分类算法(python实现)
-date: 2017-12-14T10:51:53+08:00
-slug: 7c257c3d4910d6de610183a603dd330f
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [algorithm]
-tags: [python,classification]
-keywords: kNN, python
+categories:
+    - algorithm
+date: 2017-12-14T10:51:53Z
 description: implement kNN by python
+keywords: kNN, python
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - python
+    - classification
+title: kNN分类算法(python实现)
 ---
+
+
+
 # kNN
+
     k-NearestNeighbor
     核心思想:
         如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，
@@ -20,8 +25,11 @@ description: implement kNN by python
         计算复杂度高、空间复杂度高
     适用数据范围：
         数值型和标称型
+
 <!-- more -->
+
 # In action
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -289,5 +297,7 @@ if __name__ == '__main__':
     handwriting_class_test()
 
 ```
+
 # Something worth noting
+
 [Github Source Code](https://github.com/pplmx/MachineLearning.git)

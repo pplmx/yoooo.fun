@@ -1,14 +1,18 @@
 ---
-title: deploy springboot to external container(JBoss)
-date: 2019-10-09T20:21:45+08:00
-slug: 588dc6a365d445a82757e32411e8a819
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [java]
-tags: [spring, gradle, jboss]
-keywords: webflux, gradle, jboss
+categories:
+    - java
+date: 2019-10-09T20:21:45Z
 description: deploy springboot war to jboss
+keywords: webflux, gradle, jboss
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - spring
+    - gradle
+    - jboss
+title: deploy springboot to external container(JBoss)
 ---
+
+
 
 > Wildfly: 18.0.1.Final
 >
@@ -24,23 +28,23 @@ description: deploy springboot war to jboss
 
 ## create springboot demo project by initializer
 
-![1569844794129](/assets/1569844794129.png)
+![1569844794129](assets/1569844794129.png)
 
-![1569844973320](/assets/1569844973320.png)
+![1569844973320](assets/1569844973320.png)
 
-![1569845032989](/assets/1569845032989.png)
+![1569845032989](assets/1569845032989.png)
 
-![1569845140007](/assets/1569845140007.png)
+![1569845140007](assets/1569845140007.png)
 
-![1569846771715](/assets/1569846771715.png)
+![1569846771715](assets/1569846771715.png)
 
 ## write a test case
 
-![1569846460212](/assets/1569846460212.png)
+![1569846460212](assets/1569846460212.png)
 
 ## build package
 
-![1570622045669](/assets/1570622045669.png)
+![1570622045669](assets/1570622045669.png)
 
 ## deploy it to JBoss
 

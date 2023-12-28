@@ -1,15 +1,22 @@
 ---
-title: 决策树算法(python实现)
-date: 2017-12-14T14:20:30+08:00
-slug: 63f3ee3218f127d3aefbbac2e4a081f2
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [algorithm]
-tags: [python,classification]
-keywords: decision tree, python
+categories:
+    - algorithm
+date: 2017-12-14T14:20:30Z
 description: implement decision tree by python
+keywords: decision tree, python
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - python
+    - classification
+title: 决策树算法(python实现)
 ---
+
+
+
 # Decision Tree
+
+## knowledge
+
     decision tree
     核心思想:
         一种树结构（可以是二叉树或非二叉树）
@@ -22,8 +29,9 @@ description: implement decision tree by python
         可能会产生过度匹配问题
     适用数据范围：
         数值型和标称型
-<!-- more -->
-# In action
+
+## In action
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -251,5 +259,7 @@ if __name__ == '__main__':
         create_plot(lenses_tree)
 
 ```
-# Something worth noting
+
+## Something worth noting
+
 [Github Source Code](https://github.com/pplmx/MachineLearning.git)

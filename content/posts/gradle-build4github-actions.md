@@ -1,14 +1,17 @@
 ---
-title: How to configure gradle build on Github Actions
-date: 2020-04-26T15:21:04+08:00
-slug: 0e2db3fdfcfc75269c913796137a37ff
-draft: false
-lastmod: 2020-04-26T15:30:42+08:00
-categories: [general]
-tags: [gradle]
-keywords: gradle, github actions, java, build
+categories:
+    - general
+date: 2020-04-26T15:21:04Z
 description: Configure gradle build for github workflow
+keywords: gradle, github actions, java, build
+lastmod: 2020-04-26T15:30:42Z
+tags:
+    - gradle
+title: How to configure gradle build on Github Actions
 ---
+
+
+
 ```yaml
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle

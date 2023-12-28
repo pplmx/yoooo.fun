@@ -1,15 +1,18 @@
 ---
-title: __str__ and __repr__ in Python
-date: 2020-06-07T22:05:53+08:00
-slug: b846a9692479a22f110ff7652a517dd2
-draft: false
-lastmod: 2020-06-07T22:47:00+08:00
-categories: [python]
-tags: [general]
-keywords: __str__, __repr__, python
+categories:
+    - python
+date: 2020-06-07T22:05:53Z
 description: What's difference between __str__ and __repr__ ?
+keywords: __str__, __repr__, python
+lastmod: 2020-06-07T22:47:00Z
+tags:
+    - general
+title: __str__ and __repr__ in Python
 ---
-# `__str__` and `__repr__` 
+
+
+
+# `__str__` and `__repr__`
 
 ## `__str__`
 
@@ -55,7 +58,7 @@ This is a red apple.[Print by __str__]
 >>>
 ```
 
-从以上输出, 
+从以上输出,
 
 - print调用了`__str__`
 - 交互式环境,直接输出了地址信息
@@ -93,7 +96,7 @@ This is a red apple.[Print by __repr__]
 >>>
 ```
 
-从以上输出, 
+从以上输出,
 
 - 交互式环境, 调用了重写的`__repr__`
 - print也调用了`__repr__`
@@ -131,7 +134,7 @@ This is a red apple.[Print by __str__]
 >>>
 ```
 
-从以上输出, 
+从以上输出,
 
 - 交互式环境, 直接输出, 调用了`__repr__`
 - print, 调用了`__str__`
@@ -161,8 +164,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 <base_knowledge.Apple object at 0x0000025ABFE10AF0>
 >>>
 ```
-
-
 
 结合Condition1, 2, 3, 4, 可以得出以下结论
 

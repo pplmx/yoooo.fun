@@ -1,14 +1,18 @@
 ---
-title: Abstract Factory Pattern in Design Pattern
-date: 2020-05-22T13:28:40+08:00
-slug: 4bac4bad3282cf57d0c4721157675b90
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: abstract factory pattern, design pattern, java
+categories:
+    - java
+date: 2020-05-22T13:28:40Z
 description: Let's begin to learn what's Abstract Factory Pattern.
+keywords: abstract factory pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Abstract Factory Pattern in Design Pattern
 ---
+
+
+
 # 抽象工厂模式
 
 ## Overview
@@ -39,7 +43,7 @@ description: Let's begin to learn what's Abstract Factory Pattern.
 
 ## 实现
 
-![Abstract Factory Pattern](/assets/abstractfactory-pattern.png)
+![Abstract Factory Pattern](assets/abstractfactory-pattern.png)
 
 ### Shape and Subclass
 

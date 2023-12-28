@@ -1,14 +1,17 @@
 ---
-title: Let's install multiple python versions in linux
-date: 2020-04-25T21:55:12+08:00
-slug: cc1b9056bc70732925b5e708439b487b
-draft: false
-lastmod: 2020-04-30T10:13:20+08:00
-categories: [python]
-tags: [python]
-keywords: python, alternatives, multi versions
+categories:
+    - python
+date: 2020-04-25T21:55:12Z
 description: Let's install multiple python versions in linux
+keywords: python, alternatives, multi versions
+lastmod: 2020-04-30T10:13:20Z
+tags:
+    - python
+title: Let's install multiple python versions in linux
 ---
+
+
+
 # install multiple versions of python
 
 [All Python Released Source](https://www.python.org/ftp/python/)

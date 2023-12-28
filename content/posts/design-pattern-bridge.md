@@ -1,14 +1,18 @@
 ---
-title: Bridge Pattern in Design Pattern
-date: 2020-06-10T18:24:49+08:00
-slug: a6e1761a2f6d06b4ecaaa7ce50659bf1
-draft: false
-lastmod: 2020-06-10T18:27:22+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: bridge pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-10T18:24:49Z
 description: Let's begin to learn what's Bridge Pattern.
+keywords: bridge pattern, design pattern, java
+lastmod: 2020-06-10T18:27:22Z
+tags:
+    - general
+    - design pattern
+title: Bridge Pattern in Design Pattern
 ---
+
+
+
 # 桥接模式
 
 ## Overview
@@ -31,7 +35,7 @@ description: Let's begin to learn what's Bridge Pattern.
 
 ## 应用实例
 
--   墙上的开关，可以看到的开关是抽象的，不用管里面具体怎么实现的
+- 墙上的开关，可以看到的开关是抽象的，不用管里面具体怎么实现的
 
 ## 优点
 
@@ -41,7 +45,7 @@ description: Let's begin to learn what's Bridge Pattern.
 
 ## 实现
 
-![Bridge Pattern](/assets/bridge-pattern.png)
+![Bridge Pattern](assets/bridge-pattern.png)
 
 ### DrawApi
 
@@ -168,3 +172,4 @@ public class BridgePatternTester {
 [Draw a red circle] radius = 3, x = 0, y = 0
 [Draw a purple circle] radius = 3, x = 0, y = 6
 ```
+

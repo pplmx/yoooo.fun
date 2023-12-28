@@ -1,14 +1,17 @@
 ---
-title: Some Info about SUSE
-date: 2020-05-09T17:15:26+08:00
-slug: 30f4f2f599735c36b84b8f3ad0eef3e2
-draft: false
-lastmod: 2020-05-09T17:20:58+08:00
-categories: [linux]
-tags: [opensuse]
-keywords: opensuse, zypper
+categories:
+    - linux
+date: 2020-05-09T17:15:26Z
 description: Some Info about SUSE
+keywords: opensuse, zypper
+lastmod: 2020-05-09T17:20:58Z
+tags:
+    - opensuse
+title: Some Info about SUSE
 ---
+
+
+
 # zypper
 
 ```bash
@@ -65,3 +68,4 @@ zypper mr -Ga
 # Installation history log.
 /var/log/zypp/history
 ```
+

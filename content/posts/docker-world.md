@@ -1,27 +1,31 @@
 ---
-title: Let's deeply understand how to run a container
-date: 2021-03-31T14:48:04+08:00
-slug: 8b6e7fcca8d05957a2776ab6e4b26c4c
-draft: false
-lastmod: 2021-03-31T15:31:10+08:00
-categories: [docker]
-tags: [docker, container]
-keywords: container, docker, dockerd, containerd, containerd-shim, runc
+categories:
+    - docker
+date: 2021-03-31T14:48:04Z
 description: Docker Architecture
+keywords: container, docker, dockerd, containerd, containerd-shim, runc
+lastmod: 2021-03-31T15:31:10Z
+tags:
+    - docker
+    - container
+title: Let's deeply understand how to run a container
 ---
+
+
+
 # Docker
 
 [Referenced from here.](https://www.docker.com/blog/introducing-docker-engine-18-09/)
 
-![Introducing Docker Engine 18.09 - Docker Blog](/assets/DockerEngineDiagram-1.png)
+![Introducing Docker Engine 18.09 - Docker Blog](assets/DockerEngineDiagram-1.png)
 
 [Referenced from here.](https://mkdev.me/en/posts/the-tool-that-really-runs-your-containers-deep-dive-into-runc-and-oci-specifications)
 
-![Differ Container](/assets/differ-container.png)
+![Differ Container](assets/differ-container.png)
 
 [Referenced from here.](https://medium.com/@avijitsarkar123/docker-and-oci-runtimes-a9c23a5646d6)
 
-![Docker and OCI Runtimes.](/assets/docker_oci.png)
+![Docker and OCI Runtimes.](assets/docker_oci.png)
 
 ## Components
 
@@ -38,13 +42,17 @@ description: Docker Architecture
 
 The shim allows for `daemonless` containers. It basically sits as the parent of the container's process to facilitate a few things.
 
-- First it allows the runtimes(i.e. `runc`) to exit after it starts the container. This way we don't have to have the long running runtime processes for containers. When you start `mysql` you should only see the `mysql` process and the shim.
-- Second it keeps the STDIO and other fds open for the container incase `containerd` and/or docker both die. If the shim was not running then the parent side of the pipes or the TTY master would be closed and the container would exit.
-- Finally it allows the container's exit status to be reported back to a higher level tool like docker without having the be the actual parent of the container's process and do a `wait4`.
+- First it allows the runtimes(i.e. `runc`) to exit after it starts the container. This way we don't have to have the long running runtime processes
+  for containers. When you start `mysql` you should only see the `mysql` process and the shim.
+- Second it keeps the STDIO and other fds open for the container incase `containerd` and/or docker both die. If the shim was not running then the
+  parent side of the pipes or the TTY master would be closed and the container would exit.
+- Finally it allows the container's exit status to be reported back to a higher level tool like docker without having the be the actual parent of the
+  container's process and do a `wait4`.
 
 ### containerd
 
-**containerd** was introduced in Docker 1.11 and since then took main responsibility of managing containers life-cycle. `containerd` is the *executor for containers*, but has a wider scope than *just executing* containers. So it also take care of:
+**containerd** was introduced in Docker 1.11 and since then took main responsibility of managing containers life-cycle. `containerd` is the *executor
+for containers*, but has a wider scope than *just executing* containers. So it also take care of:
 
 - Image push and pull
 - Managing of storage
@@ -60,7 +68,8 @@ The Docker daemon - **dockerd** listens for Docker API requests and manages host
 
 By default, a `unix` domain socket is created at `/var/run/docker.sock`, requiring either root permission, or docker group membership.
 
-On [Systemd](http://alexander.holbreich.org/tag/systemd/) based systems, you can communicate with the daemon via `Systemd` socket activation, use `dockerd -H fd://`.
+On [Systemd](http://alexander.holbreich.org/tag/systemd/) based systems, you can communicate with the daemon via `Systemd` socket activation,
+use `dockerd -H fd://`.
 
 ## Workflow among the above components
 

@@ -1,14 +1,18 @@
 ---
-title: Command Pattern in Design Pattern
-date: 2020-06-15T13:57:46+08:00
-slug: 63380428c5c51bec051a13c88b470685
-draft: false
-lastmod: 2020-06-15T14:00:07+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: command pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-15T13:57:46Z
 description: Let's begin to learn what's Command Pattern.
+keywords: command pattern, design pattern, java
+lastmod: 2020-06-15T14:00:07Z
+tags:
+    - general
+    - design pattern
+title: Command Pattern in Design Pattern
 ---
+
+
+
 # 命令模式
 
 ## Overview
@@ -40,7 +44,7 @@ description: Let's begin to learn what's Command Pattern.
 
 ## 实现
 
-![Command Pattern](/assets/command-pattern.png)
+![Command Pattern](assets/command-pattern.png)
 
 ### Command
 

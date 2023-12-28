@@ -1,14 +1,17 @@
 ---
-title: XShell highlights
-date: 2020-09-18T11:14:09+08:00
-slug: 04ba82719be9726e412a403c0a595888
-draft: false
-lastmod: 2021-03-18T11:17:00+08:00
-categories: [general]
-tags: [terminal]
-keywords: xshell, highlights, configuration
+categories:
+    - general
+date: 2020-09-18T11:14:09Z
 description: Make your terminal more clear
+keywords: xshell, highlights, configuration
+lastmod: 2021-03-18T11:17:00Z
+tags:
+    - terminal
+title: XShell highlights
 ---
+
+
+
 # highlights
 
 ```bash
@@ -41,9 +44,10 @@ description: Make your terminal more clear
 
 ```
 
-## Create hls file 
+## Create hls file
 
-You can also create your custom file in `~\Documents\NetSarang Computer\7\Xshell\HighlightSet Files\`. Copy the following content to your custom file now.
+You can also create your custom file in `~\Documents\NetSarang Computer\7\Xshell\HighlightSet Files\`. Copy the following content to your custom file
+now.
 
 ```toml
 [Keyword_0]

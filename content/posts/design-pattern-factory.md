@@ -1,14 +1,18 @@
 ---
-title: Factory Pattern in Design Pattern
-date: 2020-05-21T13:34:16+08:00
-slug: b73f607fb347bf4a645e6d1240f7b927
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: factory pattern, design pattern, java
+categories:
+    - java
+date: 2020-05-21T13:34:16Z
 description: Let's begin to learn what's Factory Pattern.
+keywords: factory pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Factory Pattern in Design Pattern
 ---
+
+
+
 # 工厂模式
 
 ## Overview
@@ -44,7 +48,7 @@ description: Let's begin to learn what's Factory Pattern.
 
 ## 实现
 
-![Factory Pattern](/assets/factory-pattern.png)
+![Factory Pattern](assets/factory-pattern.png)
 
 ### Shape and Subclass
 
@@ -237,4 +241,5 @@ individual.cy.learn.pattern.creational.factory.Circle@2eafffde
 ShapeCreator创建子对象,都是不同的
 
 ShapeCreator2子对象都是同一个
+
 

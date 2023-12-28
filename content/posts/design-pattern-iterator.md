@@ -1,14 +1,18 @@
 ---
-title: Iterator Pattern in Design Pattern
-date: 2020-06-10T14:26:19+08:00
-slug: 9e29831f15a95af26a76bdc7f5bf18d6
-draft: false
-lastmod: 2020-06-10T14:33:08+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: Iterator Pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-10T14:26:19Z
 description: Let's begin to learn what's Iterator Pattern.
+keywords: Iterator Pattern, design pattern, java
+lastmod: 2020-06-10T14:33:08Z
+tags:
+    - general
+    - design pattern
+title: Iterator Pattern in Design Pattern
 ---
+
+
+
 # 迭代器模式
 
 ## Overview
@@ -40,7 +44,7 @@ description: Let's begin to learn what's Iterator Pattern.
 
 ## 实现
 
-![Iterator Pattern](/assets/iterator-pattern.png)
+![Iterator Pattern](assets/iterator-pattern.png)
 
 ### Iterator
 
@@ -161,3 +165,4 @@ name = John
 name = Julie
 name = Lora
 ```
+

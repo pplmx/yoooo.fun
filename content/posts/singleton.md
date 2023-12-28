@@ -1,14 +1,17 @@
 ---
-title: Let's learn what's singleton
-date: 2020-04-30T16:12:37+08:00
-slug: 2ed500a3529637175e675a8791b7c56e
-draft: false
-lastmod: 2020-04-30T16:17:43+08:00
-categories: [java]
-tags: [design pattern]
-keywords: singleton, design pattern, java
+categories:
+    - java
+date: 2020-04-30T16:12:37Z
 description: Let's learn what's singleton
+keywords: singleton, design pattern, java
+lastmod: 2020-04-30T16:17:43Z
+tags:
+    - design pattern
+title: Let's learn what's singleton
 ---
+
+
+
 # 单例(Singleton)
 
 数学与逻辑学中，singleton定义为“有且仅有一个元素的集合”。
@@ -25,12 +28,12 @@ description: Let's learn what's singleton
 
 ### 实现方案
 
--   隐藏类的构造方法
--   定义一个公有的静态方法, 通过它返回类的唯一实例
+- 隐藏类的构造方法
+- 定义一个公有的静态方法, 通过它返回类的唯一实例
 
 ### java实现
 
-1.  DCL(Double Checked Lock)实现
+1. DCL(Double Checked Lock)实现
 
 ```java
 public class Lazy4SafeDoubleCheck {
@@ -53,7 +56,7 @@ public class Lazy4SafeDoubleCheck {
         }
         return singleton;
     }
-    
+
     // 2. 避免反序列化创建多个实例
     private Object readResolve() throws ObjectStreamException {
     	return singleton;
@@ -61,7 +64,7 @@ public class Lazy4SafeDoubleCheck {
 }
 ```
 
-2.  枚举实现
+2. 枚举实现
 
 ```java
 public enum SingletonEnum {

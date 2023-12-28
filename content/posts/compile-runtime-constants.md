@@ -1,15 +1,20 @@
 ---
-title: Compile-time and Runtime Constants
-date: 2020-05-16T21:32:52+08:00
-slug: d626f04a53f10244a23f70d793610123
-draft: false
-lastmod: 2020-05-16T22:25:38+08:00
-categories: [java]
-tags: [compile,runtime]
-keywords: constants, runtime, compile, compile time
+categories:
+    - java
+date: 2020-05-16T21:32:52Z
 description: What's compile-time and runtime constants in Java?
+keywords: constants, runtime, compile, compile time
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - compile
+    - runtime
+title: Compile-time and Runtime Constants
 ---
+
+
+
 # Please learn from the following code first
+
 ```java
 package individual.cy.learn.mess;
 
@@ -65,7 +70,9 @@ class Test {
     }
 }
 ```
+
 Its outputs is as follows:
+
 ```text
 shanxi
 85
@@ -74,12 +81,17 @@ Test static block: 3.1415
 2
 23
 ```
+
 # compile-time constant
+
 Compile-time Constant: A variable use `final` modifier, its type is `primitive type` or `String`, and its value is a `constant expression`.
+
 ## What is constant expression?
+
 [Constant Expressions in Oracle](https://docs.oracle.com/javase/specs/jls/se14/html/jls-15.html#jls-15.29)
 
 e.g. Constant expressions:
+
 ```text
 true
 (short)(1*2*3*4*5*6)
@@ -88,29 +100,30 @@ Integer.MAX_VALUE / 2
 "The integer " + Long.MAX_VALUE + " is mighty big."
 ```
 
-A constant expression is an expression denoting a value of primitive type or a String that does not complete abruptly and is composed using only the following:
+A constant expression is an expression denoting a value of primitive type or a String that does not complete abruptly and is composed using only the
+following:
 
-- Literals of primitive type and literals of type String 
+- Literals of primitive type and literals of type String
 
 - Casts to primitive types and casts to type String
 
-- The unary operators +, -, ~, and ! (but not `++` or `--`) 
+- The unary operators +, -, ~, and ! (but not `++` or `--`)
 
-- The multiplicative operators *, /, and % 
+- The multiplicative operators *, /, and %
 
-- The additive operators + and - 
+- The additive operators + and -
 
-- The shift operators <<, >>, and >>> 
+- The shift operators <<, >>, and >>>
 
-- The relational operators <, <=, >, and >= (but not `instanceof`) 
+- The relational operators <, <=, >, and >= (but not `instanceof`)
 
-- The equality operators == and != 
+- The equality operators == and !=
 
-- The bitwise and logical operators &, ^, and | 
+- The bitwise and logical operators &, ^, and |
 
-- The conditional-and operator && and the conditional-or operator || 
+- The conditional-and operator && and the conditional-or operator ||
 
-- The ternary conditional operator ? : 
+- The ternary conditional operator ? :
 
 - Parenthesized expressions whose contained expression is a constant expression.
 
@@ -120,15 +133,19 @@ A constant expression is an expression denoting a value of primitive type or a S
 
 Constant expressions of type String are always "interned" so as to share unique instances, using the method String.intern.
 
-A constant expression is always treated as FP-strict, even if it occurs in a context where a non-constant expression would not be considered to be FP-strict.
+A constant expression is always treated as FP-strict, even if it occurs in a context where a non-constant expression would not be considered to be
+FP-strict.
 
 All in all, except for `instanceof`, `++`, `--`
 
 # runtime constant
+
 Runtime constant: A variable use `static` modifier, except for compile-time constant.
 
 # Class file
+
 Compile-time constants' reference will be replaced with the actual value, like as follows.
+
 ```java
 package individual.cy.learn.mess;
 
@@ -157,6 +174,7 @@ class Test {
     }
 }
 ```
+
 ```java
 package individual.cy.learn.mess;
 

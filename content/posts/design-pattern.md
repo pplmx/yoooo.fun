@@ -1,15 +1,20 @@
 ---
-title: Design Pattern in Java
-date: 2020-05-17T15:38:37+08:00
-slug: 7c298a76a6bb2b300b8c3acf391dc6df
-draft: false
-lastmod: 2020-06-01T21:20:17+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: design pattern, java
+categories:
+    - java
+date: 2020-05-17T15:38:37Z
 description: Let's begin to learn what's design pattern.
+keywords: design pattern, java
+lastmod: 2020-06-01T21:20:17Z
+tags:
+    - general
+    - design pattern
+title: Design Pattern in Java
 ---
+
+
+
 # Overview
+
 [Design Pattern1](https://dzone.com/articles/design-patterns-for-beginners-with-java-examples)
 
 [Design Pattern2](https://www.tutorialspoint.com/design_pattern/index.htm)
@@ -18,19 +23,23 @@ description: Let's begin to learn what's design pattern.
 
 A design patterns are well-proved solution for solving the specific problem/task.
 
-By using the design patterns you can make your code more flexible, reusable and maintainable. It is the most important part because java internally follows design patterns.
+By using the design patterns you can make your code more flexible, reusable and maintainable. It is the most important part because java internally
+follows design patterns.
 
 To become a professional software developer, you must know at least some popular solutions (i.e. design patterns) to the coding problems.
 
 # Pros
+
 - They are reusable in multiple projects.
 - They provide the solutions that help to define the system architecture.
 - They capture the software engineering experiences.
 - They provide transparency to the design of an application.
 - They are well-proved and testified solutions since they have been built upon the knowledge and experience of expert software developers.
-- Design patterns don't guarantee an absolute solution to a problem. They provide clarity to the system architecture and the possibility of building a better system.
+- Design patterns don't guarantee an absolute solution to a problem. They provide clarity to the system architecture and the possibility of building a
+  better system.
 
 # Types of Design Patterns
+
 - Creational Design Pattern
     - [Factory Pattern](https://blog.caoyu.info/design-pattern-factory.html)
     - [Abstract Factory Pattern](https://blog.caoyu.info/design-pattern-abstract-factory.html)

@@ -1,18 +1,23 @@
 ---
-title: spring注入null
-date: 2017-10-19T14:06:41+08:00
-slug: 8a8ec2c5948d80144dae20ed58d03e52
-draft: false
-lastmod: 2020-04-27T22:06:51+08:00
-categories: [java]
-tags: [spring]
-keywords: spring, java
+categories:
+    - java
+date: 2017-10-19T14:06:41Z
 description: spring injection error
+keywords: spring, java
+lastmod: 2020-04-27T22:06:51Z
+tags:
+    - spring
+title: spring注入null
 ---
+
+
+
 # not the injection failed,but NPE
+
 为什么这么说呢,因为我的错误信息是空指针异常,而不是注入失败的错误信息
 <!-- more -->
-![参考图片](/assets/59e8499fdd607.png)
+![参考图片](assets/59e8499fdd607.png)
+
 ```text
 /**
  * Created with IntelliJ IDEA.
@@ -60,6 +65,9 @@ class CustomAuthenticationProvider implements AuthenticationProvider {
 
 }
 ```
+
 # yeah
+
 至于产生这种现象的原因,我也没搞太清,猜测是加载顺序的问题,有懂的小伙伴,
 可以评论留言告诉我(评论留言功能还没做呢o(╯□╰)o)
+

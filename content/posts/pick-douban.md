@@ -1,19 +1,24 @@
 ---
-title: 抓取豆瓣编程书籍
-date: 2017-12-22T14:07:46+08:00
-slug: 47e563a8378c52adb3d211e42474beaa
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [java]
-tags: [spider]
-keywords: spider, java
+categories:
+    - java
+date: 2017-12-22T14:07:46Z
 description: spider douban books by java
+keywords: spider, java
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - spider
+title: 抓取豆瓣编程书籍
 ---
+
+
+
 # Something needed before action
+
 ```text
     注意:
         lombok不仅需要导入包,还需要idea安装lombok插件
 ```
+
 <!-- more -->
 
 ```xml
@@ -49,6 +54,7 @@ description: spider douban books by java
         </dependency>
     </dependencies>
 ```
+
 # mind mapping
 
 - 进行IP代理(未使用代理,http://www.xicidaili.com/ 找不到稳定可用的代理)
@@ -66,9 +72,11 @@ description: spider douban books by java
 - 调用poi,遍历List,将每个元素按行写入excel文件
 
 # In action
+
 ```text
     Book实体以及Comparator实现类
 ```
+
 ```java
 package individual.cy.douban.pojo;
 
@@ -124,6 +132,7 @@ public class Book {
 
 }
 ```
+
 ```java
 package individual.cy.douban.pojo;
 
@@ -177,9 +186,11 @@ public class BookComparator implements Comparator<Book> {
     }
 }
 ```
+
 ```text
     Spider,抓取指定url的页面字符串
 ```
+
 ```java
 package individual.cy.douban.utils;
 
@@ -286,9 +297,11 @@ public class Spider {
     }
 }
 ```
+
 ```text
     解析页面数据,并添加至List<Book>集合
 ```
+
 ```java
 package individual.cy.douban.web;
 
@@ -390,9 +403,11 @@ public class GrabDouban implements Runnable {
     }
 }
 ```
+
 ```text
     多线程抓取多个页面数据,并保存值excel中
 ```
+
 ```java
 package individual.cy.douban.utils;
 
@@ -581,6 +596,7 @@ public class ExportExcel {
     }
 }
 ```
+
 ```java
 package individual.cy.douban.main;
 
@@ -609,8 +625,8 @@ public class Main {
     /**
      * 创建线程池
      */
-    private static ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("pool-%d").build();
-    private static ExecutorService executorService = new ThreadPoolExecutor(5, 200, 0L,
+    private static final ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("pool-%d").build();
+    private static final ExecutorService executorService = new ThreadPoolExecutor(5, 200, 0L,
             TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(1024), threadFactory, new ThreadPoolExecutor.AbortPolicy());
 
     public static void main(String[] args) throws InterruptedException {
@@ -658,4 +674,5 @@ public class Main {
     }
 }
 ```
+
 [Github Source Code](https://github.com/pplmx/Spider)

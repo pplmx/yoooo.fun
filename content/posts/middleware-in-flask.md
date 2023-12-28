@@ -1,14 +1,19 @@
 ---
-title: Create a middleware in Flask
-date: 2020-09-18T11:14:26+08:00
-slug: ba1ef4cd5419bf1516aa15ef23570a07
-draft: false
-lastmod: 2020-11-11T16:31:07+08:00
-categories: [python]
-tags: [flask, wsgi, middleware]
-keywords: flask, wsgi, middleware, django
+categories:
+    - python
+date: 2020-09-18T11:14:26Z
 description: Implement middleware in Flask
+keywords: flask, wsgi, middleware, django
+lastmod: 2020-11-11T16:31:07Z
+tags:
+    - flask
+    - wsgi
+    - middleware
+title: Create a middleware in Flask
 ---
+
+
+
 # Middleware in Flask
 
 How to implement middleware in Flask, just like in Django?
@@ -17,7 +22,8 @@ In Flask, we can implement it by **WSGI middleware**.
 
 ## WSGI Middleware
 
-A WSGI middleware component is a Python callable that is itself a WSGI application, but may handle requests by delegating to other WSGI applications. These applications can themselves be WSGI middleware components.
+A WSGI middleware component is a Python callable that is itself a WSGI application, but may handle requests by delegating to other WSGI applications.
+These applications can themselves be WSGI middleware components.
 
 A middleware component can perform such functions as:
 
@@ -107,3 +113,4 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 ```
+

@@ -1,14 +1,17 @@
 ---
-title: Call to __init__ of super class is missed
-date: 2020-09-03T09:06:03+08:00
-slug: 84434c8d5d320a366d48e50658887a05
-draft: false
-lastmod: 2020-09-04T16:24:29+08:00
-categories: [python]
-tags: [general]
-keywords: __init__, init, inherit, multi-inherit, python
+categories:
+    - python
+date: 2020-09-03T09:06:03Z
 description: You should invoke super().__init__() for every class.
+keywords: __init__, init, inherit, multi-inherit, python
+lastmod: 2020-09-04T16:24:29Z
+tags:
+    - general
+title: Call to __init__ of super class is missed
 ---
+
+
+
 # Call to `__init__` of super class is missed
 
 ## Origin
@@ -89,7 +92,8 @@ if __name__ == '__main__':
 
 If a sub class inherits from multiple parent class, you should do like as follows.
 
-If you do not **explicitly** invoke parent's `__init__` for **each** parent class in Subclass's `__init__`, it will **only** inherit **the first parent class**'s attributes.(The first parent class in the following code is **Engine** class.)
+If you do not **explicitly** invoke parent's `__init__` for **each** parent class in Subclass's `__init__`, it will **only** inherit **the first
+parent class**'s attributes.(The first parent class in the following code is **Engine** class.)
 
 ```python
 class Engine:

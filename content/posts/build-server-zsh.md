@@ -1,25 +1,34 @@
 ---
-title: linux服务器初建之zsh安装
-date: 2017-10-13T11:10:44+08:00
-slug: 70b23e561300acc0e2d6419494ef264f
-draft: false
-lastmod: 2021-11-30T10:20:00+08:00
-categories: [linux]
-tags: [linux]
-keywords: zsh, linux
+categories:
+    - linux
+date: 2017-10-13T11:10:44Z
 description: install zsh on linux
+keywords: zsh, linux
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - linux
+title: linux服务器初建之zsh安装
 ---
+
+
+
 # 安装zsh
+
     root下操作
+
 ## 安装zsh
+
 ```bash
 yum -y install zsh
 ```
+
 ## 切换bash至zsh
+
 ```bash
 chsh -s $(which zsh) $(whoami)
 reboot
 ```
+
 <!-- more -->
 
 ## install oh-my-zsh
@@ -39,9 +48,8 @@ sh -c "$(curl -fsSLx http://www-proxy.example.com:8080 https://raw.github.com/oh
 
 ```bash
 vim ~/.zshrc
-plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git z sudo history ripgrep fd fzf tmux zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL10K_MODE="nerdfont-complete"
 # you can run the command 'p10k configure' to reconfigure your powerlevel10k
 
 git clone https://github.com/zsh-users/zsh-autosuggestions.git \
@@ -60,6 +68,7 @@ git clone https://github.com/romkatv/powerlevel10k.git \
 You can download [Meslo font from here](https://github.com/ryanoasis/nerd-fonts).
 
 Or Manually Download these four ttf files:
+
 - [MesloLGS NF Regular.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf)
 
 - [MesloLGS NF Bold.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf)
@@ -74,7 +83,7 @@ Double-click on each file and click "Install". This will make `MesloLGS NF` font
 
 **Tips**:
 
-[fd](https://github.com/sharkdp/fd) [bat](https://github.com/sharkdp/bat) and [lsd](https://github.com/Peltoche/lsd) are very nice. 
+[fd](https://github.com/sharkdp/fd) [bat](https://github.com/sharkdp/bat) and [lsd](https://github.com/Peltoche/lsd) are very nice.
 Maybe you can install them. For more information, you can access their home page.
 
 ```bash

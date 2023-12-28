@@ -1,14 +1,17 @@
 ---
-title: OpenStack Volume
-date: 2020-07-24T15:18:53+08:00
-slug: 4fac985f9e2437c47a11e691dfac8d4c
-draft: false
-lastmod: 2020-10-23T10:37:50+08:00
-categories: [openstack]
-tags: [storage,cinder]
-keywords: OpenStack, cinder, storage, volume
+categories:
+    - openstack
+date: 2020-07-24T15:18:53Z
 description: Update QoS by OpenStack CLi
+keywords: OpenStack, cinder, storage, volume
+lastmod: 2020-10-23T10:37:50Z
+tags:
+    - storage
+    - cinder
+title: OpenStack Volume
 ---
+
+
 
 # OpenStack Volume
 
@@ -28,14 +31,12 @@ openstack server list -c ID -c Name | \
 	awk -F'|' '{ print $2 }' | \
 	sed 's@^[[:space:]]*@@g;s@[[:space:]]*$@@g' | \
 	xargs -n1 openstack server show -c id -c name -c addresses -c 'OS-EXT-SRV-ATTR:host' -c 'OS-EXT-SRV-ATTR:instance_name'
-	
+
 # or nova list, the same as above
-# fields can get from `nova show some-vm`'s Property 
+# fields can get from `nova show some-vm`'s Property
 nova list --fields name,OS-EXT-SRV-ATTR:instance_name,OS-EXT-SRV-ATTR:host
 nova list --fields name,OS-EXT-SRV-ATTR:instance_name,OS-EXT-SRV-ATTR:host --name vm4qos*
 ```
-
-
 
 ## Prepare Environment for QoS
 
@@ -175,3 +176,4 @@ openstack volume qos disassociate qos1 --all
 openstack volume qos associate qos1 frontend_qos_1
 openstack volume qos associate qos1 frontend_qos_2
 ```
+

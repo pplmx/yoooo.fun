@@ -1,14 +1,18 @@
 ---
-title: Observer Pattern in Design Pattern
-date: 2020-06-01T16:12:19+08:00
-slug: a8777c0d2adcfd80991cf81402651e5c
-draft: false
-lastmod: 2020-06-01T16:30:23+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: observer pattern, design pattern, java
+categories:
+    - java
+date: 2020-06-01T16:12:19Z
 description: Let's begin to learn what's Observer Pattern.
+keywords: observer pattern, design pattern, java
+lastmod: 2020-06-01T16:30:23Z
+tags:
+    - general
+    - design pattern
+title: Observer Pattern in Design Pattern
 ---
+
+
+
 # 观察者模式
 
 ## Overview
@@ -38,7 +42,7 @@ description: Let's begin to learn what's Observer Pattern.
 
 ## 实现一
 
-![Observer Pattern](/assets/observer-pattern1.png)
+![Observer Pattern](assets/observer-pattern1.png)
 
 ### Observer
 
@@ -193,7 +197,7 @@ Breaking news in People Daily! event = Violent Parade in Canada
 
 ## 实现二
 
-![Observer Pattern](/assets/observer-pattern2.png)
+![Observer Pattern](assets/observer-pattern2.png)
 
 ### Observer
 

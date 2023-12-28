@@ -1,14 +1,18 @@
 ---
-title: Asciidoc with Spring Restdocs
-date: 2020-04-27T15:02:01+08:00
-slug: 0435ab51f5edf36584b1f5c47cd496ba
-draft: false
-lastmod: 2020-04-28T15:44:02+08:00
-categories: [java]
-tags: [spring, springboot]
-keywords: spring, springboot, restdocs, asciidoc,
+categories:
+    - java
+date: 2020-04-27T15:02:01Z
 description: integrate asciidoc with spring restdocs
+keywords: spring, springboot, restdocs, asciidoc,
+lastmod: 2023-08-18T13:13:20Z
+tags:
+    - spring
+    - springboot
+title: Asciidoc with Spring Restdocs
 ---
+
+
+
 # Integrate Asciidoc with Spring Restdocs
 
 ## Preconditon
@@ -86,7 +90,7 @@ bootJar {
 
 like this
 
-![directory_layout](/assets/20200427131513411.png)
+![directory_layout](assets/20200427131513411.png)
 
 ### index.adoc & updateUser.adoc(e.g.)
 
@@ -140,8 +144,8 @@ include::{snippets}/updateUser/response-body.adoc[]
 
 ### Other solution
 
--   remove `:sourcedir: {sourcedir}/user` from index.adoc
--   reconfigure asciidoctor task in build.gradle, like this
+- remove `:sourcedir: {sourcedir}/user` from index.adoc
+- reconfigure asciidoctor task in build.gradle, like this
 
 ```groovy
 asciidoctor {
@@ -202,14 +206,14 @@ public class UserControllerTest {
     @BeforeEach
     void setUp(RestDocumentationContextProvider provider) {
         client = WebTestClient.bindToApplicationContext(context)
-                .configureClient()
-                .filter(
-                        documentationConfiguration(provider)
-                                .operationPreprocessors()
-                                .withRequestDefaults(prettyPrint())
-                                .withResponseDefaults(prettyPrint())
-                )
-                .build();
+            .configureClient()
+            .filter(
+                documentationConfiguration(provider)
+                    .operationPreprocessors()
+                    .withRequestDefaults(prettyPrint())
+                    .withResponseDefaults(prettyPrint())
+            )
+            .build();
 
         User u1 = User.builder().id(1).name("Mystic").build();
         User u2 = User.builder().id(2).name("Ran").build();
@@ -222,49 +226,49 @@ public class UserControllerTest {
     @Test
     void findUserById() {
         client.get().uri("/user/{id}", 1)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(User.class)
-                .consumeWith(document("findUserById",
-                        pathParameters(parameterWithName("id").description("User ID"))
-                ));
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody(User.class)
+            .consumeWith(document("findUserById",
+                pathParameters(parameterWithName("id").description("User ID"))
+            ));
 
     }
 
     @Test
     void findAllUsers() {
         client.get().uri("/user").exchange()
-                .expectStatus().isOk()
-                .expectBodyList(User.class)
-                .consumeWith(document("findAllUsers"));
+            .expectStatus().isOk()
+            .expectBodyList(User.class)
+            .consumeWith(document("findAllUsers"));
     }
 
     @Test
     void createUser() {
         User u3 = User.builder().name("cc").build();
         client.post().uri("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(u3), User.class)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectBody()
-                .jsonPath("$.id").isEqualTo(2)
-                .consumeWith(document("createUser"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .body(Mono.just(u3), User.class)
+            .exchange()
+            .expectStatus().isCreated()
+            .expectBody()
+            .jsonPath("$.id").isEqualTo(2)
+            .consumeWith(document("createUser"));
     }
 
     @Test
     void updateUser() {
         User u2 = User.builder().id(2).name("cc").build();
         client.patch().uri("/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(u2), User.class)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$.name").isEqualTo("Ran")
-                .consumeWith(document("updateUser"));
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .body(Mono.just(u2), User.class)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .jsonPath("$.name").isEqualTo("Ran")
+            .consumeWith(document("updateUser"));
     }
 }
 ```
@@ -272,5 +276,6 @@ public class UserControllerTest {
 ## Source Code
 
 https://github.com/PurpleMystic-star/blog-backend
+
 
 

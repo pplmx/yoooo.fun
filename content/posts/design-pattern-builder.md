@@ -1,14 +1,18 @@
 ---
-title: Builder Pattern in Design Pattern
-date: 2020-05-22T16:38:43+08:00
-slug: c7150c3f1a16e2cbf090f737c9a8e6c1
-draft: false
-lastmod: 2020-06-06T22:48:36+08:00
-categories: [java]
-tags: [general, design pattern]
-keywords: builder pattern, design pattern, java
+categories:
+    - java
+date: 2020-05-22T16:38:43Z
 description: Let's begin to learn what's Builder Pattern.
+keywords: builder pattern, design pattern, java
+lastmod: 2020-06-06T22:48:36Z
+tags:
+    - general
+    - design pattern
+title: Builder Pattern in Design Pattern
 ---
+
+
+
 # 建造者模式
 
 ## Overview
@@ -50,7 +54,7 @@ description: Let's begin to learn what's Builder Pattern.
 
 ## 实现
 
-![Builder Pattern](/assets/builder-pattern.png)
+![Builder Pattern](assets/builder-pattern.png)
 
 ### Computer
 

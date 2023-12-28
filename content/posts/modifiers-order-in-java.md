@@ -1,14 +1,17 @@
 ---
-title: Modifiers Order in Java
-date: 2020-06-23T15:42:07+08:00
-slug: cefe1f9601123986b974080bc57d6f7e
-draft: false
-lastmod: 2020-06-23T15:44:45+08:00
-categories: [java]
-tags: [notes]
-keywords: modifier, order, modifier order
+categories:
+    - java
+date: 2020-06-23T15:42:07Z
 description: Modifiers Order in Java
+keywords: modifier, order, modifier order
+lastmod: 2020-06-23T15:44:45Z
+tags:
+    - notes
+title: Modifiers Order in Java
 ---
+
+
+
 # Modifiers Order
 
 The Java Language Specification recommends listing modifiers in the following order:
