@@ -1,2 +1,5 @@
 [en]
-disabled = false
+languageName = "English"
+languagedirection = "ltr"
+title = "Aurora"
+weight = 1

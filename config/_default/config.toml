@@ -1,18 +1,6 @@
 baseURL = "https://yoooo.fun/"
 title = "Aurora"
-languageCode = "en-us"
 paginate = 5
-copyright = "© Since 2022 <a href=\"https://yoooo.fun\">Mystic</a>."
 hasCJKLanguage = true
-
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
-
-# 作者信息
-[author]
-name = "Mystic"
-email = "215104920@qq.com"
-description = "To infinity and beyond"
-avatar = "https://www.gravatar.com/avatar/8c115c6bc6688216bed0f053c506ff58?s=200&r=g&d=retro"
+languageCode = "en-us"
+defaultContentLanguage = "en"
