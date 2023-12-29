@@ -34,17 +34,17 @@ jobs:
             -   name: Convert hexo posts to hugo posts
                 run: |
                     # remove the old
-                    rm -fr hugo/static/{assets,images}
-                    rm -fr hugo/content/posts
+                    rm -fr $GITHUB_WORKSPACE/hugo/static/{assets,images}
+                    rm -fr $GITHUB_WORKSPACE/hugo/content/posts
                     # copy the new
-                    cp -r hexo/source/assets hugo/static/assets
-                    cp -r hexo/source/images hugo/static/images
+                    cp -r $GITHUB_WORKSPACE/hexo/source/assets $GITHUB_WORKSPACE/hugo/static/assets
+                    cp -r $GITHUB_WORKSPACE/hexo/source/images $GITHUB_WORKSPACE/hugo/static/images
                     # convert the posts
-                    h2h --src hexo/source/_posts --dst hugo/content/posts --format yaml --direction hexo2hugo
+                    h2h --src $GITHUB_WORKSPACE/hexo/source/_posts --dst $GITHUB_WORKSPACE/hugo/content/posts --format yaml --direction hexo2hugo
 
             -   name: Commit & Push
                 run: |
-                    cd hugo
+                    cd $GITHUB_WORKSPACE/hugo
                     git config --local user.email "215104920@qq.com"
                     git config --local user.name "Hexo2Hugo[bot]"
                     git add .
