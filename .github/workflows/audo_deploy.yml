@@ -10,46 +10,10 @@ jobs:
     deploy:
         runs-on: ubuntu-22.04
         steps:
-            -   name: Checkout yoooo.fun repo
-                uses: actions/checkout@v4
+            -   uses: actions/checkout@v4
                 with:
                     submodules: recursive  # Fetch the Docsy theme
                     fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
-                    path: hugo             # like as "git clone <repo_url> hugo"
-            -   name: Checkout caoyu.info repo
-                uses: actions/checkout@v4
-                with:
-                    repository: pplmx/caoyu.info
-                    token: ${{ secrets.PAT }}
-                    path: hexo             # like as "git clone <repo_url> hexo"
-
-            -   name: Setup Go
-                uses: actions/setup-go@v5
-                with:
-                    go-version: '1.21'
-
-            -   name: Install h2h
-                run: go install github.com/pplmx/h2h@latest
-
-            -   name: Convert hexo posts to hugo posts
-                run: |
-                    # remove the old
-                    rm -fr $GITHUB_WORKSPACE/hugo/static/{assets,images}
-                    rm -fr $GITHUB_WORKSPACE/hugo/content/posts
-                    # copy the new
-                    cp -r $GITHUB_WORKSPACE/hexo/source/assets $GITHUB_WORKSPACE/hugo/static/assets
-                    cp -r $GITHUB_WORKSPACE/hexo/source/images $GITHUB_WORKSPACE/hugo/static/images
-                    # convert the posts
-                    h2h --src $GITHUB_WORKSPACE/hexo/source/_posts --dst $GITHUB_WORKSPACE/hugo/content/posts --format yaml --direction hexo2hugo
-
-            -   name: Commit & Push
-                run: |
-                    cd $GITHUB_WORKSPACE/hugo
-                    git config --local user.email "215104920@qq.com"
-                    git config --local user.name "Hexo2Hugo[bot]"
-                    git add .
-                    git commit -m "Convert hexo posts to hugo posts"
-                    git push
 
             -   name: Setup Hugo
                 uses: peaceiris/actions-hugo@v2
