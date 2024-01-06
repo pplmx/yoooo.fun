@@ -1,10 +1,10 @@
 ---
 categories:
-    - general
+    - docker
 date: 2020-06-05T16:42:36Z
 description: Let's start to learn Docker.
 keywords: docker cli, common cli
-lastmod: 2020-11-23T10:00:59Z
+lastmod: 2024-01-06T22:21:46Z
 tags:
     - docker
     - cli

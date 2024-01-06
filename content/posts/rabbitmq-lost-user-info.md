@@ -1,10 +1,10 @@
 ---
 categories:
-    - troubleshooting
+    - general
 date: 2020-06-23T10:02:28Z
 description: How to fix rabbit lost user info after a reboot?
 keywords: rabbit, user info, reboot
-lastmod: 2020-06-23T10:45:43Z
+lastmod: 2024-01-06T22:21:46Z
 tags:
     - troubleshooting
     - rabbitmq

@@ -1,10 +1,10 @@
 ---
 categories:
-    - encryption
+    - general
 date: 2023-03-10T17:33:32Z
 description: create self-signed certificate
 keywords: rsa,openssl,certificates
-lastmod: 2023-03-10T17:33:32Z
+lastmod: 2024-01-06T22:21:46Z
 tags:
     - rsa
     - openssl
