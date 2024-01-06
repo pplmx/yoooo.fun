@@ -11,7 +11,7 @@ links:
     image: https://www.gravatar.com/avatar/8c115c6bc6688216bed0f053c506ff58?s=200&r=g&d=retro
   - title: 可口可爱废柴猫
     description: 欢迎来到我的代码空间
-    website: https://blog.sunyan.site
+    website: https://Ran-oops.github.io
     image: https://www.gravatar.com/avatar/b4dff7312cfa6a49e417b0548811e481?s=200&r=g&d=retro
 menu:
     main:
