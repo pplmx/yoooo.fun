@@ -1,9 +1,9 @@
 ---
 categories:
-    - java
+    - python
 date: 2021-01-22T16:35:46Z
 description: Let's understand what are the shallow-copy and deep-copy.
-keywords: list, python
+keywords: copy, list, python, deep copy, shallow copy
 lastmod: 2021-01-22T16:38:46Z
 tags:
     - python
