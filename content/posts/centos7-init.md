@@ -108,6 +108,15 @@ sudo /usr/sbin/usermod -aG docker $USER
 newgrp docker
 ```
 
+### install java
+
+```bash
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+sudo yum install -y ./jdk-17_linux-x64_bin.rpm
+rm -f jdk-17_linux-x64_bin.rpm
+
+```
+
 ### install go
 
 Follow this [link](https://blog.caoyu.info/install-binary-file.html)
