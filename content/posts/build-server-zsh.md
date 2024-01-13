@@ -4,7 +4,7 @@ categories:
 date: 2017-10-13T11:10:44Z
 description: install zsh on linux
 keywords: zsh, linux
-lastmod: 2023-08-18T13:13:20Z
+lastmod: 2024-01-13T11:13:20Z
 tags:
     - linux
 title: linux服务器初建之zsh安装
@@ -12,89 +12,64 @@ title: linux服务器初建之zsh安装
 
 
 
-# 安装zsh
+# zsh
 
-    root下操作
-
-## 安装zsh
+## install
 
 ```bash
-yum -y install zsh
-```
+sudo yum install -y zsh
 
-## 切换bash至zsh
-
-```bash
+echo $(which zsh) | sudo tee -a /etc/shells
 chsh -s $(which zsh) $(whoami)
-reboot
 ```
-
-<!-- more -->
 
 ## install oh-my-zsh
 
 ```shell
-# if wget
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+# export proxy if needed
+export all_proxy=http://localhost:7890
 
-# if curl
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# wget
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-# if your network is not fine, you can use the proxy
-sh -c "$(curl -fsSLx http://www-proxy.example.com:8080 https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# or curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+```
+
+## install some useful tools
+
+### install by cargo
+
+If rust is installed, you can use `cargo install` to install some tools.
+If not, follow this [link](https://www.rust-lang.org/tools/install) to install rust.
+
+```bash
+cargo install ripgrep fd-find bat lsd
+```
+
+### install fzf
+
+```bash
+git clone https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
 
 ## config
 
 ```bash
 vim ~/.zshrc
-plugins=(git z sudo history ripgrep fd fzf tmux zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git z sudo ripgrep fd fzf zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # you can run the command 'p10k configure' to reconfigure your powerlevel10k
 
-git clone https://github.com/zsh-users/zsh-autosuggestions.git \
-	${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-	${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-git clone https://github.com/romkatv/powerlevel10k.git \
-	${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone https://github.com/romkatv/powerlevel10k \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-```
-
-## fonts
-
-You can download [Meslo font from here](https://github.com/ryanoasis/nerd-fonts).
-
-Or Manually Download these four ttf files:
-
-- [MesloLGS NF Regular.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf)
-
-- [MesloLGS NF Bold.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf)
-
-- [MesloLGS NF Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf)
-
-- [MesloLGS NF Bold Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf)
-
-Double-click on each file and click "Install". This will make `MesloLGS NF` font available to all applications on your system.
-
-## BTW
-
-**Tips**:
-
-[fd](https://github.com/sharkdp/fd) [bat](https://github.com/sharkdp/bat) and [lsd](https://github.com/Peltoche/lsd) are very nice.
-Maybe you can install them. For more information, you can access their home page.
-
-```bash
-# install fd, bat and lsd on RHEL/CentOS
-# Author="sharkdp"; Repo="fd";
-# Author="sharkdp"; Repo="bat";
-Author="Peltoche"; Repo="lsd"; latest_url="https://api.github.com/repos/$Author/$Repo/releases/latest"; \
-    V=$(curl --silent $latest_url | grep -Eo '"tag_name": "v?(.*)"' | sed -E 's/.*"([^"]+)".*/\1/'); \
-    Latest_tar="$Repo-$V-x86_64-unknown-linux-musl.tar.gz" \
-    && curl -sOL "https://github.com/$Author/$Repo/releases/download/$V/$Latest_tar" \
-    && tar xzvf $Latest_tar -C . \
-    && sudo sh -c "cp ./$Repo-$V-x86_64-unknown-linux-musl/$Repo /usr/local/bin/$Repo" \
-    && rm $Latest_tar
 ```
