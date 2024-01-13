@@ -66,16 +66,51 @@ git --version
 
 ## install oh-my-zsh
 
-Or follow this [link](https://blog.caoyu.info/build-server-zsh.html)
+Follow this [link](https://blog.caoyu.info/build-server-zsh.html)
+
+## install cmake
 
 ```bash
-# configure proxy if needed
-export all_proxy=http://localhost:7890
+# download and extract
+CMAKE_VERSION=3.28.1
+wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz
+tar -xf cmake-${CMAKE_VERSION}.tar.gz
 
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# compile
+cd cmake-3.28.1
+./configure
+make -j 8
+sudo make install
+
+# check cmake version
+cmake --version
+
+# remove cmake source code
+cd .. && rm -rf cmake-${CMAKE_VERSION}*
 ```
 
+### install docker
+
+FYI: [install docker](https://docs.docker.com/engine/install/centos/)
+
+```bash
+sudo yum install -y docker-buildx-plugin
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# start docker
+sudo systemctl enable docker
+sudo systemctl start docker
+
+# post installation
+sudo /usr/sbin/groupadd docker
+sudo /usr/sbin/usermod -aG docker $USER
+newgrp docker
+```
+
+### install go
+
+Follow this [link](https://blog.caoyu.info/install-binary-file.html)
 
 ## install python from source
 
@@ -129,3 +164,32 @@ electron_builder_binaries_mirror="http://npmmirror.com/mirrors/electron-builder-
 EOF
 ```
 
+### install nvim
+
+```bash
+NVIM_VERSION=0.9.5
+wget https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
+
+chmod u+x nvim.appimage && ./nvim.appimage
+
+# if no error, move it to /usr/local/bin
+sudo mv nvim.appimage /usr/local/bin/nvim
+
+# if error
+./nvim.appimage --appimage-extract
+./squashfs-root/usr/bin/nvim
+sudo mv squashfs-root/usr/bin/nvim /usr/local/bin/nvim
+
+# check nvim version
+nvim --version
+```
+
+### install LunarVim
+
+```bash
+LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+
+# add the following to ~/.config/lvim/config.lua
+vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 4 -- insert spaces for a tab
+```
