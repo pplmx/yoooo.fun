@@ -19,7 +19,7 @@ subtitle = "To infinity and beyond."
 [sidebar.avatar]
 enabled = true
 local = false
-src = "images/favicon.png"
+src = "/images/favicon.png"
 
 [article]
 math = false
