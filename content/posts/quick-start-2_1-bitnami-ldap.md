@@ -100,15 +100,15 @@ http:
 ## Config domain parse
 
 ```shell
-echo "127.0.0.1 bitnami-ldap.x.internal\n" >> /etc/hosts
+echo "127.0.0.1 ldap.x.internal\n" >> /etc/hosts
 ```
 
 ## Run
 
 ```shell
 docker compose up -d
-# docker compose -p bitnami-ldap up -d
-# docker compose -f ./compose.yml -p bitnami-ldap up -d
+# docker compose -p ldap up -d
+# docker compose -f ./compose.yml -p ldap up -d
 ```
 
-Access: <https://bitnami-ldap.x.internal>
+Access: <https://ldap.x.internal>
