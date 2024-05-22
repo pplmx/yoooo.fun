@@ -35,7 +35,7 @@ version: Compose specification
 
 services:
     traefik:
-        image: traefik:2.10
+        image: traefik:3.0
         ports:
             - "80:80"
             - "443:443/tcp"
@@ -69,8 +69,6 @@ log:
     level: INFO
 api:
     dashboard: true
-experimental:
-    http3: true
 entryPoints:
     web:
         address: :80
