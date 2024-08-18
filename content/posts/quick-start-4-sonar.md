@@ -42,8 +42,6 @@ fs.file-max = 131072
 ### compose.yml
 
 ```yaml
-version: Compose specification
-
 services:
     sonarqube:
         image: sonarqube:community

@@ -38,7 +38,6 @@ SSP(`Self-Service Password`), is a tool for ldap to change password.
 ### compose.yml
 
 ```yaml
-version: Compose specification
 services:
     ssp:
         image: ltbproject/self-service-password

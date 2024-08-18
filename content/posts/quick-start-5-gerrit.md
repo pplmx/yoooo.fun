@@ -119,8 +119,6 @@ sudo install -d /opt/gerrit; cd /opt/gerrit; sudo install -d etc git db index ca
 ### compose.yml
 
 ```yaml
-version: Compose specification
-
 services:
     gerrit:
         image: gerritcodereview/gerrit

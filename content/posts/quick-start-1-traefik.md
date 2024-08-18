@@ -26,11 +26,9 @@ mkdir -p traefik/dynamic-conf && cd traefik && touch compose.yml traefik.yml dyn
 ### compose.yml
 
 ```yaml
-version: Compose specification
-
 services:
     traefik:
-        image: traefik:3.0
+        image: traefik:3.1
         ports:
             - "80:80"
         environment:

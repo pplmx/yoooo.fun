@@ -36,8 +36,6 @@ title: 'Quick Start: LDAP by Bitnami'
 > For much more information, please reference [here](https://hub.docker.com/r/bitnami/openldap/).
 
 ```yaml
-version: Compose specification
-
 services:
     ldap:
         image: bitnami/openldap

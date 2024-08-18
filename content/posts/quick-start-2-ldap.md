@@ -37,8 +37,6 @@ please follow this [Quick Start: LDAP by Bitnami](https://blog.caoyu.info/quick-
 ### compose.yml
 
 ```yaml
-version: Compose specification
-
 services:
     ldap:
         image: osixia/openldap

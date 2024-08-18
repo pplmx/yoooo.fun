@@ -24,7 +24,6 @@ title: Docker network conflicts with local networks
 > Here is a sample.
 
 ```yaml
-version: Compose specification
 services:
 # ...
 networks:

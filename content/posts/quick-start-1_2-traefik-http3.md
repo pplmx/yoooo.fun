@@ -31,11 +31,9 @@ mkdir -p traefik/dynamic-conf traefik/certs && cd traefik && touch compose.yml t
 ### compose.yml
 
 ```yaml
-version: Compose specification
-
 services:
     traefik:
-        image: traefik:3.0
+        image: traefik:3.1
         ports:
             - "80:80"
             - "443:443/tcp"

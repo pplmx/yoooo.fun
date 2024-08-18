@@ -34,8 +34,6 @@ title: 'Quick Start: Jenkins'
 ### compose.yml
 
 ```yaml
-version: Compose specification
-
 services:
     jenkins:
         image: jenkins/jenkins
