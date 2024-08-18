@@ -24,13 +24,13 @@ please follow this [Quick Start: LDAP by Bitnami](https://blog.caoyu.info/quick-
 
 ## Prerequisite
 
-> [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
+> - [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
 >
 > OR
 >
-> [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
+> - [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
 >
-> If HTTP, remove the `tls: {}` in dynamic configuration
+> Note: If using HTTP, remove the `tls: {}` in dynamic configuration.
 
 ## Preparation
 
@@ -97,18 +97,26 @@ http:
 
 ```
 
-## Config domain parse
+## DNS Configuration
 
-```shell
-echo "127.0.0.1 ldap.x.internal\n" >> /etc/hosts
+Configure your DNS or modify your hosts file:
+
+- For Unix-like systems: Edit `/etc/hosts`
+- For Windows: Edit `C:\Windows\System32\drivers\etc\hosts`
+
+Add the following line:
+
+```
+127.0.0.1 ldap.x.internal
 ```
 
 ## Run
 
 ```shell
 docker compose up -d
+# Alternative commands:
 # docker compose -p ldap up -d
 # docker compose -f ./compose.yml -p ldap up -d
 ```
 
-Access: <https://ldap.x.internal>
+Access: https://ldap.x.internal

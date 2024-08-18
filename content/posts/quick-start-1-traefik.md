@@ -18,10 +18,13 @@ title: 'Quick Start: Traefik Dashboard with Custom Domain'
 
 ## Preparation
 
+Create the necessary directories and files:
+
 ```shell
-# create dirs and empty files
 mkdir -p traefik/dynamic-conf && cd traefik && touch compose.yml traefik.yml dynamic-conf/self.yml
 ```
+
+## Configuration Files
 
 ### compose.yml
 
@@ -51,6 +54,8 @@ networks:
 
 ```
 
+> Note: Mounting the Docker socket (`/var/run/docker.sock`) can pose security risks. Consider using more secure alternatives in production environments.
+
 ### traefik.yml
 
 ```yaml
@@ -58,7 +63,7 @@ networks:
 log:
     level: INFO
 api:
-    insecure: true
+    insecure: true  # Warning: Not recommended for production use
     dashboard: true
 entryPoints:
     web:
@@ -67,8 +72,9 @@ providers:
     file:
         directory: /etc/traefik/dynamic-conf
         watch: true
-
 ```
+
+> Security Warning: `insecure: true` is not recommended for production environments. Consider setting up proper authentication for the API and dashboard.
 
 ### self.yml in dir dynamic-conf
 
@@ -82,15 +88,16 @@ http:
 
 ```
 
-## Config DNS domain parse
+## DNS Configuration
 
-If you have DNS server, please reference the DNS server guide to config it
+Configure your DNS or modify your hosts file:
 
-If not
-    - using the unix-like system: edit the `/etc/hosts`
-    - using the windows: edit the `C:\Windows\System32\drivers\etc\hosts`
+- For Unix-like systems: Edit `/etc/hosts`
+- For Windows: Edit `C:\Windows\System32\drivers\etc\hosts`
 
-```hosts
+Add the following line:
+
+```
 127.0.0.1 traefik.x.internal
 ```
 
@@ -98,8 +105,9 @@ If not
 
 ```shell
 docker compose up -d
+# Alternative commands:
 # docker compose -p traefik up -d
 # docker compose -f ./compose.yml -p traefik up -d
 ```
 
-Access: <http://traefik.x.internal>
+Access: http://traefik.x.internal

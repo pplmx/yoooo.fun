@@ -17,27 +17,30 @@ title: 'Quick Start: SonarQube'
 
 
 
-# Quick Start: Sonar
+# Quick Start: SonarQube
 
 ## Prerequisite
 
-> [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
+> - [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
 >
 > OR
 >
-> [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
+> - [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
 >
-> If HTTP, remove the `tls: {}` in dynamic configuration
+> Note: If using HTTP, remove the `tls: {}` in dynamic configuration.
 
 ## Preparation
 
-### configure your host sysctl firstly: /etc/sysctl.conf
+### Configure host sysctl
+
+Add the following lines to `/etc/sysctl.conf`:
 
 ```shell
-# append the following two line key-values to /etc/sysctl.conf
 vm.max_map_count = 524288
 fs.file-max = 131072
 ```
+
+Apply changes with: `sudo sysctl -p`
 
 ### compose.yml
 
@@ -52,9 +55,8 @@ services:
         environment:
             SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
             SONAR_JDBC_USERNAME: sonar
-            SONAR_JDBC_PASSWORD: sonar
-            # configure ldap server, if no need, remove it
-            # HERE LDAP server from the gerrit compose
+            SONAR_JDBC_PASSWORD: sonar  # Change this in production!
+            # LDAP configuration (optional)
             SONAR_SECURITY_REALM: LDAP
             LDAP_URL: ldap://ldap
             LDAP_BINDDN: cn=admin,dc=chaos,dc=io
@@ -83,7 +85,7 @@ services:
         container_name: postgresql
         environment:
             POSTGRES_USER: sonar
-            POSTGRES_PASSWORD: sonar
+            POSTGRES_PASSWORD: sonar  # Change this in production!
             POSTGRES_DB: sonar
         volumes:
             - postgresql:/var/lib/postgresql
@@ -104,6 +106,8 @@ networks:
         external: true
 
 ```
+
+> Note: In production, use Docker secrets or environment variables for sensitive information like passwords.
 
 ### sonar.yml in dir dynamic-conf
 
@@ -127,18 +131,26 @@ http:
 
 ```
 
-## Config domain parse
+## DNS Configuration
 
-```shell
-echo "127.0.0.1 sonar.x.internal\n" >> /etc/hosts
+Configure your DNS or modify your hosts file:
+
+- For Unix-like systems: Edit `/etc/hosts`
+- For Windows: Edit `C:\Windows\System32\drivers\etc\hosts`
+
+Add the following line:
+
+```
+127.0.0.1 sonar.x.internal
 ```
 
 ## Run
 
 ```shell
 docker compose up -d
+# Alternative commands:
 # docker compose -p sonar up -d
 # docker compose -f ./compose.yml -p sonar up -d
 ```
 
-Access: <https://sonar.x.internal>
+Access: https://sonar.x.internal

@@ -22,16 +22,15 @@ SSP(`Self-Service Password`), is a tool for ldap to change password.
 
 ## Prerequisite
 
-> [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
+> - [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
 >
 > OR
 >
-> [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
+> - [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
 >
-> If HTTP, remove the `tls: {}` in dynamic configuration
+> Note: If using HTTP, remove the `tls: {}` in dynamic configuration.
 >
-> [LDAP](https://blog.caoyu.info/quick-start-2_1-bitnami-ldap.html)
->
+> - [LDAP](https://blog.caoyu.info/quick-start-2_1-bitnami-ldap.html)
 
 ## Preparation
 
@@ -115,21 +114,29 @@ http:
 
 ```
 
-## Config domain parse
+## DNS Configuration
 
-```shell
-echo "127.0.0.1 ssp.x.internal\n" >> /etc/hosts
+Configure your DNS or modify your hosts file:
+
+- For Unix-like systems: Edit `/etc/hosts`
+- For Windows: Edit `C:\Windows\System32\drivers\etc\hosts`
+
+Add the following line:
+
+```
+127.0.0.1 ssp.x.internal
 ```
 
 ## Run
 
 ```shell
 docker compose up -d
+# Alternative commands:
 # docker compose -p ssp up -d
 # docker compose -f ./compose.yml -p ssp up -d
 ```
 
-Access: <https://ssp.x.internal>
+Access: https://ssp.x.internal
 
 ## FYI
 

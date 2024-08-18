@@ -21,19 +21,17 @@ title: 'Quick Start: LDAP by Bitnami'
 
 ## Prerequisite
 
-> [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
+> - [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
 >
 > OR
 >
-> [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
+> - [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
 >
-> If HTTP, remove the `tls: {}` in dynamic configuration
+> Note: If using HTTP, remove the `tls: {}` in dynamic configuration.
 
 ## Preparation
 
 ### compose.yml
-
-> For much more information, please reference [here](https://hub.docker.com/r/bitnami/openldap/).
 
 ```yaml
 services:
@@ -42,10 +40,9 @@ services:
         restart: always
         environment:
             - LDAP_ADMIN_USERNAME=admin
-            - LDAP_ADMIN_PASSWORD=secret
+            - LDAP_ADMIN_PASSWORD=secret  # Change this in production!
             - LDAP_ROOT=dc=chaos,dc=io
-            # for using phpldapadmin, config 389 and 636
-            # if not, remove the following two environments
+            # For phpLDAPadmin compatibility
             - LDAP_PORT_NUMBER=389
             - LDAP_LDAPS_PORT_NUMBER=636
         volumes:
@@ -73,6 +70,8 @@ networks:
 
 ```
 
+> Note: In production, use Docker secrets or environment variables for sensitive information like passwords.
+
 ### ldap.yml in dir dynamic-conf
 
 > You should touch `ldap.yml` in traefik dir **dynamic-conf**.
@@ -95,18 +94,26 @@ http:
 
 ```
 
-## Config domain parse
+## DNS Configuration
 
-```shell
-echo "127.0.0.1 ldap.x.internal\n" >> /etc/hosts
+Configure your DNS or modify your hosts file:
+
+- For Unix-like systems: Edit `/etc/hosts`
+- For Windows: Edit `C:\Windows\System32\drivers\etc\hosts`
+
+Add the following line:
+
+```
+127.0.0.1 ldap.x.internal
 ```
 
 ## Run
 
 ```shell
 docker compose up -d
+# Alternative commands:
 # docker compose -p ldap up -d
 # docker compose -f ./compose.yml -p ldap up -d
 ```
 
-Access: <https://ldap.x.internal>
+Access: https://ldap.x.internal

@@ -22,10 +22,13 @@ title: 'Quick Start: Traefik with HTTPS'
 
 ## Preparation
 
+Create the necessary directories and files:
+
 ```shell
-# create dirs and empty files
 mkdir -p traefik/dynamic-conf traefik/certs && cd traefik && touch compose.yml traefik.yml dynamic-conf/self.yml
 ```
+
+## Configuration Files
 
 ### compose.yml
 
@@ -56,6 +59,8 @@ networks:
                 -   subnet: 172.16.238.0/24
 
 ```
+
+> Note: Mounting the Docker socket (`/var/run/docker.sock`) can pose security risks. Consider using more secure alternatives in production environments.
 
 ### traefik.yml
 
@@ -100,15 +105,16 @@ http:
 
 ```
 
-## Config DNS domain parse
+## DNS Configuration
 
-If you have DNS server, please reference the DNS server guide to config it
+Configure your DNS or modify your hosts file:
 
-If not and using unix-like system, edit the `/etc/hosts`
+- For Unix-like systems: Edit `/etc/hosts`
+- For Windows: Edit `C:\Windows\System32\drivers\etc\hosts`
 
-if using windows, edit the `C:\Windows\System32\drivers\etc\hosts`
+Add the following line:
 
-```hosts
+```
 127.0.0.1 traefik.x.internal
 ```
 
@@ -185,8 +191,9 @@ DNS.11 = localhost
 
 ```shell
 docker compose up -d
+# Alternative commands:
 # docker compose -p traefik up -d
 # docker compose -f ./compose.yml -p traefik up -d
 ```
 
-Access: <https://traefik.x.internal>
+Access: https://traefik.x.internal

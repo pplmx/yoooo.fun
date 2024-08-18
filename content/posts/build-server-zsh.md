@@ -59,7 +59,7 @@ git clone https://github.com/junegunn/fzf.git ~/.fzf
 
 ```bash
 vim ~/.zshrc
-plugins=(git z sudo ripgrep fd fzf zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git z sudo fzf zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # you can run the command 'p10k configure' to reconfigure your powerlevel10k
 

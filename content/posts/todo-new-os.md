@@ -20,13 +20,13 @@ title: TODO on a new OS
 ### pipx
 
 ```shell
-pipx install black commitizen flake8 hatch httpie pipenv poetry pre-commit
+pipx install commitizen pre-commit cookiecutter ruff uv hatch
 ```
 
 ### cargo
 
 ```shell
-cargo install cargo-generate zoxide bat fd-find ripgrep
+cargo install zoxide bat fd-find ripgrep
 
 # if error, try to locked, e.g.
 cargo install --locked bat
@@ -44,10 +44,30 @@ scoop install 7zip btop cmake curl fzf gcc gradle gsudo make Meslo-NF Meslo-NF-M
 
 ```shell
 winget install Git.Git
-winget install Fndroid.ClashForWindows
 winget install appmakes.Typora
 winget install OpenJS.NodeJS
 winget install GoLang.Go
-winget install NetEase.CloudMusic
 winget install JanDeDobbeleer.OhMyPosh
+```
+
+## Linux
+
+### REHL
+
+```shell
+# for development
+sudo dnf install -y @development-libs
+sudo dnf install -y @development-tools
+
+# for virtualization, such as qemu and kvm
+sudo dnf install -y @virtualization
+# after installation, enable libvirtd
+sudo systemctl enable --now libvirtd
+sudo systemctl start libvirtd
+```
+
+### Debian/Ubuntu
+
+```shell
+sudo apt install -y build-essential
 ```
