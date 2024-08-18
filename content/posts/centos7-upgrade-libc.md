@@ -4,6 +4,7 @@ categories:
 date: 2024-02-28T21:45:20Z
 description: Upgrade glibc from 2.17 to 2.31 on CentOS 7
 keywords: glibc, linux, centos7, libstdc++
+lastmod: 2024-08-18T11:03:36Z
 tags:
     - linux
     - centos7
@@ -15,6 +16,7 @@ title: How to upgrade glibc on CentOS 7
 # how to upgrade glibc on centos7
 
 > **⚠ WARNING: Upgrading GLIBC on CentOS 7 is a high-risk operation!**
+>
 > This process can potentially break your system, especially if done incorrectly.
 >
 > It is highly recommended to **backup your system** and test the upgrade on a non-production environment first.
