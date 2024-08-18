@@ -4,7 +4,7 @@ categories:
 date: 2023-04-15T22:03:21Z
 description: how to configure gerrit with https based on traefik
 keywords: docker,traefik,proxy,gerrit,code review,review,https
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - docker
     - traefik

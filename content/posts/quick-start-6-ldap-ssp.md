@@ -4,7 +4,7 @@ categories:
 date: 2023-07-12T15:20:21Z
 description: how to configure ssp for ldap based on traefik
 keywords: docker,traefik,proxy,ssp,password,https
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - docker
     - traefik

@@ -4,7 +4,7 @@ categories:
 date: 2023-04-15T23:16:36Z
 description: how to configure bitnami openldap based on traefik
 keywords: docker,traefik,proxy,ldap,bitnami,openldap,user,https
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - docker
     - traefik

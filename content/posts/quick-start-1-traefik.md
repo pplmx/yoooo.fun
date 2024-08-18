@@ -4,7 +4,7 @@ categories:
 date: 2023-04-13T17:25:36Z
 description: how to configure custom domain for traefik dashboard
 keywords: docker,traefik,proxy,custom domain
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - docker
     - traefik

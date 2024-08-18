@@ -4,7 +4,7 @@ categories:
 date: 2023-04-16T12:18:36Z
 description: how to enable http3 for traefik
 keywords: HTTP/3,http3,SSL,HTTPS,docker,traefik,openssl,certificates,proxy,custom domain,self-signed certificate
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - http3
     - https

@@ -4,7 +4,7 @@ categories:
 date: 2023-04-13T23:45:36Z
 description: how to configure ldap based on traefik
 keywords: docker,traefik,proxy,ldap,user,https
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - docker
     - traefik

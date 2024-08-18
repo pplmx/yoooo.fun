@@ -4,7 +4,7 @@ categories:
 date: 2023-07-28T10:40:11Z
 description: install some necessary tools for me on a new OS
 keywords: todo,tools,preparation,setup,pipx,cargo,scoop,winget
-lastmod: 2024-01-06T22:21:46Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - todo
     - tools

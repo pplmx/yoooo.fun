@@ -4,7 +4,7 @@ categories:
 date: 2023-04-14T14:14:21Z
 description: how to configure jenkins with https based on traefik
 keywords: docker,traefik,proxy,jenkins,ci,cd,https
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - docker
     - traefik

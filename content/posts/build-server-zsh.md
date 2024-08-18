@@ -4,7 +4,7 @@ categories:
 date: 2017-10-13T11:10:44Z
 description: install zsh on linux
 keywords: zsh, linux
-lastmod: 2024-01-13T11:13:20Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - linux
 title: linux服务器初建之zsh安装

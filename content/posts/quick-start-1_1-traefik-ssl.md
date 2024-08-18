@@ -4,7 +4,7 @@ categories:
 date: 2023-04-13T17:28:36Z
 description: how to enable https for traefik and make browsers trust HTTPS
 keywords: SSL,HTTPS,docker,traefik,openssl,certificates,proxy,custom domain,self-signed certificate
-lastmod: 2023-11-24T10:42:36Z
+lastmod: 2024-08-18T10:42:36Z
 tags:
     - https
     - ssl
