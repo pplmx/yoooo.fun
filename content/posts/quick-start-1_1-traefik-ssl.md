@@ -120,12 +120,11 @@ Add the following line:
 
 ## Generate Self-Signed Certificates
 
-### Option-1: Using mkcert
+Choose one of the following options:
 
-`mkcert` installation is here: https://github.com/FiloSottile/mkcert
+### Option 1: Using mkcert (Recommended for Development)
 
-`mkcert` can solve the problem of browser distrust
-If you want to solve this problem, then `mkcert` is the best choice.
+`mkcert` can solve browser trust issues. [Install mkcert](https://github.com/FiloSottile/mkcert), then run:
 
 ```shell
 # directly gen certs at the current dir
@@ -136,9 +135,9 @@ mkcert -key-file certs/key.pem -cert-file certs/cert.pem x.internal "*.x.interna
 mkcert -install
 ```
 
-### Option-2: Using openssl
+### Option 2: Using openssl
 
-- **option-a**: configure with command line
+#### a. Command line configuration:
 
 ```shell
 openssl req -new -x509 -nodes -newkey rsa:4096 -days 365 \
@@ -147,7 +146,7 @@ openssl req -new -x509 -nodes -newkey rsa:4096 -days 365 \
     -out certs/cert.pem
 ```
 
-- **option-b**: configure with a `ssl.cnf`
+#### b. Configuration file (ssl.cnf):
 
 ```shell
 # When using -x509, default_days in config will be ignored, it is a bug
@@ -162,7 +161,7 @@ openssl req -x509 -new -nodes -days 365 \
 
 Tips: `DNS.1`, `DNS.2`, `IP.7`, `DNS.11`, the numbers are only required to be unique, and can also be unordered.
 
-```shell
+```ini
 [ req ]
 default_bits       = 4096
 distinguished_name = req_distinguished_name

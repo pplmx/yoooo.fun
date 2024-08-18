@@ -35,77 +35,72 @@ mkdir -p traefik/dynamic-conf traefik/certs && cd traefik && touch compose.yml t
 
 ```yaml
 services:
-    traefik:
-        image: traefik:3.1
-        ports:
-            - "80:80"
-            - "443:443/tcp"
-            - "443:443/udp"
-        environment:
-            - TZ=Asia/Shanghai
-        volumes:
-            # /traefik.yml and /etc/traefik/traefik.yml are both available.
-            - "./traefik.yml:/etc/traefik/traefik.yml"
-            # dynamic-conf dir is self-defined
-            - "./dynamic-conf:/etc/traefik/dynamic-conf"
-            - "./certs:/certs"
-            - "/var/run/docker.sock:/var/run/docker.sock:ro"
-        networks:
-            - traefik-net
+  traefik:
+    image: traefik:3.1
+    ports:
+      - "80:80"
+      - "443:443/tcp"
+      - "443:443/udp"  # Required for HTTP/3
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - "./traefik.yml:/etc/traefik/traefik.yml"
+      - "./dynamic-conf:/etc/traefik/dynamic-conf"
+      - "./certs:/certs"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - traefik-net
 
 networks:
-    traefik-net:
-        name: traefik-net
-        ipam:
-            config:
-                -   subnet: 172.16.238.0/24
-
+  traefik-net:
+    name: traefik-net
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24
 ```
 
-> Note: Mounting the Docker socket (`/var/run/docker.sock`) can pose security risks. Consider using more secure alternatives in production environments.
+> **Security Note**: Mounting the Docker socket (`/var/run/docker.sock`) can pose security risks. Consider using more secure alternatives in production environments.
 
 ### traefik.yml
 
 ```yaml
-### Static Configuration
+# Static Configuration
 log:
-    level: INFO
+  level: INFO
 api:
-    dashboard: true
+  dashboard: true
 entryPoints:
-    web:
-        address: :80
-        http:
-            redirections:
-                entryPoint:
-                    to: websecure
-                    scheme: https
-                    permanent: true
-    websecure:
-        address: :443
-        http3: { }
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
+    address: :443
+    http3: {}  # Enables HTTP/3 support
 providers:
-    file:
-        directory: /etc/traefik/dynamic-conf
-        watch: true
-
+  file:
+    directory: /etc/traefik/dynamic-conf
+    watch: true
 ```
 
 ### self.yml in dir dynamic-conf
 
 ```yaml
-### Dynamic Configuration
+# Dynamic Configuration
 tls:
-    certificates:
-        -   certFile: /certs/cert.pem
-            keyFile: /certs/key.pem
+  certificates:
+    - certFile: /certs/cert.pem
+      keyFile: /certs/key.pem
 http:
-    routers:
-        dashboard:
-            rule: Host(`traefik.x.internal`)
-            service: api@internal
-            tls: { }
-
+  routers:
+    dashboard:
+      rule: Host(`traefik.x.internal`)
+      service: api@internal
+      tls: {}
 ```
 
 ## DNS Configuration
@@ -123,12 +118,11 @@ Add the following line:
 
 ## Generate Self-Signed Certificates
 
-### Option-1: Using mkcert
+Choose one of the following options:
 
-`mkcert` installation is here: https://github.com/FiloSottile/mkcert
+### Option 1: Using mkcert (Recommended for Development)
 
-`mkcert` can solve the problem of browser distrust
-If you want to solve this problem, then `mkcert` is the best choice.
+`mkcert` can solve browser trust issues. [Install mkcert](https://github.com/FiloSottile/mkcert), then run:
 
 ```shell
 # directly gen certs at the current dir
@@ -139,9 +133,9 @@ mkcert -key-file certs/key.pem -cert-file certs/cert.pem x.internal "*.x.interna
 mkcert -install
 ```
 
-### Option-2: Using openssl
+### Option 2: Using openssl
 
-- **option-a**: configure with command line
+#### a. Command line configuration:
 
 ```shell
 openssl req -new -x509 -nodes -newkey rsa:4096 -days 365 \
@@ -150,7 +144,7 @@ openssl req -new -x509 -nodes -newkey rsa:4096 -days 365 \
     -out certs/cert.pem
 ```
 
-- **option-b**: configure with a `ssl.cnf`
+#### b. Configuration file (ssl.cnf):
 
 ```shell
 # When using -x509, default_days in config will be ignored, it is a bug
@@ -165,7 +159,7 @@ openssl req -x509 -new -nodes -days 365 \
 
 Tips: `DNS.1`, `DNS.2`, `IP.7`, `DNS.11`, the numbers are only required to be unique, and can also be unordered.
 
-```shell
+```ini
 [ req ]
 default_bits       = 4096
 distinguished_name = req_distinguished_name
