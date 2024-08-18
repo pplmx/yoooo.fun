@@ -14,6 +14,15 @@ title: How to upgrade glibc on CentOS 7
 
 # how to upgrade glibc on centos7
 
+> **⚠ WARNING: Upgrading GLIBC on CentOS 7 is a high-risk operation!**
+> This process can potentially break your system, especially if done incorrectly.
+>
+> It is highly recommended to **backup your system** and test the upgrade on a non-production environment first.
+>
+> Proceed with caution!
+
+This guide provides step-by-step instructions to upgrade the GNU C Library (glibc) and GCC on CentOS 7, along with handling potential issues.
+
 ## check the current version
 
 ```bash
@@ -32,11 +41,11 @@ strings /usr/lib64/libstdc++.so.6 | grep -E "^GLIBCXX_"
 sudo yum install -y centos-release-scl
 sudo yum install -y devtoolset-8
 
-# enable gcc 11 temporarily
+# enable gcc 8 temporarily
 scl enable devtoolset-8 bash
 scl enable devtoolset-8 zsh
 
-# enable gcc 11 permanently
+# enable gcc 8 permanently
 echo "[ -f /opt/rh/devtoolset-8/enable ] && source /opt/rh/devtoolset-8/enable" >> ~/.bashrc
 echo "[ -f /opt/rh/devtoolset-8/enable ] && source /opt/rh/devtoolset-8/enable" >> ~/.zshrc
 
