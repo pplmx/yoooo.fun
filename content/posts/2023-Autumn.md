@@ -16,5 +16,3 @@ title: Autumn in 2023
 Welcome to the colorful and reflective season of Autumn in 2023.
 
 Autumn leaves fall gently to the ground.
-
-

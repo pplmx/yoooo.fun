@@ -16,5 +16,3 @@ title: Spring in 2024
 Welcome to the renewal and growth of Spring in 2024.
 
 Spring rain brings new life to the world.
-
-

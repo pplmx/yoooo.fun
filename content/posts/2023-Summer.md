@@ -16,5 +16,3 @@ title: Summer in 2023
 Welcome to the vibrant warmth of Summer in 2023.
 
 Summer sun shines brightly, warming the earth.
-
-

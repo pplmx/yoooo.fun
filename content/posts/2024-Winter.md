@@ -16,5 +16,3 @@ title: Winter in 2024
 Welcome to the quiet beauty of Winter in 2024.
 
 Winter wind howls through the trees.
-
-

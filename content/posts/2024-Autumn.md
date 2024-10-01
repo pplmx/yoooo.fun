@@ -16,5 +16,3 @@ title: Autumn in 2024
 Welcome to the colorful and reflective season of Autumn in 2024.
 
 Autumn leaves fall gently to the ground.
-
-
