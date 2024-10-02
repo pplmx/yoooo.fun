@@ -1,10 +1,10 @@
 ---
 categories:
-    - rust
     - mosp
 date: 2024-10-01T18:47:20Z
 description: A git hook manager for Rust projects
 keywords: git hooks, git hook manager, husky, husky-rs, Rust, Git management
+lastmod: 2024-10-02T18:41:20Z
 tags:
     - hook
     - hooks
