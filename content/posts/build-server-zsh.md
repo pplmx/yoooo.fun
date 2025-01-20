@@ -4,7 +4,7 @@ categories:
 date: 2017-10-13T11:10:44Z
 description: install zsh on linux
 keywords: zsh, linux
-lastmod: 2024-08-18T10:42:36Z
+lastmod: 2025-01-18T10:42:36Z
 tags:
     - linux
 title: linux服务器初建之zsh安装
@@ -14,9 +14,9 @@ title: linux服务器初建之zsh安装
 
 # Oh My Zsh Installation Guide
 
-## 1. Install Zsh
+## 1. Core Installation
 
-First, install the Zsh shell:
+### 1.1 Install Zsh
 
 ```bash
 # RedHat/Fedora/CentOS
@@ -36,7 +36,7 @@ Verify the installation:
 zsh --version
 ```
 
-## 2. Set Zsh as Default Shell
+### 1.2 Set Zsh as Default Shell
 
 ```bash
 # Add Zsh to available shells
@@ -48,16 +48,20 @@ chsh -s $(command -v zsh)
 
 Note: You'll need to log out and log back in for the change to take effect.
 
-## 3. Install Oh My Zsh
+### 1.3 Install Oh My Zsh
 
-If you need to use a proxy, set the proxy environment variable first:
+If you need to use a proxy, if not needed, you can skip this step.
 
 ```bash
-# Modify proxy address and port according to your setup
+# Set proxy for shell
 export all_proxy=http://localhost:7890
+
+# Set Git proxy if needed
+git config --global http.proxy http://localhost:7890
+git config --global https.proxy http://localhost:7890
 ```
 
-Choose one of the following installation methods:
+Install Oh My Zsh:
 
 ```bash
 # Install using curl (recommended)
@@ -65,21 +69,82 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # Or install using wget
 sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 ```
 
-## 4. Install Recommended Tools
+### 1.4 Install Default Plugins
 
-### 4.1 Install Modern CLI Tools via Rust/Cargo
+```bash
+# Install auto-suggestions
+git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-First, install Rust (if not already installed):
+# Install syntax highlighting
+git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# Install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+### 1.5 Basic Configuration
+
+Edit your `~/.zshrc` file:
+
+```bash
+# Enable plugins
+plugins=(
+    git                     # Git integration
+    z                       # Quick directory jumping
+    sudo                    # Double ESC to add sudo
+    zsh-autosuggestions     # Auto-suggestions
+    zsh-syntax-highlighting # Syntax highlighting
+)
+
+# Apply changes
+source ~/.zshrc
+```
+
+## 2. Optional Enhancements
+
+The above is the minimal setup for me. For more advanced configurations, you can customize your `~/.zshrc` file further.
+
+### 2.1 PowerLevel10k Theme
+
+Install the theme:
+
+```bash
+git clone --depth 1 https://github.com/romkatv/powerlevel10k \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+Configure in `~/.zshrc`:
+
+```bash
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+Run configuration wizard:
+
+```bash
+p10k configure
+```
+
+Required font setup:
+
+- Install `Nerd Font`: https://github.com/ryanoasis/nerd-fonts/releases/latest
+- Set your `terminal emulator` to use a `Nerd Font`
+
+### 2.2 Modern CLI Tools (via Rust)
+
+Install Rust:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 ```
 
-Install commonly used tools:
+Install enhanced command-line tools:
 
 ```bash
 # ripgrep: faster alternative to grep
@@ -89,84 +154,40 @@ Install commonly used tools:
 cargo install ripgrep fd-find bat lsd
 ```
 
-### 4.2 Install fzf (Fuzzy Finder)
+Add to `~/.zshrc` if using Rust tools:
 
 ```bash
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-```
-
-## 5. Configure Oh My Zsh
-
-### 5.1 Install Recommended Plugins
-
-```bash
-# Auto-suggestions plugin
-git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions \
-    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# Syntax highlighting plugin
-git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting \
-    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# PowerLevel10k theme (optional but recommended)
-git clone --depth 1 https://github.com/romkatv/powerlevel10k \
-    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-### 5.2 Edit Configuration
-
-Edit your `~/.zshrc` file:
-
-```bash
-# Set theme (if PowerLevel10k is installed)
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Enable plugins
-plugins=(
-    git             # Git integration
-    z               # Quick directory jumping
-    sudo            # Double ESC to add sudo
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-# Optional: Set up useful aliases
 alias ls='lsd'
 alias cat='bat'
 alias grep='rg'
 alias find='fd'
 ```
 
-### 5.3 Apply Changes
+## 3. Troubleshooting
 
-```bash
-source ~/.zshrc
-```
-
-If using PowerLevel10k theme, the configuration wizard will start automatically on first load. You can also run it manually:
-
-```bash
-p10k configure
-```
-
-## Troubleshooting
-
-1. If you encounter permission issues:
+1. Permission issues:
 
     ```bash
     sudo chown -R $USER:$USER ~/.oh-my-zsh
     ```
 
-2. If plugin installation fails, check your network connection and proxy settings:
+2. Network-related issues:
+
+    - Check your internet connection
+    - Verify proxy settings if using a proxy
+    - Try downloading files directly if git clone fails
+
+3. Plugin issues:
 
     ```bash
-    # Set Git proxy
-    git config --global http.proxy http://localhost:7890
-    git config --global https.proxy http://localhost:7890
+    # Reinstall plugins
+    rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    rm -rf ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    # Then repeat the plugin installation steps
     ```
 
-3. If theme looks incorrect, ensure recommended fonts are installed:
+4. Theme display issues:
 
-    - Install Nerd Font
-    - Set your terminal emulator to use a Nerd Font
+    - Verify font installation
+    - Check terminal emulator settings
+    - Ensure terminal supports true color
