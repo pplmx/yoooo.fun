@@ -50,7 +50,7 @@ Note: You'll need to log out and log back in for the change to take effect.
 
 ### 1.3 Install Oh My Zsh
 
-If you need to use a proxy, if not needed, you can skip this step.
+Follow this step only if you need to use a proxy; otherwise, feel free to skip it.
 
 ```bash
 # Set proxy for shell
