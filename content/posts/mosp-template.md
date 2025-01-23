@@ -5,6 +5,7 @@ date: 2024-10-01T18:47:20Z
 description: A project to generate boilerplate code for various programming languages with deep GitHub Actions integration
 keywords: template, boilerplate, GitHub Actions, CI/CD, automation, Rust, Go, Python, C++, CXX, CUDA, TypeScript
 lastmod: 2024-10-02T18:41:20Z
+sticky: 100
 tags:
     - template
     - boilerplate
