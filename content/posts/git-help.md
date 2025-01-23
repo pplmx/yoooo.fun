@@ -107,6 +107,7 @@ $ cat ~/.gitconfig
         prune = true
 [tag]
         sort = v:refname
+
 ```
 
 ## git customized log
