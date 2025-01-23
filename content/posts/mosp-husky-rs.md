@@ -5,7 +5,7 @@ date: 2024-10-01T18:47:20Z
 description: A git hook manager for Rust projects
 keywords: git hooks, git hook manager, husky, husky-rs, Rust, Git management
 lastmod: 2024-10-02T18:41:20Z
-sticky: 99
+sticky: 98
 tags:
     - hook
     - hooks
