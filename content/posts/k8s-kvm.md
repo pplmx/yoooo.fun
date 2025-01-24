@@ -1,0 +1,379 @@
+---
+categories:
+    - infrastructure
+date: 2023-04-13T17:25:36Z
+description: Comprehensive guide to deploy Kubernetes cluster on KVM/Ubuntu, covering cloud-init automation and containerd configuration
+keywords: kubernetes deployment, kvm virtualization, ubuntu cluster, containerd runtime, production kubernetes
+lastmod: 2024-08-18T10:42:36Z
+tags:
+    - kubernetes
+    - kvm
+    - ubuntu
+    - containerd
+    - cloud-init
+    - k8s
+title: 'Kubernetes Cluster Deployment: KVM-based Production Setup on Ubuntu'
+---
+
+
+
+# KVM Deployment of Kubernetes Cluster Operations Manual
+
+## Preface
+
+This manual provides detailed steps for deploying a complete Kubernetes cluster using KVM on Ubuntu 22.04 LTS system.
+
+## Environment Requirements
+
+### Hardware Configuration
+
+- CPU: Supports hardware virtualization (Intel VT-x or AMD-V must be enabled)
+- Memory: Minimum 8GB (2GB per node)
+- Storage: Minimum 120GB free space
+- Network: Stable network connection supporting virtual bridges
+
+### Software Versions
+
+- OS: Ubuntu 22.04 LTS
+- Kubernetes: v1.32.1
+- Container Runtime: containerd (latest stable version)
+
+## 1. Basic Environment Preparation
+
+### 1.1 Environment Variable Configuration
+
+```bash
+# Create working directory structure
+export X_DIR="/opt/k8s"
+export X_DOWNLOAD_DIR="${X_DIR}/download"
+export X_IMG_DIR="${X_DIR}/images"
+export X_CFG_DIR="${X_DIR}/configs"
+export X_BASE_IMG="${X_IMG_DIR}/jammy-server-cloudimg-amd64.img"
+export QCOW2_URL="https://cloud-images.ubuntu.com/jammy/releases/jammy/release/jammy-server-cloudimg-amd64.img"
+
+# Initialize directories
+sudo mkdir -p $X_DOWNLOAD_DIR $X_IMG_DIR $X_CFG_DIR
+sudo chown -R $USER:$USER $X_DIR
+
+# Download base image
+curl -fsSL -o "${X_BASE_IMG}" "${QCOW2_URL}"
+```
+
+### 1.2 Install Required Components
+
+```bash
+# System update
+sudo apt-get update && sudo apt-get upgrade -y
+
+# Install KVM and related tools
+sudo apt-get install -y \
+    qemu-system-x86 \
+    libvirt-daemon-system \
+    libvirt-clients \
+    bridge-utils \
+    virt-manager \
+    virtinst \
+    cloud-image-utils \
+    wget \
+    curl
+
+# Verify KVM installation
+kvm-ok
+sudo systemctl enable --now libvirtd
+sudo systemctl status libvirtd
+lsmod | grep kvm
+```
+
+## 2. Virtual Network Configuration
+
+### 2.1 Create Dedicated Network
+
+```bash
+cat << EOF > ${X_CFG_DIR}/k8s-network.xml
+<network>
+  <name>k8s-net</name>
+  <forward mode="nat"/>
+  <bridge name="virbr-k8s" stp="on" delay="0"/>
+  <ip address="192.168.122.1" netmask="255.255.255.0">
+    <dhcp>
+      <range start="192.168.122.2" end="192.168.122.254"/>
+    </dhcp>
+  </ip>
+</network>
+EOF
+
+# Deploy network
+sudo virsh net-define ${X_CFG_DIR}/k8s-network.xml
+sudo virsh net-start k8s-net
+sudo virsh net-autostart k8s-net
+sudo virsh net-list --all  # Verify network status
+```
+
+## 3. Virtual Machine Deployment
+
+### 3.1 Create Cloud-Init Configuration File
+
+```bash
+# Generate SSH key (if not exists)
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N ""
+
+# Create cloud-init template
+cat << EOF > ${X_CFG_DIR}/cloud-init.yml
+#cloud-config
+
+# Basic system configuration
+hostname: myhost
+fqdn: myhost.example.com
+
+# User setup configuration
+users:
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    homedir: /home/ubuntu
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - $(cat ~/.ssh/id_ed25519.pub)
+
+# Password setup
+password: ubuntu
+chpasswd:
+  expire: false
+ssh_pwauth: true
+
+# Package management
+package_update: true
+package_upgrade: true
+packages:
+  - curl
+  - apt-transport-https
+  - ca-certificates
+  - gnupg
+  - containerd.io
+
+write_files:
+  - path: /etc/sysctl.d/k8s.conf
+    content: |
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.bridge.bridge-nf-call-iptables = 1
+      net.ipv4.ip_forward = 1
+  - path: /etc/modules-load.d/k8s.conf
+    content: |
+      overlay
+      br_netfilter
+  - path: /etc/containerd/config.toml
+    content: |
+      version = 2
+      [plugins]
+      [plugins."io.containerd.grpc.v1.cri"]
+      [plugins."io.containerd.grpc.v1.cri".containerd]
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+      runtime_type = "io.containerd.runc.v2"
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+      SystemdCgroup = true
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+      endpoint=["https://docker.m.daocloud.io", "https://dockerproxy.net", "https://registry-1.docker.io"]
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry.k8s.io"]
+      endpoint=["https://k8s.m.daocloud.io", "k8s.dockerproxy.net"]
+
+# Post-cloud-init commands
+runcmd:
+  - curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  - sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  - sudo apt-get update
+  - sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+  - sudo apt-mark hold kubelet kubeadm kubectl
+  - sudo systemctl enable --now containerd
+  - sudo systemctl enable --now kubelet
+  - sudo kubeadm config images pull --image-repository=registry.aliyuncs.com/google_containers
+
+# Configure apt sources
+apt:
+  primary:
+    - arches: [default]
+      uri: https://mirrors.aliyun.com/ubuntu/
+      search:
+        - https://repo.huaweicloud.com/ubuntu/
+        - https://mirrors.cloud.tencent.com/ubuntu/
+        - https://mirrors.cernet.edu.cn/ubuntu/
+        - https://archive.ubuntu.com
+  sources:
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+      keyid: 0EBFCD88
+    kubernetes.list:
+      source: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /
+      keyid: 0D811D58
+
+power_state:
+  mode: reboot
+
+EOF
+```
+
+### 3.2 Deploy Virtual Machines
+
+```bash
+cp ${X_BASE_IMG} ${X_IMG_DIR}/k8s-cp-01.img
+cp ${X_BASE_IMG} ${X_IMG_DIR}/k8s-worker-01.img
+cp ${X_BASE_IMG} ${X_IMG_DIR}/k8s-worker-02.img
+
+qemu-img resize ${X_IMG_DIR}/k8s-cp-01.img 20G
+qemu-img resize ${X_IMG_DIR}/k8s-worker-01.img 20G
+qemu-img resize ${X_IMG_DIR}/k8s-worker-02.img 20G
+
+sed -i "s/^hostname: .*/hostname: k8s-cp-01/g" ${X_CFG_DIR}/cloud-init.yml
+sed -i "s/^fqdn: .*/fqdn: k8s-cp-01.example.com/g" ${X_CFG_DIR}/cloud-init.yml
+cloud-localds ${X_IMG_DIR}/k8s-cp-01.img.seed ${X_CFG_DIR}/cloud-init.yml
+
+sed -i "s/^hostname: .*/hostname: k8s-worker-01/g" ${X_CFG_DIR}/cloud-init.yml
+sed -i "s/^fqdn: .*/fqdn: k8s-worker-01.example.com/g" ${X_CFG_DIR}/cloud-init.yml
+cloud-localds ${X_IMG_DIR}/k8s-worker-01.img.seed ${X_CFG_DIR}/cloud-init.yml
+
+sed -i "s/^hostname: .*/hostname: k8s-worker-02/g" ${X_CFG_DIR}/cloud-init.yml
+sed -i "s/^fqdn: .*/fqdn: k8s-worker-02.example.com/g" ${X_CFG_DIR}/cloud-init.yml
+cloud-localds ${X_IMG_DIR}/k8s-worker-02.img.seed ${X_CFG_DIR}/cloud-init.yml
+
+# Control Plane Node
+sudo virt-install \
+    --name k8s-cp-01 \
+    --memory 2048 \
+    --vcpus 2 \
+    --disk path=${X_IMG_DIR}/k8s-cp-01.img,size=20 \
+    --disk path=${X_IMG_DIR}/k8s-cp-01.img.seed,device=cdrom \
+    --network network=k8s-net \
+    --os-variant ubuntu22.04 \
+    --import \
+    --graphics none \
+    --noautoconsole
+
+# Worker Node 01
+sudo virt-install \
+    --name k8s-worker-01 \
+    --memory 2048 \
+    --vcpus 2 \
+    --disk path=${X_IMG_DIR}/k8s-worker-01.img,size=20 \
+    --disk path=${X_IMG_DIR}/k8s-worker-01.img.seed,device=cdrom \
+    --network network=k8s-net \
+    --os-variant ubuntu22.04 \
+    --import \
+    --graphics none \
+    --noautoconsole
+
+# Worker Node 02
+sudo virt-install \
+    --name k8s-worker-02 \
+    --memory 2048 \
+    --vcpus 2 \
+    --disk path=${X_IMG_DIR}/k8s-worker-02.img,size=20 \
+    --disk path=${X_IMG_DIR}/k8s-worker-02.img.seed,device=cdrom \
+    --network network=k8s-net \
+    --os-variant ubuntu22.04 \
+    --import \
+    --graphics none \
+    --noautoconsole
+```
+
+## 4. Kubernetes Cluster Initialization
+
+### 4.1 Control Plane Initialization
+
+```bash
+# Get control plane node IP
+CP_IP=$(sudo virsh domifaddr "k8s-cp-01" | awk '/ipv4/ {print $4}' | cut -d'/' -f1)
+
+# Initialize control plane
+sudo kubeadm init \
+    --image-repository=registry.aliyuncs.com/google_containers \
+    --kubernetes-version=v1.32.1 \
+    --apiserver-advertise-address=${CP_IP} \
+    --apiserver-bind-port=6443 \
+    --pod-network-cidr=10.244.0.0/16 \
+    --service-cidr=169.169.0.0/16 \
+    --token=abcdef.0123456789abcdef \
+    --token-ttl=0
+
+# Configure kubectl
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# Deploy Flannel network plugin
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+```
+
+### 4.2 Add Worker Nodes
+
+1. Get join command on control plane node:
+
+    ```bash
+    kubeadm token create --print-join-command
+    ```
+
+2. Execute the obtained command on worker nodes:
+
+    ```bash
+    sudo kubeadm join <control-plane-ip>:6443 \
+        --token <token> \
+        --discovery-token-ca-cert-hash <hash> \
+        --node-name <worker-node-name>
+    ```
+
+3. (Optional) If kubectl access is required on worker nodes:
+
+    ```bash
+    # Login to worker node
+    mkdir -p $HOME/.kube
+    scp control-plane-node:/etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    ```
+
+## 5. Cluster Verification
+
+### 5.1 Basic Functionality Verification
+
+```bash
+# Check node status
+kubectl get nodes -o wide
+
+# Verify system components
+kubectl get pods -n kube-system
+
+# Verify CNI network plugin
+kubectl get pods -n kube-flannel
+
+# Deploy test application
+kubectl create deployment nginx-test --image=nginx
+kubectl expose deployment nginx-test --port=80 --type=NodePort
+kubectl get pods,svc -o wide
+```
+
+## 6. Maintenance Operations
+
+### 6.1 Cluster Reset
+
+To redeploy, execute on all nodes:
+
+```bash
+sudo kubeadm reset -f
+sudo rm -rf $HOME/.kube
+sudo rm -rf /etc/cni/net.d
+```
+
+### 6.2 Clean Virtual Environment
+
+```bash
+# Clean virtual machines
+sudo virsh destroy k8s-cp-01
+sudo virsh destroy k8s-worker-01
+sudo virsh destroy k8s-worker-02
+sudo virsh undefine k8s-cp-01 --remove-all-storage
+sudo virsh undefine k8s-worker-01 --remove-all-storage
+sudo virsh undefine k8s-worker-02 --remove-all-storage
+
+# Clean network
+sudo virsh net-destroy k8s-net
+sudo virsh net-undefine k8s-net
+```
