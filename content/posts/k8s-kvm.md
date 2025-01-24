@@ -201,7 +201,7 @@ apt:
         - https://archive.ubuntu.com
   sources:
     docker.list:
-      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+      source: deb [arch=amd64] https://mirrors.cernet.edu.cn/docker-ce/linux/ubuntu jammy stable
       keyid: 0EBFCD88
     kubernetes.list:
       source: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /
