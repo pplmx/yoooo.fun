@@ -1,10 +1,9 @@
 ---
 categories:
     - infrastructure
-date: 2023-04-13T17:25:36Z
+date: 2025-01-24T17:25:36Z
 description: Comprehensive guide to deploy Kubernetes cluster on KVM/Ubuntu, covering cloud-init automation and containerd configuration
 keywords: kubernetes deployment, kvm virtualization, ubuntu cluster, containerd runtime, production kubernetes
-lastmod: 2024-08-18T10:42:36Z
 tags:
     - kubernetes
     - kvm
