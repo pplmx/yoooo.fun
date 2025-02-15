@@ -58,6 +58,10 @@ K_IMAGE_DIR="${K_DIR}/images"
 CLOUD_IMAGE="${K_DOWNLOAD_DIR}/${UBUNTU_NICKNAME}-server-cloudimg-amd64.img"
 NETWORK_NAME="k8s-net"
 K8S_VERSION="v1.32.1"
+K8S_POD_NET_CIDR="10.244.0.0/16"
+CALICO_VERSION="v3.29.2"
+REMOTE_CALICO_URL="https://raw.githubusercontent.com/projectcalico/calico/${CALICO_VERSION}/manifests/calico.yaml"
+REMOTE_FLANNEL_URL="https://raw.githubusercontent.com/flannel-io/flannel/refs/heads/master/Documentation/kube-flannel.yml"
 
 # === Logging Function ===
 log() {
@@ -75,6 +79,15 @@ log() {
         STEP)  echo -e "${BLUE}[$(date +'%Y-%m-%d %H:%M:%S')] [STEP]${NC} $*" ;;
         *)     echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] [INFO]${NC} $*" ;;
     esac
+}
+
+get_file_content() {
+    local file=$1
+    local url=$2
+    if [[ ! -s "$file" ]]; then
+        curl -fsSL -o "$file" "$url"
+    fi
+    cat "$file"
 }
 
 # === Check Dependencies ===
@@ -363,7 +376,7 @@ sudo kubeadm init \
     --kubernetes-version=${K8S_VERSION} \
     --apiserver-advertise-address=${cp_ip} \
     --apiserver-bind-port=6443 \
-    --pod-network-cidr=10.244.0.0/16 \
+    --pod-network-cidr=${K8S_POD_NET_CIDR} \
     --service-cidr=169.169.0.0/16 \
     --token=abcdef.0123456789abcdef \
     --token-ttl=0
@@ -378,8 +391,45 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 EOF
 
     # Install CNI plugin
-    log INFO "Installing CNI plugin (Flannel)..."
-    ssh ubuntu@k8s-cp-01 "kubectl apply -f https://github.com/flannel-io/flannel/blob/master/Documentation/kube-flannel.yml"
+    log INFO "Installing CNI plugin (Calico)..."
+    # Check if calico.yml exists locally; if not, download from remote URL.
+    # This file defines the Calico CNI plugin configuration for Kubernetes networking.
+    # Transfer it to the remote host via SSH and save as /var/tmp/calico.yml for installation.
+    get_file_content "calico.yml" "$REMOTE_CALICO_URL" | ssh ubuntu@k8s-cp-01 "cat > /var/tmp/calico.yml"
+    if ssh ubuntu@k8s-cp-01 "test -s /var/tmp/calico.yml" >/dev/null 2>&1; then
+        ssh ubuntu@k8s-cp-01 << EOF
+cd /var/tmp
+calico_cni="m.daocloud.io/docker.io/calico/cni:${CALICO_VERSION}"
+calico_node="m.daocloud.io/docker.io/calico/node:${CALICO_VERSION}"
+sudo ctr image pull \${calico_cni} >/dev/null 2>&1
+sudo ctr image pull \${calico_node} >/dev/null 2>&1
+sudo ctr image tag \${calico_cni} \${calico_cni#*docker.io/}
+sudo ctr image tag \${calico_node} \${calico_node#*docker.io/}
+sudo ctr image rm \${calico_cni}
+sudo ctr image rm \${calico_node}
+sudo ctr image ls -q
+sed -i \
+    -e '/- name: CALICO_IPV4POOL_CIDR/s|^\([[:space:]]*\) #|\1|' \
+    -e '/- name: CALICO_IPV4POOL_CIDR/{n;s|^\([[:space:]]*\)#.*|\1  value: '"$K8S_POD_NET_CIDR"'|}' \
+    calico.yml
+kubectl create -f calico.yml
+EOF
+        log INFO "CNI plugin (Calico) installed successfully"
+        rm -f .flannel-installed
+        touch .calico-installed
+        return 0
+    else
+        log ERROR "Failed to install CNI plugin (Calico)"
+    fi
+
+    log INFO "Try to installing CNI plugin (Flannel)..."
+    get_file_content "flannel.yml" "$REMOTE_REMOTE_FLANNEL_URL" | ssh ubuntu@k8s-cp-01 "cat > /var/tmp/flannel.yml"
+    ssh ubuntu@k8s-cp-01 << EOF
+cd /var/tmp
+kubectl create -f flannel.yml
+EOF
+    rm -f .calico-installed
+    touch .flannel-installed
 }
 
 # === Join Worker Nodes ===
@@ -389,6 +439,22 @@ join_workers() {
 
     for vm in "k8s-worker-01" "k8s-worker-02"; do
         log INFO "Joining worker node: ${vm}"
+
+        if [[ -f .calico-installed ]]; then
+            log INFO "Pulling CNI plugin (Calico) on ${vm}"
+            ssh ubuntu@${vm} << EOF
+calico_cni="m.daocloud.io/docker.io/calico/cni:${CALICO_VERSION}"
+calico_node="m.daocloud.io/docker.io/calico/node:${CALICO_VERSION}"
+sudo ctr image pull \${calico_cni} >/dev/null 2>&1
+sudo ctr image pull \${calico_node} >/dev/null 2>&1
+sudo ctr image tag \${calico_cni} \${calico_cni#*docker.io/}
+sudo ctr image tag \${calico_node} \${calico_node#*docker.io/}
+sudo ctr image rm \${calico_cni}
+sudo ctr image rm \${calico_node}
+sudo ctr image ls -q
+EOF
+        fi
+
         ssh ubuntu@${vm} "sudo ${join_cmd}" || {
             log ERROR "Failed to join ${vm} to the cluster"
             continue
@@ -450,8 +516,8 @@ main() {
     log INFO "        $0 -i"
     log INFO "If the flannel CNI plugin is not installed, run the following command:"
     log INFO "        Login: ssh ubuntu@k8s-cp-01"
-    log INFO "        cd /var/tmp; curl -O https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml"
-    log INFO "        kubectl apply -f /var/tmp/kube-flannel.yml"
+    log INFO "        curl -o /var/tmp/flannel.yml https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml"
+    log INFO "        kubectl apply -f /var/tmp/flannel.yml"
     log INFO "Run the following command to join worker nodes to the cluster:"
     log INFO "        $0 -j"
 }
@@ -466,16 +532,16 @@ main "$@"
 
 ```bash
 # Deploy KVMs
-sudo ./deploy-k8s.sh
+sudo ./setup-k8s.sh
 
 # Initialize control plane only
-sudo ./deploy-k8s.sh -i
+sudo ./setup-k8s.sh -i
 
 # Join worker nodes only
-sudo ./deploy-k8s.sh -j
+sudo ./setup-k8s.sh -j
 
 # Cleanup environment
-sudo ./deploy-k8s.sh -c
+sudo ./setup-k8s.sh -c
 ```
 
 ---
