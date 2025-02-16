@@ -63,22 +63,45 @@ CALICO_VERSION="v3.29.2"
 REMOTE_CALICO_URL="https://raw.githubusercontent.com/projectcalico/calico/${CALICO_VERSION}/manifests/calico.yaml"
 REMOTE_FLANNEL_URL="https://raw.githubusercontent.com/flannel-io/flannel/refs/heads/master/Documentation/kube-flannel.yml"
 
-# === Logging Function ===
+# === Logging Functions ===
 log() {
     local GREEN='\033[0;32m'
     local YELLOW='\033[1;33m'
     local RED='\033[0;31m'
     local BLUE='\033[0;34m'
-    local NC='\033[0m' # No Color
+    local CYAN='\033[0;36m'
+    local BOLD='\033[1m'
+    local NC='\033[0m'
+
     local level=$1
     shift
+    local timestamp=$(date +'%Y-%m-%d %H:%M:%S')
+
     case ${level} in
-        INFO)  echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] [INFO]${NC} $*" ;;
-        WARN)  echo -e "${YELLOW}[$(date +'%Y-%m-%d %H:%M:%S')] [WARN]${NC} $*" ;;
-        ERROR) echo -e "${RED}[$(date +'%Y-%m-%d %H:%M:%S')] [ERROR]${NC} $*" ;;
-        STEP)  echo -e "${BLUE}[$(date +'%Y-%m-%d %H:%M:%S')] [STEP]${NC} $*" ;;
-        *)     echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] [INFO]${NC} $*" ;;
+        INFO)  echo -e "${GREEN}[${timestamp}] [INFO]${NC} $*" ;;
+        WARN)  echo -e "${YELLOW}[${timestamp}] [WARN]${NC} $*" ;;
+        ERROR) echo -e "${RED}[${timestamp}] [ERROR]${NC} $*" ;;
+        STEP)
+            echo -e "\n${BLUE}${BOLD}=== $* ===${NC}"
+            ;;
+        DONE)  echo -e "${CYAN}[${timestamp}] [DONE]${NC} $*" ;;
+        *)     echo -e "${GREEN}[${timestamp}] [INFO]${NC} $*" ;;
     esac
+}
+
+print_cluster_info() {
+    local header_format="\n%-20s %-15s %-20s\n"
+    local row_format="%-20s %-15s %-20s\n"
+    local divider="------------------------------------------------------------"
+
+    echo -e "\n${BOLD}Kubernetes Cluster Information${NC}"
+    echo $divider
+    printf "$header_format" "Node" "Role" "Access Command"
+    echo $divider
+    printf "$row_format" "k8s-cp-01" "Control Plane" "ssh ubuntu@k8s-cp-01"
+    printf "$row_format" "k8s-worker-01" "Worker" "ssh ubuntu@k8s-worker-01"
+    printf "$row_format" "k8s-worker-02" "Worker" "ssh ubuntu@k8s-worker-02"
+    echo $divider
 }
 
 get_file_content() {
@@ -305,43 +328,37 @@ check_vm_status() {
     local ssh_ready="false"
     local cloud_init_ready="false"
 
-    log STEP "Waiting for VM ${vm_name} initialization..."
+    log STEP "Initializing VM: ${vm_name}"
 
     for i in $(seq 1 $max_tries); do
         # Get VM IP
         vm_ip=$(sudo virsh domifaddr "$vm_name" | awk '/ipv4/ {print $4}' | cut -d'/' -f1)
 
         if [[ -n $vm_ip ]]; then
-            # Check SSH readiness
             if [[ $ssh_ready == "false" ]]; then
-                # Update /etc/hosts
+                # Update /etc/hosts & SSH known hosts
                 sudo sed -i "/$vm_name/d" /etc/hosts
                 echo "$vm_ip $vm_name" | sudo tee -a /etc/hosts >/dev/null
-
-                # Clean SSH known hosts
                 ssh-keygen -R "$vm_name" >/dev/null 2>&1
                 ssh-keygen -R "$vm_ip" >/dev/null 2>&1
 
                 if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=2 "ubuntu@$vm_name" "exit" >/dev/null 2>&1; then
-                    log INFO "VM ${vm_name} SSH service is ready (IP: ${vm_ip})"
+                    log DONE "SSH service ready (${vm_name}: ${vm_ip})"
                     ssh_ready="true"
                 fi
             fi
 
-            # Check cloud-init status
             if [[ $ssh_ready == "true" && $cloud_init_ready == "false" ]]; then
                 if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=2 "ubuntu@$vm_name" \
-                   "test -f /var/lib/cloud/instance/boot-finished && echo 'cloud-init completed'" >/dev/null 2>&1; then
-                    log INFO "Cloud-init configuration completed for ${vm_name}"
+                   "test -f /var/lib/cloud/instance/boot-finished" >/dev/null 2>&1; then
+                    log DONE "Cloud-init completed (${vm_name})"
                     cloud_init_ready="true"
                 fi
             fi
 
-            # Check containerd service
             if [[ $ssh_ready == "true" && $cloud_init_ready == "true" ]]; then
-                if ssh "ubuntu@$vm_name" \
-                    "systemctl is-active containerd" >/dev/null 2>&1; then
-                    log INFO "Containerd service is running on ${vm_name}"
+                if ssh "ubuntu@$vm_name" "systemctl is-active containerd" >/dev/null 2>&1; then
+                    log DONE "Containerd service running (${vm_name})"
                     return 0
                 fi
             fi
@@ -353,14 +370,8 @@ check_vm_status() {
         sleep $sleep_per_trial
     done
 
-    if [[ $ssh_ready == "false" ]]; then
-        log ERROR "SSH service not ready for ${vm_name}, timeout exceeded"
-    fi
-
-    if [[ $cloud_init_ready == "false" ]]; then
-        log ERROR "Cloud-init configuration incomplete for ${vm_name}, timeout exceeded"
-    fi
-
+    [[ $ssh_ready == "false" ]] && log ERROR "SSH service not ready (${vm_name})"
+    [[ $cloud_init_ready == "false" ]] && log ERROR "Cloud-init incomplete (${vm_name})"
     return 1
 }
 
@@ -508,18 +519,24 @@ main() {
         check_vm_status ${vm}
     done
 
-    log INFO "All virtual machines are ready!"
-    log INFO "        Control Plane Node: k8s-cp-01; try: ssh ubuntu@k8s-cp-01"
-    log INFO "        Worker Node 1: k8s-worker-01; try: ssh ubuntu@k8s-worker-01"
-    log INFO "        Worker Node 2: k8s-worker-02; try: ssh ubuntu@k8s-worker-02"
-    log INFO "Run the following command to initialize the control plane node:"
-    log INFO "        $0 -i"
-    log INFO "If the flannel CNI plugin is not installed, run the following command:"
-    log INFO "        Login: ssh ubuntu@k8s-cp-01"
-    log INFO "        curl -o /var/tmp/flannel.yml https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml"
-    log INFO "        kubectl apply -f /var/tmp/flannel.yml"
-    log INFO "Run the following command to join worker nodes to the cluster:"
-    log INFO "        $0 -j"
+    init_control_plane || {
+        log ERROR "Failed to initialize Kubernetes control plane node"
+        exit 1
+    }
+    join_workers || {
+        log ERROR "Failed to join worker nodes to the cluster"
+        exit 1
+    }
+
+    log STEP "Kubernetes Cluster Deployment Complete"
+    print_cluster_info
+
+    echo -e "\n${BOLD}Next Steps:${NC}"
+    echo "1. Verify cluster status:      ssh ubuntu@k8s-cp-01 'kubectl get nodes -o wide'"
+    echo -e "\n${BOLD}Need help?${NC}"
+    echo "- Check node status:           kubectl describe node <node-name>"
+    echo "- Get cluster info:            kubectl cluster-info"
+    echo
 }
 
 main "$@"
