@@ -12,6 +12,7 @@ tags:
     - automation
     - virsh
 title: Automated Kubernetes Deployments on KVM
+update: 2025-02-15T15:30:00Z
 ---
 
 
