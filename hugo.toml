@@ -1,0 +1,31 @@
+baseURL = 'https://yoooo.fun/'
+languageCode = 'en'
+title = '紫玄'
+theme = ["github.com/D-Sketon/hugo-theme-reimu"]
+
+defaultContentLanguage = 'en'
+[languages]
+[languages.en]
+languageName = 'English'
+weight = 1
+[languages.zh-CN]
+languageName = '简体中文'
+weight = 1
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+delimiters.block = [["\\[", "\\]"], ["$$", "$$"]]
+delimiters.inline = [["\\(", "\\)"], ["$", "$"]]
+
+[markup.highlight]
+guessSyntax = true
+noClasses = false
+
+[outputs]
+home = ["Algolia", "HTML", "RSS"]
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true

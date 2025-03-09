@@ -1,2 +1,4 @@
-github.com/CaiJimmy/hugo-theme-stack/v3 v3.30.0 h1:uITC7EKGyfPjyi3C5At++E0Uu1qQXtqiwMV4pd7LkLs=
-github.com/CaiJimmy/hugo-theme-stack/v3 v3.30.0/go.mod h1:IPmCXiIxlFSLFYS0tOmYP6ySLviyeNVSabyvSuaxD+I=
+github.com/D-Sketon/hugo-theme-reimu v0.6.4 h1:QthzIMOH9f39l8I/CKOBLwhgZTJqyl0U8RE3Ks13XeQ=
+github.com/D-Sketon/hugo-theme-reimu v0.6.4/go.mod h1:4cuW0Y+8wEwZdmbqGkos7yFhKF/fuOvAH+0WRSslF50=
+github.com/D-Sketon/hugo-theme-reimu v0.7.0 h1:5Lj+9iKlsqJMX5CYbNu2gnjrRq9yVpfSDWoWukJc6h4=
+github.com/D-Sketon/hugo-theme-reimu v0.7.0/go.mod h1:RC46+wOlAKgp6dyviyhQzCt3EZ+kx+ez/5Pi7V2yTDs=
