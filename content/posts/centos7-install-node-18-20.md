@@ -40,7 +40,7 @@ That's so bad, but don't worry; we can fix it by the following steps.
 
 ## install glibc 2.31 and libstdc++.so.6.0.25
 
-Follow my another article [centos7-upgrade-libc](https://blog.caoyu.info/centos7-upgrade-libc.html) to upgrade `glibc` to 2.31.
+Follow my another article [centos7-upgrade-libc](https://blog.yoooo.fun/centos7-upgrade-libc.html) to upgrade `glibc` to 2.31.
 
 ## test
 

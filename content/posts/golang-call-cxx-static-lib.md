@@ -43,7 +43,7 @@ touch ./main.go ./lib/hi.h ./lib/hi.cpp
 
 ## Create a header file: hi.h
 
-In comparison with [c-static-lib](https://blog.caoyu.info/golang-call-c-static-lib.html), the header file here has some extra contents
+In comparison with [c-static-lib](https://blog.yoooo.fun/golang-call-c-static-lib.html), the header file here has some extra contents
 
 > extern "C" { ... }
 
@@ -69,7 +69,7 @@ void print_hi();
 
 ## Create a source file: hi.cpp
 
-Different from [c-static-lib](https://blog.caoyu.info/golang-call-c-static-lib.html), the c++ source file must include the header file.
+Different from [c-static-lib](https://blog.yoooo.fun/golang-call-c-static-lib.html), the c++ source file must include the header file.
 
 > #include "hi.h"
 
@@ -85,7 +85,7 @@ void print_hi() {
 
 ## Create a main file: main.go
 
-Compared to [c-static-lib](https://blog.caoyu.info/golang-call-cxx-static-lib.html), the LDFLAGS here has an extra `-l stdc++` to link the C++
+Compared to [c-static-lib](https://blog.yoooo.fun/golang-call-cxx-static-lib.html), the LDFLAGS here has an extra `-l stdc++` to link the C++
 standard library.
 
 ```go
@@ -123,7 +123,7 @@ go build -o bin/hi main.go && ./bin/hi
 
 ## Summary
 
-The key points are different from [call c-static-lib](https://blog.caoyu.info/golang-call-c-static-lib.html):
+The key points are different from [call c-static-lib](https://blog.yoooo.fun/golang-call-c-static-lib.html):
 
 - use `extern "C" { ... }` in header file to be compatible with C++ compilers
 - source file must include the header file

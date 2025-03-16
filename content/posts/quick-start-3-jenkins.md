@@ -21,11 +21,11 @@ title: 'Quick Start: Jenkins'
 
 ## Prerequisite
 
-> - [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
+> - [Traefik on HTTP](https://blog.yoooo.fun/quick-start-1-traefik.html)
 >
 > OR
 >
-> - [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
+> - [Traefik on HTTPS](https://blog.yoooo.fun/quick-start-1-1-traefik-ssl.html)
 >
 > Note: If using HTTP, remove the `tls: {}` in dynamic configuration.
 

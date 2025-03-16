@@ -26,7 +26,7 @@ docker container run -d --privileged --name ho \
 
 # restart rabbitmq and apache2
 # mysql and apache2 use domain: controller
-# rabbitmq use domain: info(For more information: https://blog.caoyu.info/rabbitmq-lost-user-info.html)
+# rabbitmq use domain: info(For more information: https://blog.yoooo.fun/rabbitmq-lost-user-info.html)
 docker container exec -it ho bash -c "service mysql restart; service rabbitmq-server restart; service memcached restart; service apache2 restart"
 
 docker container exec -it ho bash

@@ -22,15 +22,15 @@ SSP(`Self-Service Password`), is a tool for ldap to change password.
 
 ## Prerequisite
 
-> - [Traefik on HTTP](https://blog.caoyu.info/quick-start-1-traefik.html)
+> - [Traefik on HTTP](https://blog.yoooo.fun/quick-start-1-traefik.html)
 >
 > OR
 >
-> - [Traefik on HTTPS](https://blog.caoyu.info/quick-start-1-1-traefik-ssl.html)
+> - [Traefik on HTTPS](https://blog.yoooo.fun/quick-start-1-1-traefik-ssl.html)
 >
 > Note: If using HTTP, remove the `tls: {}` in dynamic configuration.
 >
-> - [LDAP](https://blog.caoyu.info/quick-start-2_1-bitnami-ldap.html)
+> - [LDAP](https://blog.yoooo.fun/quick-start-2_1-bitnami-ldap.html)
 
 ## Preparation
 

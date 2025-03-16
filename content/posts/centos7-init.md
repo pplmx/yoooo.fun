@@ -70,7 +70,7 @@ git --version
 
 ## install oh-my-zsh
 
-Follow this [link](https://blog.caoyu.info/build-server-zsh.html)
+Follow this [link](https://blog.yoooo.fun/build-server-zsh.html)
 
 ## install cmake
 
@@ -123,7 +123,7 @@ rm -f jdk-17_linux-x64_bin.rpm
 
 ### install go
 
-Follow this [link](https://blog.caoyu.info/install-binary-file.html)
+Follow this [link](https://blog.yoooo.fun/install-binary-file.html)
 
 ## install python from source
 
