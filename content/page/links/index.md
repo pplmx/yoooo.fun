@@ -3,11 +3,11 @@ title: Links
 links:
   - title: Mystic
     description: 道可道, 非常道
-    website: https://caoyu.info
+    website: https://yoooo.fun
     image: https://www.gravatar.com/avatar/8c115c6bc6688216bed0f053c506ff58?s=200&r=g&d=retro
   - title: Aurora
     description: To infinity and beyond
-    website: https://yoooo.fun
+    website: https://notes.yoooo.fun
     image: https://www.gravatar.com/avatar/8c115c6bc6688216bed0f053c506ff58?s=200&r=g&d=retro
   - title: 可口可爱废柴猫
     description: 欢迎来到我的代码空间

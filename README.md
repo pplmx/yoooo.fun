@@ -1,1 +1,1 @@
-# yoooo.fun
+# notes.yoooo.fun
