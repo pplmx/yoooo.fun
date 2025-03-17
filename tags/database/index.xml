@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database on Aurora</title><link>https://notes.yoooo.fun/tags/database/</link><description>Recent content in Database on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 13 Mar 2024 15:47:20 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Export Data from MySQL by mysqldump</title><link>https://notes.yoooo.fun/posts/mysql-export-data/</link><pubDate>Wed, 13 Mar 2024 15:47:20 +0000</pubDate><guid>https://notes.yoooo.fun/posts/mysql-export-data/</guid><description>&lt;h1 id="how-to-export-data-from-the-mysql">how to export data from the mysql
+&lt;/h1>&lt;h2 id="use-mysqldump">use mysqldump
+&lt;/h2>&lt;p>Just for the mysql/mariadb using:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker container run -it --rm mysql:8 bash -c &lt;span class="s2">&amp;#34;echo -e &amp;#39;[mysqldump]\nuser=aurora\npassword=aurora&amp;#39; &amp;gt; ~/.my.cnf &amp;amp;&amp;amp; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> mysqldump -h 192.168.91.199 your_database_name&amp;#34;&lt;/span> &amp;gt; exported.sql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>For the SQLite compatibility:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker container run -it --rm mysql:8 bash -c &lt;span class="s2">&amp;#34;echo -e &amp;#39;[mysqldump]\nuser=aurora\npassword=aurora&amp;#39; &amp;gt; ~/.my.cnf &amp;amp;&amp;amp; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> mysqldump --compact --no-create-info --skip-add-locks --complete-insert -h 192.168.91.199 your_database_name \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table1 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table2 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table3 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table4&amp;#34;&lt;/span> &amp;gt; exported.sql
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Some Compatible Options for SQLite&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## because the sqlite cannot parse the &amp;#34;\&amp;#39;&amp;#34;, we should use double single quote instead&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s2">&amp;#34;s/\\\&amp;#39;/&amp;#39;&amp;#39;/g&amp;#34;&lt;/span> exported.sql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="explanation-in-details">Explanation in Details
+&lt;/h2>&lt;p>&lt;code>docker container run -it --rm mysql:8 bash -c&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>mysql:8&lt;/code> is the image name and tag&lt;/li>
+&lt;li>&lt;code>-it&lt;/code> is to run the container in interactive mode&lt;/li>
+&lt;li>&lt;code>--rm&lt;/code> is to remove the container after it is stopped&lt;/li>
+&lt;li>&lt;code>bash -c&lt;/code> is to run the command in the container&lt;/li>
+&lt;/ul>
+&lt;p>The left is a combined command to create a &lt;code>.my.cnf&lt;/code> file and run &lt;code>mysqldump&lt;/code> command.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>echo -e '[mysqldump]\nuser=aurora\npassword=aurora' &amp;gt; ~/.my.cnf&lt;/code> is to create a &lt;code>.my.cnf&lt;/code> file at &lt;code>$HOME&lt;/code> with the content
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[mysqldump]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user=aurora
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">password=aurora
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>&lt;code>--compact&lt;/code> is to use the compact format, which aims to remove the Comment Syntax, the &lt;code>/*!&lt;/code> and &lt;code>*/&lt;/code> are removed&lt;/li>
+&lt;li>&lt;code>--no-create-info&lt;/code> is to skip the &lt;code>CREATE TABLE&lt;/code> statement, because the statement is not compatible with SQLite&lt;/li>
+&lt;li>&lt;code>--skip-add-locks&lt;/code> is to skip the &lt;code>LOCK TABLES&lt;/code> statement, because the statement is not compatible with SQLite&lt;/li>
+&lt;li>&lt;code>--complete-insert&lt;/code> is to use the &lt;code>INSERT INTO&lt;/code> statement with the column names&lt;/li>
+&lt;li>&lt;code>-h&lt;/code> is to specify the db host&lt;/li>
+&lt;li>&lt;code>your_database_name&lt;/code> is the database name&lt;/li>
+&lt;li>&lt;code>table1 table2 table3 table4&lt;/code> are the exported table names, separated by space; if not specified, all tables will be exported&lt;/li>
+&lt;li>&lt;code>&amp;gt; exported.sql&lt;/code> is to redirect the output to a file named &lt;code>exported.sql&lt;/code>, at the host current directory&lt;/li>
+&lt;/ul></description></item><item><title>linux服务器初建之mysql安装</title><link>https://notes.yoooo.fun/posts/build-server-mysql/</link><pubDate>Fri, 13 Oct 2017 08:33:23 +0000</pubDate><guid>https://notes.yoooo.fun/posts/build-server-mysql/</guid><description>&lt;h1 id="安装mysql">安装mysql
+&lt;/h1>&lt;h2 id="下载mysql的repo源">下载mysql的repo源
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装mysql的rpm包">安装mysql的rpm包
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo rpm -ivh mysql57-community-release-el7-11.noarch.rpm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装mysql-1">安装mysql
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo yum install mysql-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;!-- more -->
+&lt;h2 id="重置mysql密码">重置mysql密码
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ mysql -u root
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>登录时有可能报这样的错：ERROR 2002 (HY000): Can‘t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock‘
+原因是/var/lib/mysql的访问权限问题。下面的命令把/var/lib/mysql的拥有者改为当前用户：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ sudo chown -R root:root /var/lib/mysql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启mysql服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ service mysqld restart
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下来是登录mysql(有两种情况)&lt;/p>
+&lt;h3 id="直接登录成功">直接登录成功
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ mysql -u root //直接回车进入mysql控制台
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql &amp;gt; use mysql&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql &amp;gt; update user &lt;span class="nb">set&lt;/span> &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>password&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;123456&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> where &lt;span class="nv">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;root&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql &amp;gt; exit&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="登录失败">登录失败
+&lt;/h3>&lt;p>登录失败:是因为密码错误,不是默认的空密码,
+而是在安装时,mysql默认分配了随机密码
+如果你的安装信息是详细显示的,那么你是可以在之前的安装信息中,找到随机密码
+找不到,那就继续如下操作:&lt;/p>
+&lt;p>1.修改MySQL的登录设置：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># vi /etc/my.cnf // 在[mysqld]的段中加上一句：skip-grant-tables&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>2.重新启动mysql,并登录(mysql5.7,password字段不存在了,而是authentication_string)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># service mysqld restart&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># mysql -uroot -p//回车&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql&amp;gt; use mysql&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql&amp;gt; update mysql.user &lt;span class="nb">set&lt;/span> &lt;span class="nv">authentication_string&lt;/span>&lt;span class="o">=&lt;/span>password&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;123456&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> where &lt;span class="nv">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;root&amp;#39;&lt;/span> and &lt;span class="nv">Host&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;localhost&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql&amp;gt; flush privileges&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql&amp;gt; quit&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>3.还原/etc/my.cnf(将skip-grant-tables删除)&lt;/p>
+&lt;p>4.重启mysql,即可使用新密码登录了&lt;/p></description></item></channel></rss>

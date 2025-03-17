@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git-Hook on Aurora</title><link>https://notes.yoooo.fun/tags/git-hook/</link><description>Recent content in Git-Hook on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Oct 2024 18:41:20 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/git-hook/index.xml" rel="self" type="application/rss+xml"/><item><title>My Open Source Project "husky-rs"</title><link>https://notes.yoooo.fun/posts/mosp-husky-rs/</link><pubDate>Tue, 01 Oct 2024 18:47:20 +0000</pubDate><guid>https://notes.yoooo.fun/posts/mosp-husky-rs/</guid><description>&lt;h1 id="husky-rs">husky-rs
+&lt;/h1>&lt;p>&lt;strong>husky-rs&lt;/strong> is a lightweight Git hook manager tailored for Rust projects.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/pplmx/husky-rs" target="_blank" rel="noopener"
+>View husky-rs on GitHub&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/husky-rs" target="_blank" rel="noopener"
+>Get husky-rs on crates.io&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>Easy Integration&lt;/strong>: Seamlessly integrates into your Rust projects with minimal setup.&lt;/li>
+&lt;li>&lt;strong>Automated Efficiency&lt;/strong>: Executes automated tasks via Git hooks, improving team collaboration and productivity.&lt;/li>
+&lt;li>&lt;strong>Flexible Customization&lt;/strong>: Supports a wide variety of Git hooks, allowing for extensive configuration to meet your project’s needs.&lt;/li>
+&lt;/ul>
+&lt;p>Explore the project on &lt;a class="link" href="https://github.com/pplmx/husky-rs" target="_blank" rel="noopener"
+>GitHub&lt;/a> for more details and contribute to its development!&lt;/p></description></item></channel></rss>

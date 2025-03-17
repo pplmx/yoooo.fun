@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Arm64 on Aurora</title><link>https://notes.yoooo.fun/tags/arm64/</link><description>Recent content in Arm64 on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 Mar 2023 17:00:42 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/arm64/index.xml" rel="self" type="application/rss+xml"/><item><title>Build amd64 and arm64 for docker images</title><link>https://notes.yoooo.fun/posts/docker-buildx-multi-platform/</link><pubDate>Fri, 10 Mar 2023 17:00:42 +0000</pubDate><guid>https://notes.yoooo.fun/posts/docker-buildx-multi-platform/</guid><description>&lt;h1 id="docker-buildx-for-multiarch-support">docker buildx for multiarch support
+&lt;/h1>&lt;h2 id="create-a-builder">create a builder
+&lt;/h2>&lt;p>because the default builder doesn&amp;rsquo;t support multi-arch building,
+create a new builder with docker-container driver and use it&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker buildx create --use --name multiarch --driver docker-container
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>if your self-build registry is not https, please touch a &lt;code>buildkitd.toml&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">registry&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="s2">&amp;#34;your-registry-domain or ip&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">http&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">insecure&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>and then use this config to create a builder&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># if your builder has already existed, delete it and create&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker buildx rm multiarch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker buildx create --use --name multiarch --driver docker-container --config ./buildkitd.toml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="build-the-multiarch-image-and-push-it-to-your-registry">build the multiarch image and push it to your registry
+&lt;/h2>&lt;p>&lt;code>docker buildx inspect --bootstrap&lt;/code> to get the supported platform information&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># don&amp;#39;t ignore the trailing dot, it&amp;#39;s to search the current directory&amp;#39;s Dockerfile file&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker buildx build --push --platform linux/amd64,linux/arm64 -t pplmx/demo:v2.0.0 .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># if you wanna to specify a Dockerfile&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker buildx build --push --platform linux/amd64,linux/arm64 -t pplmx/demo:v2.0.0 -f ./Dockerfile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

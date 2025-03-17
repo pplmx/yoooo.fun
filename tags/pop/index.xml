@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>POP on Aurora</title><link>https://notes.yoooo.fun/tags/pop/</link><description>Recent content in POP on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 22 Mar 2020 21:28:11 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/pop/index.xml" rel="self" type="application/rss+xml"/><item><title>Difference between OOP and POP</title><link>https://notes.yoooo.fun/posts/oop-pop/</link><pubDate>Sun, 22 Mar 2020 21:10:26 +0000</pubDate><guid>https://notes.yoooo.fun/posts/oop-pop/</guid><description>&lt;h1 id="general-information">General Information
+&lt;/h1>&lt;h2 id="procedure-oriented-programmingpop">Procedure Oriented Programming(POP)
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://www.geeksforgeeks.org/introduction-of-programming-paradigms/" target="_blank" rel="noopener"
+>Procedural Programming&lt;/a> can be defined as a programming model which is
+derived from structured programming, based upon the concept of calling procedure. Procedures, also known as routines, subroutines or functions,
+simply
+consist of a series of computational steps to be carried out. During a program’s execution, any given procedure might be called at any point,
+including by other procedures or itself.&lt;/p>&lt;/blockquote>
+&lt;h2 id="object-oriented-programmingoop">Object Oriented Programming(OOP)
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://www.geeksforgeeks.org/basic-concepts-of-object-oriented-programming-using-c/" target="_blank" rel="noopener"
+>Object oriented programming&lt;/a> can be defined as a programming
+model which is based upon the concept of objects. Objects contain data in the form of attributes and code in the form of methods. In object oriented
+programming, computer programs are designed using the concept of objects that interact with real world. Object oriented programming languages are
+various but the most popular ones are class-based, meaning that objects are instances of classes, which also determine their types.&lt;/p>&lt;/blockquote>
+&lt;h2 id="difference-between-pop-and-oop">Difference between POP and OOP
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">POP&lt;/th>
+&lt;th style="text-align: center">OOP&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">Program is divided into small parts called &lt;strong>functions&lt;/strong>.&lt;/td>
+&lt;td style="text-align: center">Program is divided into small parts called &lt;strong>objects&lt;/strong>.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">POP follows &lt;strong>top-down approach&lt;/strong>.&lt;/td>
+&lt;td style="text-align: center">OOP follows &lt;strong>bottom-up approach&lt;/strong>.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">There is no access specifier in procedural programming.&lt;/td>
+&lt;td style="text-align: center">Object oriented programming have access specifiers like private, public, protected etc.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">Adding new data and function is not easy.&lt;/td>
+&lt;td style="text-align: center">Adding new data and function is easy.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">POP does not have any proper way for hiding data so it is &lt;strong>less secure&lt;/strong>.&lt;/td>
+&lt;td style="text-align: center">OOP provides data hiding so it is &lt;strong>more secure&lt;/strong>.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">Overloading is impossible.&lt;/td>
+&lt;td style="text-align: center">Overloading is possible.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">Function is more important than data.&lt;/td>
+&lt;td style="text-align: center">Data is more important than function.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">POP is based on &lt;strong>unreal world&lt;/strong>.&lt;/td>
+&lt;td style="text-align: center">OOP is based on &lt;strong>real world&lt;/strong>.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">FORTRAN, ALGOL, COBOL, BASIC, Pascal and C.&lt;/td>
+&lt;td style="text-align: center">Java, C++, C#, Python, PHP, JavaScript, Ruby, Perl, Objective-C, Dart, Swift, Scala.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="interpreted-languages">Interpreted Languages
+&lt;/h2>&lt;blockquote>
+&lt;p>Interpreters will run through a program line by line and execute each command. Now, if the author decided he wanted to use a different kind of olive
+oil, he could scratch the old one out and add the new one. Your translator friend can then convey that change to you as it happens.&lt;/p>
+&lt;p>Interpreted languages were once known to be significantly slower than compiled languages. But, with the development
+of &lt;a class="link" href="https://guide.freecodecamp.org/computer-science/just-in-time-compilation" target="_blank" rel="noopener"
+>just-in-time compilation&lt;/a>, that gap is shrinking.&lt;/p>
+&lt;p>Examples of common interpreted languages are PHP, Ruby, Python, and JavaScript.&lt;/p>&lt;/blockquote>
+&lt;h2 id="compiled-languages">Compiled Languages
+&lt;/h2>&lt;blockquote>
+&lt;p>Compiled languages are converted directly into machine code that the processor can execute. As a result, they tend to be faster and more efficient
+to execute than interpreted languages. They also give the developer more control over hardware aspects, like memory management and CPU usage.&lt;/p>
+&lt;p>Compiled languages need a “build” step - they need to be manually compiled first. You need to “rebuild” the program every time you need to make a
+change. In our hummus example, the entire translation is written before it gets to you. If the original author decided he wanted to use a different
+kind of olive oil, the entire recipe would need to be translated again and then sent to you.&lt;/p>
+&lt;p>Examples of pure compiled languages are C, C++, Erlang, Haskell, Rust, and Go.&lt;/p>&lt;/blockquote>
+&lt;h4 id="advantages-of-compiled-languages">Advantages of Compiled Languages
+&lt;/h4>&lt;p>Programs compiled into native code at compile time usually tend to be faster than those translated at run time, due to the overhead of the translation
+process.&lt;/p>
+&lt;h4 id="disadvantages-of-compiled-languages">Disadvantages of Compiled Languages
+&lt;/h4>&lt;p>The most notable disadvantages are :-&lt;/p>
+&lt;ul>
+&lt;li>Additional time needed to complete the entire compilation step before testing, and&lt;/li>
+&lt;li>Platform dependence of the generated binary code.&lt;/li>
+&lt;/ul>
+&lt;h4 id="advantages-of-interpreted-languages">Advantages of Interpreted Languages
+&lt;/h4>&lt;p>An Interpreted language gives implementations some additional flexibility over compiled implementations. Because interpreters execute the source
+program code themselves, the code itself is platform independent (Java’s byte code, for example). Other features include dynamic typing, and smaller
+executable program size.&lt;/p>
+&lt;h4 id="disadvantages-of-interpreted-languages">Disadvantages of Interpreted Languages
+&lt;/h4>&lt;p>The most notable disadvantage is typical execution speed compared to compiled languages.&lt;/p></description></item></channel></rss>

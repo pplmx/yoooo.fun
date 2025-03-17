@@ -1,0 +1,280 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Bootstrap a CentOS7 server with some necessary packages"><meta name=keywords content="zsh,,linux,,centos7"><title>Bootstrap a CentOS 7 server</title>
+<link rel=canonical href=https://notes.yoooo.fun/posts/centos7-init/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="Bootstrap a CentOS 7 server"><meta property='og:description' content="Bootstrap a CentOS7 server with some necessary packages"><meta property='og:url' content='https://notes.yoooo.fun/posts/centos7-init/'><meta property='og:site_name' content='Aurora'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='linux'><meta property='article:tag' content='centos7'><meta property='article:published_time' content='2024-01-13T11:18:20+00:00'><meta property='article:modified_time' content='2024-02-28T21:43:20+00:00'><meta name=twitter:title content="Bootstrap a CentOS 7 server"><meta name=twitter:description content="Bootstrap a CentOS7 server with some necessary packages"><link rel="shortcut icon" href=/images/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/favicon.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Aurora</a></h1><h2 class=site-description>To infinity and beyond.</h2></div></header><ol class=menu-social><li><a href=https://github.com/pplmx target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#install-gcc-11>install gcc 11</a></li><li><a href=#install-zsh>install zsh</a></li><li><a href=#install-git>install git</a></li><li><a href=#install-oh-my-zsh>install oh-my-zsh</a></li><li><a href=#install-cmake>install cmake</a><ol><li><a href=#install-docker>install docker</a></li><li><a href=#install-java>install java</a></li><li><a href=#install-go>install go</a></li></ol></li><li><a href=#install-python-from-source>install python from source</a></li><li><a href=#install-node>install node</a><ol><li><a href=#install-nvim>install nvim</a></li><li><a href=#install-lunarvim>install LunarVim</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/linux/>Linux</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/centos7-init/>Bootstrap a CentOS 7 server</a></h2><h3 class=article-subtitle>Bootstrap a CentOS7 server with some necessary packages</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 13, 2024</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><h1 id=bootstrap-a-centos-7-server>bootstrap a CentOS 7 server</h1><h2 id=install-gcc-11>install gcc 11</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo yum install -y centos-release-scl
+</span></span><span class=line><span class=cl>sudo yum install -y devtoolset-11
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># enable gcc 11 temporarily</span>
+</span></span><span class=line><span class=cl>scl <span class=nb>enable</span> devtoolset-11 bash
+</span></span><span class=line><span class=cl>scl <span class=nb>enable</span> devtoolset-11 zsh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># enable gcc 11 permanently</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[ -f /opt/rh/devtoolset-11/enable ] &amp;&amp; source /opt/rh/devtoolset-11/enable&#34;</span> &gt;&gt; ~/.bashrc
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;[ -f /opt/rh/devtoolset-11/enable ] &amp;&amp; source /opt/rh/devtoolset-11/enable&#34;</span> &gt;&gt; ~/.zshrc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check the version</span>
+</span></span><span class=line><span class=cl>gcc --version
+</span></span><span class=line><span class=cl>g++ --version
+</span></span></code></pre></td></tr></table></div></div><h2 id=install-zsh>install zsh</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo yum groupinstall -y <span class=s2>&#34;Development tools&#34;</span>
+</span></span><span class=line><span class=cl>sudo yum install -y gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel ncurses-devel
+</span></span><span class=line><span class=cl>wget --no-check-certificate https://www.zsh.org/pub/zsh-5.9.tar.xz
+</span></span><span class=line><span class=cl>tar -xf zsh-5.9.tar.xz
+</span></span><span class=line><span class=cl><span class=nb>cd</span> zsh-5.9
+</span></span><span class=line><span class=cl>./configure
+</span></span><span class=line><span class=cl>make
+</span></span><span class=line><span class=cl>sudo make install
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;/usr/local/bin/zsh&#34;</span> <span class=p>|</span> sudo tee -a /etc/shells
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>chsh -s /usr/local/bin/zsh
+</span></span></code></pre></td></tr></table></div></div><h2 id=install-git>install git</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># check the old git version</span>
+</span></span><span class=line><span class=cl>git --version
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># remove the old git</span>
+</span></span><span class=line><span class=cl>sudo yum remove -y git
+</span></span><span class=line><span class=cl>sudo yum remove -y git-*
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># install a repo</span>
+</span></span><span class=line><span class=cl>sudo yum install -y https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+</span></span><span class=line><span class=cl>sudo yum install -y git
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check git version</span>
+</span></span><span class=line><span class=cl>git --version
+</span></span></code></pre></td></tr></table></div></div><h2 id=install-oh-my-zsh>install oh-my-zsh</h2><p>Follow this <a class=link href=https://blog.yoooo.fun/build-server-zsh.html target=_blank rel=noopener>link</a></p><h2 id=install-cmake>install cmake</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># download and extract</span>
+</span></span><span class=line><span class=cl><span class=nv>CMAKE_VERSION</span><span class=o>=</span>3.28.3
+</span></span><span class=line><span class=cl>wget https://github.com/Kitware/CMake/releases/download/v<span class=si>${</span><span class=nv>CMAKE_VERSION</span><span class=si>}</span>/cmake-<span class=si>${</span><span class=nv>CMAKE_VERSION</span><span class=si>}</span>.tar.gz
+</span></span><span class=line><span class=cl>tar -xf cmake-<span class=si>${</span><span class=nv>CMAKE_VERSION</span><span class=si>}</span>.tar.gz
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># compile</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> cmake-<span class=si>${</span><span class=nv>CMAKE_VERSION</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>./configure
+</span></span><span class=line><span class=cl>make -j <span class=m>8</span>
+</span></span><span class=line><span class=cl>sudo make install
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check cmake version</span>
+</span></span><span class=line><span class=cl>cmake --version
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># remove cmake source code</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> .. <span class=o>&amp;&amp;</span> rm -rf cmake-<span class=si>${</span><span class=nv>CMAKE_VERSION</span><span class=si>}</span>*
+</span></span></code></pre></td></tr></table></div></div><h3 id=install-docker>install docker</h3><p>FYI: <a class=link href=https://docs.docker.com/engine/install/centos/ target=_blank rel=noopener>install docker</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo yum install -y docker-buildx-plugin
+</span></span><span class=line><span class=cl>curl -fsSL https://get.docker.com -o get-docker.sh
+</span></span><span class=line><span class=cl>sudo sh get-docker.sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># start docker</span>
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> docker
+</span></span><span class=line><span class=cl>sudo systemctl start docker
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># post installation</span>
+</span></span><span class=line><span class=cl>sudo /usr/sbin/groupadd docker
+</span></span><span class=line><span class=cl>sudo /usr/sbin/usermod -aG docker <span class=nv>$USER</span>
+</span></span><span class=line><span class=cl>newgrp docker
+</span></span></code></pre></td></tr></table></div></div><h3 id=install-java>install java</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+</span></span><span class=line><span class=cl>sudo yum install -y ./jdk-17_linux-x64_bin.rpm
+</span></span><span class=line><span class=cl>rm -f jdk-17_linux-x64_bin.rpm
+</span></span></code></pre></td></tr></table></div></div><h3 id=install-go>install go</h3><p>Follow this <a class=link href=https://blog.yoooo.fun/install-binary-file.html target=_blank rel=noopener>link</a></p><h2 id=install-python-from-source>install python from source</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># download and extract</span>
+</span></span><span class=line><span class=cl><span class=c1># PYTHON_VERSION=3.12.2</span>
+</span></span><span class=line><span class=cl><span class=nv>PYTHON_VERSION</span><span class=o>=</span>3.8.18
+</span></span><span class=line><span class=cl>wget -O /var/tmp/python.tar.xz <span class=s2>&#34;https://www.python.org/ftp/python/</span><span class=si>${</span><span class=nv>PYTHON_VERSION</span><span class=si>}</span><span class=s2>/Python-</span><span class=si>${</span><span class=nv>PYTHON_VERSION</span><span class=si>}</span><span class=s2>.tar.xz&#34;</span>
+</span></span><span class=line><span class=cl>install -d /var/tmp/python<span class=p>;</span> tar -xf /var/tmp/python.tar.xz -C /var/tmp/python --strip-components <span class=m>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># compile</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /var/tmp/python
+</span></span><span class=line><span class=cl>./configure --enable-optimizations
+</span></span><span class=line><span class=cl>make -j <span class=m>8</span>
+</span></span><span class=line><span class=cl><span class=c1># altinstall will not replace the system python,</span>
+</span></span><span class=line><span class=cl><span class=c1># which means you need to use python3.8 and pip3.8 instead of python3 and pip3</span>
+</span></span><span class=line><span class=cl>sudo make altinstall
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># of course, you can use ln -s to make python3.8 as default python3,</span>
+</span></span><span class=line><span class=cl><span class=c1># because the centos 7 system python is 2.7</span>
+</span></span><span class=line><span class=cl>sudo ln -s /usr/local/bin/python3.8 /usr/local/bin/python3
+</span></span><span class=line><span class=cl>sudo ln -s /usr/local/bin/pip3.8 /usr/local/bin/pip3
+</span></span></code></pre></td></tr></table></div></div><h2 id=install-node>install node</h2><p>Node 17 is the latest version which supports CentOS 7, due to the <code>glibc</code> version.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># install nvm</span>
+</span></span><span class=line><span class=cl>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh <span class=p>|</span> bash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># install node</span>
+</span></span><span class=line><span class=cl>nvm ls-remote --lts
+</span></span><span class=line><span class=cl>nvm install lts/gallium
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check node version</span>
+</span></span><span class=line><span class=cl>node -v
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># config npm mirror</span>
+</span></span><span class=line><span class=cl>npm config <span class=nb>set</span> registry https://registry.npmmirror.com
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># or config .npmrc manually</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt; EOF &gt; ~/.npmrc
+</span></span></span><span class=line><span class=cl><span class=s>home=&#34;https://npmmirror.com&#34;
+</span></span></span><span class=line><span class=cl><span class=s>registry=&#34;https://registry.npmmirror.com/&#34;
+</span></span></span><span class=line><span class=cl><span class=s>electron_mirror=&#34;https://npmmirror.com/mirrors/electron/&#34;
+</span></span></span><span class=line><span class=cl><span class=s>electron_custom_dir=&#34;{{ version }}&#34;
+</span></span></span><span class=line><span class=cl><span class=s>electron_builder_binaries_mirror=&#34;http://npmmirror.com/mirrors/electron-builder-binaries/&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=install-nvim>install nvim</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>NVIM_VERSION</span><span class=o>=</span>0.9.5
+</span></span><span class=line><span class=cl>wget https://github.com/neovim/neovim/releases/download/v<span class=si>${</span><span class=nv>NVIM_VERSION</span><span class=si>}</span>/nvim.appimage
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>chmod u+x nvim.appimage <span class=o>&amp;&amp;</span> ./nvim.appimage
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># if no error, move it to /usr/local/bin</span>
+</span></span><span class=line><span class=cl>sudo mv nvim.appimage /usr/local/bin/nvim
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># if error</span>
+</span></span><span class=line><span class=cl>./nvim.appimage --appimage-extract
+</span></span><span class=line><span class=cl>./squashfs-root/usr/bin/nvim
+</span></span><span class=line><span class=cl>sudo mv squashfs-root/usr/bin/nvim /usr/local/bin/nvim
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check nvim version</span>
+</span></span><span class=line><span class=cl>nvim --version
+</span></span></code></pre></td></tr></table></div></div><h3 id=install-lunarvim>install LunarVim</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>LV_BRANCH</span><span class=o>=</span><span class=s1>&#39;release-1.3/neovim-0.9&#39;</span> bash &lt;<span class=o>(</span>curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># add the following to ~/.config/lvim/config.lua</span>
+</span></span><span class=line><span class=cl>vim.opt.shiftwidth <span class=o>=</span> <span class=m>4</span> -- the number of spaces inserted <span class=k>for</span> each indentation
+</span></span><span class=line><span class=cl>vim.opt.tabstop <span class=o>=</span> <span class=m>4</span> -- insert spaces <span class=k>for</span> a tab
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/linux/>Linux</a>
+<a href=/tags/centos7/>Centos7</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>Last updated on Feb 28, 2024 21:43 UTC</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/centos7-install-node-18-20/><div class=article-details><h2 class=article-title>Use node 18/20 on CentOS 7</h2></div></a></article><article><a href=/posts/centos7-upgrade-libc/><div class=article-details><h2 class=article-title>How to upgrade glibc on CentOS 7</h2></div></a></article><article><a href=/posts/install-binary-file/><div class=article-details><h2 class=article-title>Install binary packages on Unix-like systems</h2></div></a></article><article><a href=/posts/build-server-zsh/><div class=article-details><h2 class=article-title>linux服务器初建之zsh安装</h2></div></a></article><article><a href=/posts/build-cpp-centos7/><div class=article-details><h2 class=article-title>Build cpp with gcc11 on CentOS7</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2017 -
+2025 Aurora</section><section class=powerby><a href=https://yoooo.fun>Mystic</a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

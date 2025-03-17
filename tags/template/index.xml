@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Template on Aurora</title><link>https://notes.yoooo.fun/tags/template/</link><description>Recent content in Template on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Oct 2024 18:41:20 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/template/index.xml" rel="self" type="application/rss+xml"/><item><title>My Open Source Project "template"</title><link>https://notes.yoooo.fun/posts/mosp-template/</link><pubDate>Tue, 01 Oct 2024 18:47:20 +0000</pubDate><guid>https://notes.yoooo.fun/posts/mosp-template/</guid><description>&lt;h1 id="template">template
+&lt;/h1>&lt;p>&lt;strong>template&lt;/strong> is a powerful tool for generating boilerplate code, supporting a variety of programming languages.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/x-pt/template" target="_blank" rel="noopener"
+>View template on GitHub&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://x-pt.github.io" target="_blank" rel="noopener"
+>Visit the project page&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="key-features">Key Features
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>Multi-language Template Generation&lt;/strong>:
+&lt;blockquote>
+&lt;p>Automatically generates project templates for multiple languages including Rust, Go, Python, C++, TypeScript, and more.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>&lt;strong>GitHub Actions Integration&lt;/strong>:
+&lt;blockquote>
+&lt;p>Deeply integrated with GitHub Actions to provide built-in CI/CD pipelines, auto-issue labeling, automated releases, and more.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>&lt;strong>Streamlined Project Automation&lt;/strong>:
+&lt;blockquote>
+&lt;p>Includes ready-to-use configurations for common tasks like continuous integration (CI), continuous deployment (CD), and project maintenance, minimizing manual setup.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;/ul>
+&lt;p>Check out the repository on &lt;a class="link" href="https://github.com/x-pt/template" target="_blank" rel="noopener"
+>GitHub&lt;/a> to explore how &lt;strong>template&lt;/strong> can simplify your project workflows and contribute to its ongoing development!&lt;/p></description></item></channel></rss>

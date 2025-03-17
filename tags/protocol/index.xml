@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Protocol on Aurora</title><link>https://notes.yoooo.fun/tags/protocol/</link><description>Recent content in Protocol on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 19 Apr 2020 18:12:04 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/protocol/index.xml" rel="self" type="application/rss+xml"/><item><title>Let's understand what's lldp.</title><link>https://notes.yoooo.fun/posts/net-lldp/</link><pubDate>Sat, 18 Apr 2020 21:08:20 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-lldp/</guid><description>&lt;h1 id="lldp">LLDP
+&lt;/h1>&lt;h2 id="overview">Overview
+&lt;/h2>&lt;p>目前，网络设备的种类日益繁多且各自的配置错综复杂，为了使不同厂商的设备能够在网络中相互发现并交互各自的系统及配置信息，需要有一个标准的信息交流平台。&lt;/p>
+&lt;p>LLDP（Link Layer Discovery Protocol，&lt;strong>链路层发现协议&lt;/strong>）就是在这样的背景下产生的，它提供了一种标准的链路层发现方式，可以将本端设备的&lt;strong>主要能力&lt;/strong>、**管理地址
+**、&lt;strong>设备标识&lt;/strong>、&lt;strong>接口标识&lt;/strong>等信息组织成不同的&lt;code>TLV&lt;/code>（Type/Length/Value，类型/长度/值），并封装在LLDPDU（LLDP Data Unit，&lt;strong>链路层发现协议数据单元&lt;/strong>
+）中发布给与自己直连的邻居，邻居收到这些信息后将其以标准MIB（Management Information Base，&lt;strong>管理信息库&lt;/strong>）的形式保存起来，以供网络管理系统查询及判断链路的通信状况。&lt;/p>
+&lt;p>类似的还有Cisco Discovery Protocol, Foundry Discovery Protocol, Nortel Discovery Protocol, etc.&lt;/p>
+&lt;h2 id="frame-structure">Frame Structure
+&lt;/h2>&lt;p>LLDP的以太帧通常有DST MAC, SRC MAC, EtherType(0x88cc). 以及LLDPDU和FCS组成.&lt;/p>
+&lt;p>&lt;strong>Ethernet Frame structure&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">&lt;a class="link" href="https://en.wikipedia.org/wiki/Preamble_%28communication%29" target="_blank" rel="noopener"
+>Preamble&lt;/a>&lt;/th>
+&lt;th style="text-align: center">Destination MAC&lt;/th>
+&lt;th style="text-align: center">Source MAC&lt;/th>
+&lt;th style="text-align: center">&lt;a class="link" href="https://en.wikipedia.org/wiki/Ethertype" target="_blank" rel="noopener"
+>Ethertype&lt;/a>&lt;/th>
+&lt;th>LLDPDU&lt;/th>
+&lt;th style="text-align: center">&lt;a class="link" href="https://en.wikipedia.org/wiki/Frame_check_sequence" target="_blank" rel="noopener"
+>Frame check sequence&lt;/a>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">&lt;/td>
+&lt;td style="text-align: center">01:80:c2:00:00:0e, or 01:80:c2:00:00:03, or 01:80:c2:00:00:00&lt;/td>
+&lt;td style="text-align: center">Station&amp;rsquo;s address&lt;/td>
+&lt;td style="text-align: center">0x88CC&lt;/td>
+&lt;td>&lt;/td>
+&lt;td style="text-align: center">&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>LLDPDU&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Chassis ID TLV&lt;/th>
+&lt;th>Port ID TLV&lt;/th>
+&lt;th>Time to live TLV&lt;/th>
+&lt;th>Optional TLV(s)&lt;/th>
+&lt;th>End of LLDPDU TLV&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Type=1&lt;/td>
+&lt;td>Type=2&lt;/td>
+&lt;td>Type=3&lt;/td>
+&lt;td>Optional TLV&lt;/td>
+&lt;td>&amp;hellip;&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>TLV structures&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">Type&lt;/th>
+&lt;th style="text-align: center">Length&lt;/th>
+&lt;th style="text-align: center">Value&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">7 bits&lt;/td>
+&lt;td style="text-align: center">9 bits&lt;/td>
+&lt;td style="text-align: center">0-511 octets&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>TLV type values&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">TLV type&lt;/th>
+&lt;th style="text-align: center">TLV name&lt;/th>
+&lt;th style="text-align: center">Usage in LLDPDU&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">0&lt;/td>
+&lt;td style="text-align: center">End of LLDPDU&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">1&lt;/td>
+&lt;td style="text-align: center">Chassis ID&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">2&lt;/td>
+&lt;td style="text-align: center">Port ID&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">3&lt;/td>
+&lt;td style="text-align: center">Time To Live&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">4&lt;/td>
+&lt;td style="text-align: center">Port description&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">5&lt;/td>
+&lt;td style="text-align: center">System name&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">6&lt;/td>
+&lt;td style="text-align: center">System description&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">7&lt;/td>
+&lt;td style="text-align: center">System capabilities&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">8&lt;/td>
+&lt;td style="text-align: center">Management address&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">9–126&lt;/td>
+&lt;td style="text-align: center">Reserved&lt;/td>
+&lt;td style="text-align: center">-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">127&lt;/td>
+&lt;td style="text-align: center">Custom TLVs&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Custom TLVs are supported via a TLV type 127. The value of a custom TLV starts with a 24-bit organizationally unique identifier and a 1 byte
+organizationally specific subtype followed by data. The basic format for an organizationally specific TLV is shown below:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">Type&lt;/th>
+&lt;th style="text-align: center">Length&lt;/th>
+&lt;th style="text-align: center">Organizationally unique identifier (OUI)&lt;/th>
+&lt;th style="text-align: center">Organizationally defined subtype&lt;/th>
+&lt;th style="text-align: center">Organizationally defined information string&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">7 bits—127&lt;/td>
+&lt;td style="text-align: center">9 bits&lt;/td>
+&lt;td style="text-align: center">24 bits&lt;/td>
+&lt;td style="text-align: center">8 bits&lt;/td>
+&lt;td style="text-align: center">0-507 octets&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>According to IEEE Std 802.1AB, §9.6.1.3, &amp;ldquo;The Organizationally Unique Identifier shall contain the organization&amp;rsquo;s OUI as defined in IEEE Std
+802-2001.&amp;rdquo; Each organization is responsible for managing their subtypes.&lt;/p>
+&lt;h2 id="work-mechanism">Work Mechanism
+&lt;/h2>&lt;h3 id="lldp工作模式">LLDP工作模式
+&lt;/h3>&lt;ul>
+&lt;li>TxRx: 既发送也接收LLDP报文&lt;/li>
+&lt;li>Tx: 只发送LLDP报文&lt;/li>
+&lt;li>Rx: 只接收LLDP报文&lt;/li>
+&lt;li>Disable: 既不发送也不接收LLDP报文&lt;/li>
+&lt;/ul>
+&lt;p>当端口的LLDP工作模式发生变化时，端口将对协议状态机进行初始化操作。为了避免端口工作模式频繁改变而导致端口不断执行初始化操作，可配置端口初始化延迟时间，当端口工作模式改变时延迟一段时间再执行初始化操作。&lt;/p>
+&lt;h3 id="lldp发送机制">LLDP发送机制
+&lt;/h3>&lt;blockquote>
+&lt;p>当端口工作在TxRx或Tx模式时，设备会周期性地向邻居设备发送LLDP报文。如果设备的本地配置发生变化则立即发送LLDP报文，以将本地信息的变化情况尽快通知给邻居设备。但为了防止本地信息的频繁变化而引起LLDP报文的大量发送，每发送一个LLDP报文后都需延迟一段时间后再继续发送下一个报文。&lt;/p>
+&lt;p>当设备的工作模式由Disable/Rx切换为TxRx/Tx，或者发现了新的邻居设备（即收到一个新的LLDP报文且本地尚未保存发送该报文设备的信息）时，该设备将自动启用快速发送机制，即将LLDP报文的发送周期缩短为1秒，并连续发送指定数量的LLDP报文后再恢复为正常的发送周期。&lt;/p>&lt;/blockquote>
+&lt;h3 id="lldp接收机制">LLDP接收机制
+&lt;/h3>&lt;blockquote>
+&lt;p>当端口工作在TxRx或Rx模式时，设备会对收到的LLDP报文及其携带的TLV进行有效性检查，通过检查后再将邻居信息保存到本地，并根据TTL（Time To Live，生存时间）
+TLV中TTL的值来设置邻居信息在本地设备上的老化时间，若该值为零，则立刻老化该邻居信息。&lt;/p>&lt;/blockquote>
+&lt;p>&lt;a class="link" href="http://www.h3c.com/cn/d_200805/605853_30003_0.htm" target="_blank" rel="noopener"
+>H3C LLDP Information&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" target="_blank" rel="noopener"
+>LLDP wiki&lt;/a>&lt;/p></description></item></channel></rss>

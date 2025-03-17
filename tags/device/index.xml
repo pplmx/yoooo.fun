@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Device on Aurora</title><link>https://notes.yoooo.fun/tags/device/</link><description>Recent content in Device on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 28 Apr 2020 15:44:02 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/device/index.xml" rel="self" type="application/rss+xml"/><item><title>VLAN</title><link>https://notes.yoooo.fun/posts/net-vlan/</link><pubDate>Sat, 18 Apr 2020 21:20:37 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-vlan/</guid><description>&lt;h1 id="vlan">VLAN
+&lt;/h1>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://www.utepo.net/article/detail/255.html" target="_blank" rel="noopener"
+>Get to Know Basic Knwoledge of VLAN(Part 1)&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.utepo.net/article/detail/295.html" target="_blank" rel="noopener"
+>Get to Know Basic Knwoledge of VLAN(Part 2)&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;h2 id="pros">Pros
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>reduce broadcast storm&lt;/p>
+&lt;blockquote>
+&lt;p>The key advantage of VLAN is that it can isolate the conflict domain as well as broadcast domain. If there are hundreds of hosts in a LAN, the
+network would be completely paralyzed when a broadcast storm happened. Meanwhile, users can divide the broadcast domain through VLAN, limiting the
+broadcast to each VLAN, and can not be transferred to cross VLAN. Most important, as consideration to improved security, the broadcasts of
+different VLANS can not communicate without a layer 3 router.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>simplify the administration of the network&lt;/p>
+&lt;blockquote>
+&lt;p>One of the best things about VLAN is that it simplifies management. By logically grouping users into the same virtual networks, you make it easy
+to set up and control your policies at a group level. When users physically move workstations, you can keep them on the same network with different
+equipment. Or if someone changes teams but not workstations, they can easily be given access to whatever new VLANs they need.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;/ol></description></item><item><title>trunk in switch</title><link>https://notes.yoooo.fun/posts/net-switch-trunk/</link><pubDate>Sat, 18 Apr 2020 21:18:09 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-switch-trunk/</guid><description>&lt;h1 id="trunk">Trunk
+&lt;/h1>&lt;h2 id="overview">Overview
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://wenku.baidu.com/view/6694697d657d27284b73f242336c1eb91a373323.html" target="_blank" rel="noopener"
+>https://wenku.baidu.com/view/6694697d657d27284b73f242336c1eb91a373323.html&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;h2 id="vlan-between-switches">vlan between switches
+&lt;/h2>&lt;p>&lt;img src="https://notes.yoooo.fun/assets/trunk.png"
+loading="lazy"
+alt="trunk"
+>&lt;/p>
+&lt;p>PC1 sends traffic to PC2 after processing its host routing table. These nodes are in the same VLAN but they are connected to different switches. The
+basic process:&lt;/p>
+&lt;ol>
+&lt;li>The Ethernet frame leaves PC1 and is received by Switch 1.&lt;/li>
+&lt;li>The Switch 1 SAT indicates that the destination is on the other end of the trunk line.&lt;/li>
+&lt;li>Switch 1 uses the trunking protocol to modify the Ethernet frame by adding the VLAN id.&lt;/li>
+&lt;li>The new frame leaves the trunk port on Switch1 and is received by Switch 2.&lt;/li>
+&lt;li>Switch2 reads the VLAN id and strips off the trunking protocol.&lt;/li>
+&lt;li>The original frame is forwarded to the destination (port 4) based on the SAT of Switch 2.&lt;/li>
+&lt;/ol>
+&lt;h2 id="openstack-trunk">Openstack Trunk
+&lt;/h2>&lt;p>&lt;img src="https://notes.yoooo.fun/assets/20200424170120849.png"
+loading="lazy"
+alt="openstack trunk port"
+>&lt;/p>
+&lt;p>&lt;a class="link" href="https://object-storage-ca-ymq-1.vexxhost.net/swift/v1/6e4619c416ff4bd19e1c087f27a43eea/www-assets-prod/presentation-media/Neutron-Trunks.pdf" target="_blank" rel="noopener"
+>Reference from here1&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.oreilly.com/library/view/packet-guide-to/9781449311315/ch04.html" target="_blank" rel="noopener"
+>Reference from here2&lt;/a>&lt;/p></description></item><item><title>Switch</title><link>https://notes.yoooo.fun/posts/net-switch/</link><pubDate>Sat, 18 Apr 2020 21:08:13 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-switch/</guid><description>&lt;h1 id="switch">switch
+&lt;/h1>&lt;h2 id="overview">Overview
+&lt;/h2>&lt;h3 id="link-type">Link Type
+&lt;/h3>&lt;blockquote>
+&lt;p>The link type of VLAN can be divided into &lt;strong>access link&lt;/strong> and &lt;strong>trunk link&lt;/strong>.&lt;/p>&lt;/blockquote>
+&lt;h4 id="access-link">Access Link
+&lt;/h4>&lt;ul>
+&lt;li>Access link is part of only one VLAN, and normally is for end devices.&lt;/li>
+&lt;li>Any device attached to an access link is unaware of a VLAN membership.&lt;/li>
+&lt;li>An access-link connection can understand only standard Ethernet frames.&lt;/li>
+&lt;li>Switches remove any VLAN information from the frame before it is sent to an access-link device.&lt;/li>
+&lt;/ul>
+&lt;h4 id="trunk-link">Trunk Link
+&lt;/h4>&lt;ul>
+&lt;li>Trunk link can carry multiple VLAN traffic and normally is used to connect switches to other switches or to routers.&lt;/li>
+&lt;/ul>
+&lt;h2 id="access-port">Access Port
+&lt;/h2>&lt;p>l Belong to &lt;strong>one&lt;/strong> VLAN.&lt;/p>
+&lt;p>l Commonly used to connect computer ports.&lt;/p>
+&lt;hr>
+&lt;ul>
+&lt;li>Strip the VLAN information in the packet and forward the packet directly.&lt;/li>
+&lt;/ul>
+&lt;h2 id="trunk-port">Trunk Port
+&lt;/h2>&lt;p>l Allow &lt;strong>multiple&lt;/strong> VLANs through.&lt;/p>
+&lt;p>l Receive and send &lt;strong>multiple&lt;/strong> VLAN packets.&lt;/p>
+&lt;p>l Typically used for connection between switches.&lt;/p>
+&lt;hr>
+&lt;ol>
+&lt;li>
+&lt;p>Compare the PVID of the port and the VLAN information in the packet to be transmitted.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If they are the same, proceed to Step 3, otherwise, proceed to Step 4&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Strip the VLAN information in the packet and forward the packet.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Forward the packet directly.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="hybrid-port">Hybrid Port
+&lt;/h2>&lt;p>l Allow &lt;strong>multiple&lt;/strong> VLANs through.&lt;/p>
+&lt;p>l Receive and send &lt;strong>multiple&lt;/strong> VLAN packets.&lt;/p>
+&lt;p>l Used for connection between switches, or switch and computer.&lt;/p>
+&lt;hr>
+&lt;ol>
+&lt;li>
+&lt;p>Check the VLAN attributes on this port by running the command disp interface to se whether the VLAN attributes is &amp;ldquo;tagged&amp;rdquo; or &amp;ldquo;untagged&amp;rdquo;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If I is untagged, proceed to Step 3, if it is tagged, proceed to step 4.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Strip the VLAN information in the packet and forward the packet.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Forward the packet directly.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="summary">Summary
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Port Type&lt;/th>
+&lt;th style="text-align: left">Support Mode&lt;/th>
+&lt;th>Common use cases&lt;/th>
+&lt;th>Comment&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Access&lt;/td>
+&lt;td style="text-align: left">single untagged VLAN&lt;/td>
+&lt;td>PC/Printer to switch&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Trunk&lt;/td>
+&lt;td style="text-align: left">single untagged VLAN &amp;amp; multiple tagged VLANs&lt;/td>
+&lt;td>switch/hypervisor to switch&lt;/td>
+&lt;td>VLAN 1 can be Tagged (Untagged by default)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Hybrid&lt;/td>
+&lt;td style="text-align: left">Support Untagged VLANs &amp;amp; Tagged VLANs&lt;/td>
+&lt;td>1. Physical Connection: IP Phone to Network Switch Port &amp;amp; a PC to IP Phone’s Switch port; 2. Logical Connection: Voice VLAN as Tagged &amp;amp; Data VLAN as Untagged &amp;amp; Switch port in Trunk mode&lt;/td>
+&lt;td>1. Usually the Untagged VLAN number = Native/Default VLAN number; 2. Support for multi-Untagged Frames, usually require the use of protocol-based VLANs; 3. VLAN 1 can be Tagged (Untagged by default)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="https://notes.yoooo.fun/assets/switch-egg.jpg"
+loading="lazy"
+alt="switch-egg"
+>&lt;/p></description></item></channel></rss>

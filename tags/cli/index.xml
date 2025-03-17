@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cli on Aurora</title><link>https://notes.yoooo.fun/tags/cli/</link><description>Recent content in Cli on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 06 Jan 2024 22:21:46 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>Learning Docker</title><link>https://notes.yoooo.fun/posts/learning-docker/</link><pubDate>Fri, 05 Jun 2020 16:42:36 +0000</pubDate><guid>https://notes.yoooo.fun/posts/learning-docker/</guid><description>&lt;h1 id="docker-general-knowledge">Docker General Knowledge
+&lt;/h1>&lt;h2 id="common-cli">Common CLi
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list all images in local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -a, i.e. --all [Show all images (default hides intermediate images)]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image ls -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list all images without intermediate images&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list all containers in local(running or stopped)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container ls -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list all running containers&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Key details, you can refer to the last of this article.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container ls --format &lt;span class="s1">&amp;#39;table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container ls --format &lt;span class="s1">&amp;#39;table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># pull image from dockerhub(It can be with tag, e.g. latest)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image pull centos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image pull centos:latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image pull purplemystic/centos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create a container named my_centos by the latest centos image&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -i, i.e. --interactive&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -t, i.e. --tty&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container run --privileged -dit --name my_centos centos init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># enter in a docker container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container &lt;span class="nb">exec&lt;/span> -it my_cenos bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># stop a started container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container stop my_centos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start a stopped container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container start my_centos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># kill a container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container &lt;span class="nb">kill&lt;/span> my_centos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># remove all stopped containers&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># remove all unused images&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># container to host&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># copy a test.log in container my_centos /var/tmp to current dir&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container cp my_centos:/var/tmp/test.log .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># host to container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container cp test.log my_centos:/var/tmp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="docker-commit">Docker commit
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># save container to a image with your changes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container commit &lt;span class="o">[&lt;/span>OPTIONS&lt;span class="o">]&lt;/span> CONTAINER &lt;span class="o">[&lt;/span>REPOSITORY&lt;span class="o">[&lt;/span>:TAG&lt;span class="o">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># e.g.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container commit my_centos purplemystic/centos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container commit my_centos purplemystic/centos:1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container commit my_centos purplemystic/centos:999
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>Options&lt;/code>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name, shorthand&lt;/th>
+&lt;th>Default&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>--author , -a&lt;/code>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>Author (e.g., “John Hannibal Smith &lt;a class="link" href="mailto:hannibal@a-team.com" >hannibal@a-team.com&lt;/a>”)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>--change , -c&lt;/code>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>Apply Dockerfile instruction to the created image&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>--message , -m&lt;/code>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>Commit message&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>--pause , -p&lt;/code>&lt;/td>
+&lt;td>&lt;code>true&lt;/code>&lt;/td>
+&lt;td>Pause container during commit&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="how-to-ssh-among-multiple-container">How to SSH among multiple container
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create three compute node&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container run -dit --privileged --name compute1 centos init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container run -dit --privileged --name compute2 centos init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container run -dit --privileged --name compute1 centos init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># login to three nodes separately to run the following command&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># step1: to ensure sshd service is active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install -y openssh openssh-server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># step2: to ensure you know user and password(set user root&amp;#39;s password to &amp;#39;root&amp;#39;)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;root:root&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> chpasswd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;p>Now, you can access one container from another container, like as follows:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@937fa919cd2a /&lt;span class="o">]&lt;/span>&lt;span class="c1"># ssh root@172.17.0.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The authenticity of host &lt;span class="s1">&amp;#39;172.17.0.2 (172.17.0.2)&amp;#39;&lt;/span> can&lt;span class="s1">&amp;#39;t be established.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">ECDSA key fingerprint is SHA256:cBgcL8pqvWncp8Wn0ky7beHWC2ZFNWlR8UXK0roK7Mg.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Warning: Permanently added &amp;#39;&lt;/span>172.17.0.2&lt;span class="s1">&amp;#39; (ECDSA) to the list of known hosts.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">root@172.17.0.2&amp;#39;&lt;/span>s password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@0ea4fead9a24 ~&lt;span class="o">]&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="docker-network">Docker network
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list network&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">λ docker network ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NETWORK ID NAME DRIVER SCOPE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">21a5e8b305c4 bridge bridge &lt;span class="nb">local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">e6aafe917f13 host host &lt;span class="nb">local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">d2de5c3c084c none null &lt;span class="nb">local&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># check network details&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">λ docker network inspect bridge
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;bridge&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Id&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;21a5e8b305c415ab903d86689778d91c7968ab9ab350e0f0885be8a81d0095cc&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Created&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;2020-06-08T04:21:05.390246004Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Scope&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;local&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Driver&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;bridge&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;EnableIPv6&amp;#34;&lt;/span>: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;IPAM&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Driver&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;default&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Options&amp;#34;&lt;/span>: null,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Config&amp;#34;&lt;/span>: &lt;span class="o">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Subnet&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;172.17.0.0/16&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Gateway&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;172.17.0.1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Internal&amp;#34;&lt;/span>: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Attachable&amp;#34;&lt;/span>: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Ingress&amp;#34;&lt;/span>: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;ConfigFrom&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Network&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;ConfigOnly&amp;#34;&lt;/span>: false,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Containers&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;0ea4fead9a248c57d0d5053198ea5ba5eedd32f6636dd834d763dddec7bce9fd&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;compute1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;EndpointID&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;3165851a116e074f7564411a351e74570c164af5610ebf8f45183840eb869199&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;MacAddress&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;02:42:ac:11:00:02&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;IPv4Address&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;172.17.0.2/16&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;IPv6Address&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;937fa919cd2aacc47034648f739c29fec00a09e14f8363a8a68d5ac3ce786e15&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;compute2&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;EndpointID&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;22e1551440dcdd913dc59612d9757b846a1b7c977f0f836bf5b826ef4da13bab&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;MacAddress&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;02:42:ac:11:00:03&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;IPv4Address&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;172.17.0.3/16&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;IPv6Address&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Options&amp;#34;&lt;/span>: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;com.docker.network.bridge.default_bridge&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;com.docker.network.bridge.enable_icc&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;com.docker.network.bridge.enable_ip_masquerade&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;com.docker.network.bridge.host_binding_ipv4&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;0.0.0.0&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;com.docker.network.bridge.name&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;docker0&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;com.docker.network.driver.mtu&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;1500&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;Labels&amp;#34;&lt;/span>: &lt;span class="o">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create a network(default create a network whose network type is bridge)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker networ create br-int
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create a host network&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker network create --driver host host-net
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --driver&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- bridge
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- overlay
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- macvlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- none
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Network Plugins
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="network-drivers">Network drivers
+&lt;/h3>&lt;p>Docker’s networking subsystem is pluggable, using drivers. Several drivers exist by default, and provide core networking functionality:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>bridge&lt;/code>: The default network driver. If you don’t specify a driver, this is the type of network you are creating. &lt;strong>Bridge networks are usually
+used when your applications run in standalone containers that need to communicate.&lt;/strong> See &lt;a class="link" href="https://docs.docker.com/network/bridge/" target="_blank" rel="noopener"
+>bridge networks&lt;/a>.&lt;/li>
+&lt;li>&lt;code>host&lt;/code>: For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking
+directly. &lt;code>host&lt;/code> is only available for swarm services on Docker 17.06 and higher. See &lt;a class="link" href="https://docs.docker.com/network/host/" target="_blank" rel="noopener"
+>use the host network&lt;/a>.&lt;/li>
+&lt;li>&lt;code>overlay&lt;/code>: Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other. You can also use
+overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different
+Docker daemons. This strategy removes the need to do OS-level routing between these containers.
+See &lt;a class="link" href="https://docs.docker.com/network/overlay/" target="_blank" rel="noopener"
+>overlay networks&lt;/a>.&lt;/li>
+&lt;li>&lt;code>macvlan&lt;/code>: Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network. The Docker
+daemon routes traffic to containers by their MAC addresses. Using the &lt;code>macvlan&lt;/code> driver is sometimes the best choice when dealing with legacy
+applications that expect to be directly connected to the physical network, rather than routed through the Docker host’s network stack.
+See &lt;a class="link" href="https://docs.docker.com/network/macvlan/" target="_blank" rel="noopener"
+>Macvlan networks&lt;/a>.&lt;/li>
+&lt;li>&lt;code>none&lt;/code>: For this container, disable all networking. Usually used in conjunction with a custom network driver. &lt;code>none&lt;/code> is not available for swarm
+services. See &lt;a class="link" href="https://docs.docker.com/network/none/" target="_blank" rel="noopener"
+>disable container networking&lt;/a>.&lt;/li>
+&lt;li>&lt;a class="link" href="https://docs.docker.com/engine/extend/plugins_services/" target="_blank" rel="noopener"
+>Network plugins&lt;/a>: You can install and use third-party network plugins with Docker. These
+plugins are available from &lt;a class="link" href="https://hub.docker.com/search?category=network&amp;amp;q=&amp;amp;type=plugin" target="_blank" rel="noopener"
+>Docker Hub&lt;/a> or from third-party vendors. See the vendor’s
+documentation for installing and using a given network plugin.&lt;/li>
+&lt;/ul>
+&lt;h2 id="network-driver-summary">Network driver summary
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>User-defined bridge networks&lt;/strong> are best when you need multiple containers to communicate on the same Docker host.&lt;/li>
+&lt;li>&lt;strong>Host networks&lt;/strong> are best when the network stack should not be isolated from the Docker host, but you want other aspects of the container to be
+isolated.&lt;/li>
+&lt;li>&lt;strong>Overlay networks&lt;/strong> are best when you need containers running on different Docker hosts to communicate, or when multiple applications work together
+using swarm services.&lt;/li>
+&lt;li>&lt;strong>Macvlan networks&lt;/strong> are best when you are migrating from a VM setup or need your containers to look like physical hosts on your network, each with
+a unique MAC address.&lt;/li>
+&lt;li>&lt;strong>Third-party network plugins&lt;/strong> allow you to integrate Docker with specialized network stacks.&lt;/li>
+&lt;/ul>
+&lt;h2 id="filter-and-format">Filter and Format
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">Filters
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Filter output based on these conditions:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ancestor=(&amp;lt;image-name&amp;gt;[:tag]|&amp;lt;image-id&amp;gt;| &amp;lt;image@digest&amp;gt;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> containers created from an image or a descendant.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - before=(&amp;lt;container-name&amp;gt;|&amp;lt;container-id&amp;gt;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - expose=(&amp;lt;port&amp;gt;[/&amp;lt;proto&amp;gt;]|&amp;lt;startport-endport&amp;gt;/[&amp;lt;proto&amp;gt;])
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - exited=&amp;lt;int&amp;gt; an exit code of &amp;lt;int&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - health=(starting|healthy|unhealthy|none)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - id=&amp;lt;ID&amp;gt; a container&amp;#39;s ID
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - isolation=(default|process|hyperv) (Windows daemon only)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - is-task=(true|false)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - label=&amp;lt;key&amp;gt; or label=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name=&amp;lt;string&amp;gt; a container&amp;#39;s name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - network=(&amp;lt;network-id&amp;gt;|&amp;lt;network-name&amp;gt;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - publish=(&amp;lt;port&amp;gt;[/&amp;lt;proto&amp;gt;]|&amp;lt;startport-endport&amp;gt;/[&amp;lt;proto&amp;gt;])
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - since=(&amp;lt;container-name&amp;gt;|&amp;lt;container-id&amp;gt;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - status=(created|restarting|removing|running|paused|exited)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - volume=(&amp;lt;volume name&amp;gt;|&amp;lt;mount point destination&amp;gt;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Format
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> The formatting option (--format) pretty-prints container output using a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Go template.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Valid placeholders for the Go template are listed below:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .ID - Container ID.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Image - Image ID.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Command - Quoted command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .CreatedAt - Time when the container was created.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .RunningFor - Elapsed time since the container was started.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Ports - Exposed ports.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Status - Container status.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Size - Container disk size.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Names - Container names.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Labels - All labels assigned to the container.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Label - Value of a specific label for this container.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> For example &amp;#39;{{.Label &amp;#34;com.docker.swarm.cpu&amp;#34;}}&amp;#39;.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Mounts - Names of the volumes mounted in this container.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - .Networks - Names of the networks attached to this container.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="fyi">FYI
+&lt;/h2>&lt;h3 id="container">Container
+&lt;/h3>&lt;blockquote>
+&lt;p>docker container my_command&lt;/p>&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;code>create &lt;/code>
+&lt;ul>
+&lt;li>Create a container from an image.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>start &lt;/code>
+&lt;ul>
+&lt;li>Start an existing container.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>run &lt;/code>
+&lt;ul>
+&lt;li>Create a new container and start it.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>ls &lt;/code>
+&lt;ul>
+&lt;li>List running containers.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>inspect &lt;/code>
+&lt;ul>
+&lt;li>See lots of info about a container.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>logs &lt;/code>
+&lt;ul>
+&lt;li>Print logs.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>stop &lt;/code>
+&lt;ul>
+&lt;li>Gracefully stop running container.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>kill &lt;/code>
+&lt;ul>
+&lt;li>Stop main process in container abruptly.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>rm&lt;/code>
+&lt;ul>
+&lt;li>Delete a stopped container.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="image">Image
+&lt;/h3>&lt;blockquote>
+&lt;p>docker image my_command&lt;/p>&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;code>build &lt;/code>
+&lt;ul>
+&lt;li>Build an image.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>push&lt;/code>
+&lt;ul>
+&lt;li>Push an image to a remote registry.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>ls&lt;/code>
+&lt;ul>
+&lt;li>List images.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>history&lt;/code>
+&lt;ul>
+&lt;li>See intermediate image info.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>inspect&lt;/code>
+&lt;ul>
+&lt;li>See lots of info about an image, including the layers.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>rm&lt;/code>
+&lt;ul>
+&lt;li>Delete an image.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>tcpdump</title><link>https://notes.yoooo.fun/posts/linux-tcpdump/</link><pubDate>Sat, 18 Apr 2020 21:05:32 +0000</pubDate><guid>https://notes.yoooo.fun/posts/linux-tcpdump/</guid><description>&lt;h1 id="some-common-tcpdump-cli">some common tcpdump cli
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Reading / Writing Captures to a File&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump port &lt;span class="m">80&lt;/span> -w capture_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># read PCAP files by using the -r switch&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -r capture_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># port 2000 of any nic&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -i any port &lt;span class="m">2000&lt;/span> –nn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Everything on an interface&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -i eth0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Find Traffic by IP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># One of the most common queries, using host, you can see traffic that’s going to or from 1.1.1.1.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump host 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Filtering by Source and/or Destination&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump src 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump dst 1.0.0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Finding Packets by Network&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump net 1.2.3.0/24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Get Packet Contents with Hex Output&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -c &lt;span class="m">1&lt;/span> -X icmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Show Traffic Related to a Specific Port&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump port &lt;span class="m">3389&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump src port &lt;span class="m">1025&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Show Traffic of One Protocol&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump icmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Show only IP6 Traffic&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump ip6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Find Traffic Using Port Ranges&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump portrange 21-23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Find Traffic Based on Packet Size&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump less &lt;span class="m">32&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump greater &lt;span class="m">64&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump &amp;lt;&lt;span class="o">=&lt;/span> &lt;span class="m">128&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ==================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># It’s All About the Combinations&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ========= AND =========&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># and or &amp;amp;&amp;amp;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ========= OR =========&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or or ||&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ========= EXCEPT =========&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># not or !&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># From specific IP and destined for a specific Port&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Let’s find all traffic from 10.5.2.3 going to any host on port 3389.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -nnvvS src 10.5.2.3 and dst port &lt;span class="m">3389&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># From One Network to Another&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Let’s look for all traffic coming from 192.168.x.x and going to the 10.x or 172.16.x.x networks&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># and we’re showing hex output with no hostname resolution and one level of extra verbosity.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -nvX src net 192.168.0.0/16 and dst net 10.0.0.0/8 or 172.16.0.0/16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Non ICMP Traffic Going to a Specific IP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># This will show us all traffic going to 192.168.0.2 that is not ICMP.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump dst 192.168.0.2 &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> src ! icmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump dst 192.168.0.2 and src not icmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># catch packages from(to) eth0 or eth1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -vi eth0 &lt;span class="o">||&lt;/span> eth1 -w tmp.pcap
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="advanced">Advanced
+&lt;/h1>&lt;h2 id="match-mac-address--vlan">match MAC address &amp;amp; VLAN
+&lt;/h2>&lt;ul>
+&lt;li>ether host &lt;MAC> - capture packets sent from and to &lt;MAC>&lt;/li>
+&lt;li>ether src &lt;MAC> - capture packets sent from &lt;MAC>&lt;/li>
+&lt;li>ether dst &lt;MAC> - capture packets sent to &lt;MAC>&lt;/li>
+&lt;li>vlan &lt;VLAN ID> - match &lt;VLAN ID>&lt;/li>
+&lt;/ul>
+&lt;h2 id="match-protocol">match protocol
+&lt;/h2>&lt;p>Match protocols in L3 header:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ip proto &lt;/code> - PROTO: icmp, icmp6, igmp, igrp, pim, ah, esp, vrrp, udp, or tcp&lt;/li>
+&lt;/ul>
+&lt;p>Follow are abbreviations:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>icmp&lt;/code> = &lt;code>proto icmp&lt;/code>&lt;/li>
+&lt;li>&lt;code>tcp&lt;/code> = &lt;code>proto tcp&lt;/code>&lt;/li>
+&lt;li>&lt;code>udp&lt;/code> = &lt;code>proto udp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Match protocols in L2 header:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ether proto &lt;/code> - PROTO: ip, ip6, arp, rarp, atalk, aarp, decnet, sca, lat, mopdl, moprc, iso, stp, ipx, or netbeui&lt;/li>
+&lt;/ul>
+&lt;p>Follow are abbreviations:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ip&lt;/code> = &lt;code>ether proto ip&lt;/code>&lt;/li>
+&lt;li>&lt;code>ip6&lt;/code> = &lt;code>ether proto ip6&lt;/code>&lt;/li>
+&lt;li>&lt;code>arp&lt;/code> = &lt;code>ether proto arp&lt;/code>&lt;/li>
+&lt;li>&lt;code>rarp&lt;/code> = &lt;code>ether proto rarp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">tcpdump -i eth0 arp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcpdump -i eth0 icmp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

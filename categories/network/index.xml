@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on Aurora</title><link>https://notes.yoooo.fun/categories/network/</link><description>Recent content in Network on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 24 Nov 2023 10:45:42 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/categories/network/index.xml" rel="self" type="application/rss+xml"/><item><title>Check Network Availability</title><link>https://notes.yoooo.fun/posts/net-check/</link><pubDate>Fri, 24 Nov 2023 10:45:42 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-check/</guid><description>&lt;h1 id="check-network-availability">Check Network Availability
+&lt;/h1>&lt;p>The following commands can be used to check if a remote host is available on the network.&lt;/p>
+&lt;p>Here is an example to check if port 22 on 192.168.21.32 is open.&lt;/p>
+&lt;h2 id="linux">Linux
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">nc -zv 192.168.21.32 &lt;span class="m">22&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nmap -p &lt;span class="m">22&lt;/span> 192.168.21.32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or, if no output, port is open&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">timeout &lt;span class="m">1&lt;/span> bash -c &lt;span class="s1">&amp;#39;cat &amp;lt; /dev/null &amp;gt; /dev/tcp/192.168.21.32/22&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &amp;gt;/dev/tcp/192.168.21.32/22
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="windows">Windows
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">telnet 192.168.21.32 &lt;span class="m">22&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or (PowerShell)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Test-NetConnection -ComputerName 192.168.21.32 -Port &lt;span class="m">22&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Http Version Comparison</title><link>https://notes.yoooo.fun/posts/http-version/</link><pubDate>Wed, 16 Sep 2020 10:53:10 +0000</pubDate><guid>https://notes.yoooo.fun/posts/http-version/</guid><description>&lt;h1 id="http">HTTP
+&lt;/h1>&lt;h2 id="preview">Preview
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">Year&lt;/th>
+&lt;th style="text-align: center">HTTP Version&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">1996&lt;/td>
+&lt;td style="text-align: center">&lt;a class="link" href="https://tools.ietf.org/html/rfc1945" target="_blank" rel="noopener"
+>1.0&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">1997&lt;/td>
+&lt;td style="text-align: center">&lt;a class="link" href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener"
+>1.1&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">2000&lt;/td>
+&lt;td style="text-align: center">&lt;a class="link" href="https://tools.ietf.org/html/rfc2818" target="_blank" rel="noopener"
+>HTTPS&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">2015&lt;/td>
+&lt;td style="text-align: center">&lt;a class="link" href="https://tools.ietf.org/html/rfc7540" target="_blank" rel="noopener"
+>2.0&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">???&lt;/td>
+&lt;td style="text-align: center">&lt;a class="link" href="https://tools.ietf.org/html/draft-ietf-quic-http" target="_blank" rel="noopener"
+>3.0 Draft&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="https://notes.yoooo.fun/assets/HTTP-v1-v2-v3-stacks.png"
+loading="lazy"
+alt="HTTP_Version"
+>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;img src="https://notes.yoooo.fun/assets/http1-265x300.png"
+loading="lazy"
+alt="HTTP1 Protocol"
+>&lt;/td>
+&lt;td>&lt;img src="https://notes.yoooo.fun/assets/http1.1-265x300.png"
+loading="lazy"
+alt="HTTP1.1 Protocol"
+>&lt;/td>
+&lt;td>&lt;img src="https://notes.yoooo.fun/assets/http2-283x300.png"
+loading="lazy"
+alt="HTTP2 Protocol"
+>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>
+&lt;p>HTTP/1.0&lt;/p>
+&lt;blockquote>
+&lt;p>For every TCP connection there is only one request and one response.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>HTTP/1.1&lt;/p>
+&lt;blockquote>
+&lt;p>It supports connection reuse i.e. for every TCP connection there could be multiple requests and responses, and pipelining where the client can
+request several resources from the server at once.&lt;/p>
+&lt;p>However, pipelining was hard to implement due to issues such as head-of-line blocking and was not a feasible solution.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>HTTP/2&lt;/p>
+&lt;blockquote>
+&lt;p>Uses multiplexing, where over a single TCP connection resources to be delivered are interleaved and arrive at the client almost at the same time.&lt;/p>
+&lt;p>It is done using streams which can be prioritized, can have dependencies and individual flow control.&lt;/p>
+&lt;p>It also provides a feature called server push that allows the server to send data that the client will need but has not yet requested.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://notes.yoooo.fun/assets/Comparison-of-HTTP-versions.jpg"
+loading="lazy"
+alt="Comparison of HTTP versions"
+>&lt;/p>
+&lt;h2 id="http-10">http 1.0
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>No Connection&lt;/p>
+&lt;p>Each request from the browser need build a connection with the server, once the server has handled the request and it will stop the tcp connection
+immediately.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>No State&lt;/p>
+&lt;p>The server do not trace every client, and record the past requests too.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="http-11">http 1.1
+&lt;/h2>&lt;ul>
+&lt;li>persistent connection&lt;/li>
+&lt;li>Host header is required&lt;/li>
+&lt;li>pipelining&lt;/li>
+&lt;li>cache-control&lt;/li>
+&lt;li>content negotiation&lt;/li>
+&lt;/ul>
+&lt;h2 id="https">https
+&lt;/h2>&lt;p>https ==&amp;gt; HTTP + SSL&lt;/p>
+&lt;h2 id="http-20">http 2.0
+&lt;/h2>&lt;ul>
+&lt;li>Binary Protocol
+&lt;ul>
+&lt;li>Low overhead in parsing data — &lt;strong>a critical value proposition in HTTP/2 vs HTTP1&lt;/strong>.&lt;/li>
+&lt;li>Less prone to errors.&lt;/li>
+&lt;li>Lighter network footprint.&lt;/li>
+&lt;li>Effective network resource utilization.&lt;/li>
+&lt;li>Reduced network latency and improved throughput.&lt;/li>
+&lt;li>Eliminating security concerns associated with the textual nature of HTTP1.x such as response splitting attacks.&lt;/li>
+&lt;li>Efficient and robust in terms of processing of data between client and server.&lt;/li>
+&lt;li>Compact representation of commands for easier processing and implementation.&lt;/li>
+&lt;li>Enables other capabilities of the HTTP/2 including compression, multiplexing, prioritization, flow control and effective handling of TLS.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Request Multiplexing
+&lt;ul>
+&lt;li>Allows you to download web files asynchronously from one server.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Header Compression&lt;/li>
+&lt;li>Server Push
+&lt;ul>
+&lt;li>The client saves pushed resources in the cache.&lt;/li>
+&lt;li>The client can reuse these cached resources across different pages.&lt;/li>
+&lt;li>The server can multiplex pushed resources along with originally requested information within the same TCP connection.&lt;/li>
+&lt;li>The server can prioritize pushed resources — &lt;strong>a key performance differentiator in HTTP/2 vs HTTP1&lt;/strong>.&lt;/li>
+&lt;li>The client can decline pushed resources to maintain an effective repository of cached resources or disable Server Push entirely.&lt;/li>
+&lt;li>The client can also limit the number of pushed streams multiplexed concurrently.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="http-30">http 3.0
+&lt;/h2></description></item><item><title>VLAN</title><link>https://notes.yoooo.fun/posts/net-vlan/</link><pubDate>Sat, 18 Apr 2020 21:20:37 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-vlan/</guid><description>&lt;h1 id="vlan">VLAN
+&lt;/h1>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://www.utepo.net/article/detail/255.html" target="_blank" rel="noopener"
+>Get to Know Basic Knwoledge of VLAN(Part 1)&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.utepo.net/article/detail/295.html" target="_blank" rel="noopener"
+>Get to Know Basic Knwoledge of VLAN(Part 2)&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;h2 id="pros">Pros
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>reduce broadcast storm&lt;/p>
+&lt;blockquote>
+&lt;p>The key advantage of VLAN is that it can isolate the conflict domain as well as broadcast domain. If there are hundreds of hosts in a LAN, the
+network would be completely paralyzed when a broadcast storm happened. Meanwhile, users can divide the broadcast domain through VLAN, limiting the
+broadcast to each VLAN, and can not be transferred to cross VLAN. Most important, as consideration to improved security, the broadcasts of
+different VLANS can not communicate without a layer 3 router.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>simplify the administration of the network&lt;/p>
+&lt;blockquote>
+&lt;p>One of the best things about VLAN is that it simplifies management. By logically grouping users into the same virtual networks, you make it easy
+to set up and control your policies at a group level. When users physically move workstations, you can keep them on the same network with different
+equipment. Or if someone changes teams but not workstations, they can easily be given access to whatever new VLANs they need.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;/ol></description></item><item><title>trunk in switch</title><link>https://notes.yoooo.fun/posts/net-switch-trunk/</link><pubDate>Sat, 18 Apr 2020 21:18:09 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-switch-trunk/</guid><description>&lt;h1 id="trunk">Trunk
+&lt;/h1>&lt;h2 id="overview">Overview
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://wenku.baidu.com/view/6694697d657d27284b73f242336c1eb91a373323.html" target="_blank" rel="noopener"
+>https://wenku.baidu.com/view/6694697d657d27284b73f242336c1eb91a373323.html&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;h2 id="vlan-between-switches">vlan between switches
+&lt;/h2>&lt;p>&lt;img src="https://notes.yoooo.fun/assets/trunk.png"
+loading="lazy"
+alt="trunk"
+>&lt;/p>
+&lt;p>PC1 sends traffic to PC2 after processing its host routing table. These nodes are in the same VLAN but they are connected to different switches. The
+basic process:&lt;/p>
+&lt;ol>
+&lt;li>The Ethernet frame leaves PC1 and is received by Switch 1.&lt;/li>
+&lt;li>The Switch 1 SAT indicates that the destination is on the other end of the trunk line.&lt;/li>
+&lt;li>Switch 1 uses the trunking protocol to modify the Ethernet frame by adding the VLAN id.&lt;/li>
+&lt;li>The new frame leaves the trunk port on Switch1 and is received by Switch 2.&lt;/li>
+&lt;li>Switch2 reads the VLAN id and strips off the trunking protocol.&lt;/li>
+&lt;li>The original frame is forwarded to the destination (port 4) based on the SAT of Switch 2.&lt;/li>
+&lt;/ol>
+&lt;h2 id="openstack-trunk">Openstack Trunk
+&lt;/h2>&lt;p>&lt;img src="https://notes.yoooo.fun/assets/20200424170120849.png"
+loading="lazy"
+alt="openstack trunk port"
+>&lt;/p>
+&lt;p>&lt;a class="link" href="https://object-storage-ca-ymq-1.vexxhost.net/swift/v1/6e4619c416ff4bd19e1c087f27a43eea/www-assets-prod/presentation-media/Neutron-Trunks.pdf" target="_blank" rel="noopener"
+>Reference from here1&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.oreilly.com/library/view/packet-guide-to/9781449311315/ch04.html" target="_blank" rel="noopener"
+>Reference from here2&lt;/a>&lt;/p></description></item><item><title>Let's understand what's lldp.</title><link>https://notes.yoooo.fun/posts/net-lldp/</link><pubDate>Sat, 18 Apr 2020 21:08:20 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-lldp/</guid><description>&lt;h1 id="lldp">LLDP
+&lt;/h1>&lt;h2 id="overview">Overview
+&lt;/h2>&lt;p>目前，网络设备的种类日益繁多且各自的配置错综复杂，为了使不同厂商的设备能够在网络中相互发现并交互各自的系统及配置信息，需要有一个标准的信息交流平台。&lt;/p>
+&lt;p>LLDP（Link Layer Discovery Protocol，&lt;strong>链路层发现协议&lt;/strong>）就是在这样的背景下产生的，它提供了一种标准的链路层发现方式，可以将本端设备的&lt;strong>主要能力&lt;/strong>、**管理地址
+**、&lt;strong>设备标识&lt;/strong>、&lt;strong>接口标识&lt;/strong>等信息组织成不同的&lt;code>TLV&lt;/code>（Type/Length/Value，类型/长度/值），并封装在LLDPDU（LLDP Data Unit，&lt;strong>链路层发现协议数据单元&lt;/strong>
+）中发布给与自己直连的邻居，邻居收到这些信息后将其以标准MIB（Management Information Base，&lt;strong>管理信息库&lt;/strong>）的形式保存起来，以供网络管理系统查询及判断链路的通信状况。&lt;/p>
+&lt;p>类似的还有Cisco Discovery Protocol, Foundry Discovery Protocol, Nortel Discovery Protocol, etc.&lt;/p>
+&lt;h2 id="frame-structure">Frame Structure
+&lt;/h2>&lt;p>LLDP的以太帧通常有DST MAC, SRC MAC, EtherType(0x88cc). 以及LLDPDU和FCS组成.&lt;/p>
+&lt;p>&lt;strong>Ethernet Frame structure&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">&lt;a class="link" href="https://en.wikipedia.org/wiki/Preamble_%28communication%29" target="_blank" rel="noopener"
+>Preamble&lt;/a>&lt;/th>
+&lt;th style="text-align: center">Destination MAC&lt;/th>
+&lt;th style="text-align: center">Source MAC&lt;/th>
+&lt;th style="text-align: center">&lt;a class="link" href="https://en.wikipedia.org/wiki/Ethertype" target="_blank" rel="noopener"
+>Ethertype&lt;/a>&lt;/th>
+&lt;th>LLDPDU&lt;/th>
+&lt;th style="text-align: center">&lt;a class="link" href="https://en.wikipedia.org/wiki/Frame_check_sequence" target="_blank" rel="noopener"
+>Frame check sequence&lt;/a>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">&lt;/td>
+&lt;td style="text-align: center">01:80:c2:00:00:0e, or 01:80:c2:00:00:03, or 01:80:c2:00:00:00&lt;/td>
+&lt;td style="text-align: center">Station&amp;rsquo;s address&lt;/td>
+&lt;td style="text-align: center">0x88CC&lt;/td>
+&lt;td>&lt;/td>
+&lt;td style="text-align: center">&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>LLDPDU&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Chassis ID TLV&lt;/th>
+&lt;th>Port ID TLV&lt;/th>
+&lt;th>Time to live TLV&lt;/th>
+&lt;th>Optional TLV(s)&lt;/th>
+&lt;th>End of LLDPDU TLV&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Type=1&lt;/td>
+&lt;td>Type=2&lt;/td>
+&lt;td>Type=3&lt;/td>
+&lt;td>Optional TLV&lt;/td>
+&lt;td>&amp;hellip;&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>TLV structures&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">Type&lt;/th>
+&lt;th style="text-align: center">Length&lt;/th>
+&lt;th style="text-align: center">Value&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">7 bits&lt;/td>
+&lt;td style="text-align: center">9 bits&lt;/td>
+&lt;td style="text-align: center">0-511 octets&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>TLV type values&lt;/strong>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">TLV type&lt;/th>
+&lt;th style="text-align: center">TLV name&lt;/th>
+&lt;th style="text-align: center">Usage in LLDPDU&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">0&lt;/td>
+&lt;td style="text-align: center">End of LLDPDU&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">1&lt;/td>
+&lt;td style="text-align: center">Chassis ID&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">2&lt;/td>
+&lt;td style="text-align: center">Port ID&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">3&lt;/td>
+&lt;td style="text-align: center">Time To Live&lt;/td>
+&lt;td style="text-align: center">Mandatory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">4&lt;/td>
+&lt;td style="text-align: center">Port description&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">5&lt;/td>
+&lt;td style="text-align: center">System name&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">6&lt;/td>
+&lt;td style="text-align: center">System description&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">7&lt;/td>
+&lt;td style="text-align: center">System capabilities&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">8&lt;/td>
+&lt;td style="text-align: center">Management address&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">9–126&lt;/td>
+&lt;td style="text-align: center">Reserved&lt;/td>
+&lt;td style="text-align: center">-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: center">127&lt;/td>
+&lt;td style="text-align: center">Custom TLVs&lt;/td>
+&lt;td style="text-align: center">Optional&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Custom TLVs are supported via a TLV type 127. The value of a custom TLV starts with a 24-bit organizationally unique identifier and a 1 byte
+organizationally specific subtype followed by data. The basic format for an organizationally specific TLV is shown below:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">Type&lt;/th>
+&lt;th style="text-align: center">Length&lt;/th>
+&lt;th style="text-align: center">Organizationally unique identifier (OUI)&lt;/th>
+&lt;th style="text-align: center">Organizationally defined subtype&lt;/th>
+&lt;th style="text-align: center">Organizationally defined information string&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: center">7 bits—127&lt;/td>
+&lt;td style="text-align: center">9 bits&lt;/td>
+&lt;td style="text-align: center">24 bits&lt;/td>
+&lt;td style="text-align: center">8 bits&lt;/td>
+&lt;td style="text-align: center">0-507 octets&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>According to IEEE Std 802.1AB, §9.6.1.3, &amp;ldquo;The Organizationally Unique Identifier shall contain the organization&amp;rsquo;s OUI as defined in IEEE Std
+802-2001.&amp;rdquo; Each organization is responsible for managing their subtypes.&lt;/p>
+&lt;h2 id="work-mechanism">Work Mechanism
+&lt;/h2>&lt;h3 id="lldp工作模式">LLDP工作模式
+&lt;/h3>&lt;ul>
+&lt;li>TxRx: 既发送也接收LLDP报文&lt;/li>
+&lt;li>Tx: 只发送LLDP报文&lt;/li>
+&lt;li>Rx: 只接收LLDP报文&lt;/li>
+&lt;li>Disable: 既不发送也不接收LLDP报文&lt;/li>
+&lt;/ul>
+&lt;p>当端口的LLDP工作模式发生变化时，端口将对协议状态机进行初始化操作。为了避免端口工作模式频繁改变而导致端口不断执行初始化操作，可配置端口初始化延迟时间，当端口工作模式改变时延迟一段时间再执行初始化操作。&lt;/p>
+&lt;h3 id="lldp发送机制">LLDP发送机制
+&lt;/h3>&lt;blockquote>
+&lt;p>当端口工作在TxRx或Tx模式时，设备会周期性地向邻居设备发送LLDP报文。如果设备的本地配置发生变化则立即发送LLDP报文，以将本地信息的变化情况尽快通知给邻居设备。但为了防止本地信息的频繁变化而引起LLDP报文的大量发送，每发送一个LLDP报文后都需延迟一段时间后再继续发送下一个报文。&lt;/p>
+&lt;p>当设备的工作模式由Disable/Rx切换为TxRx/Tx，或者发现了新的邻居设备（即收到一个新的LLDP报文且本地尚未保存发送该报文设备的信息）时，该设备将自动启用快速发送机制，即将LLDP报文的发送周期缩短为1秒，并连续发送指定数量的LLDP报文后再恢复为正常的发送周期。&lt;/p>&lt;/blockquote>
+&lt;h3 id="lldp接收机制">LLDP接收机制
+&lt;/h3>&lt;blockquote>
+&lt;p>当端口工作在TxRx或Rx模式时，设备会对收到的LLDP报文及其携带的TLV进行有效性检查，通过检查后再将邻居信息保存到本地，并根据TTL（Time To Live，生存时间）
+TLV中TTL的值来设置邻居信息在本地设备上的老化时间，若该值为零，则立刻老化该邻居信息。&lt;/p>&lt;/blockquote>
+&lt;p>&lt;a class="link" href="http://www.h3c.com/cn/d_200805/605853_30003_0.htm" target="_blank" rel="noopener"
+>H3C LLDP Information&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" target="_blank" rel="noopener"
+>LLDP wiki&lt;/a>&lt;/p></description></item><item><title>Switch</title><link>https://notes.yoooo.fun/posts/net-switch/</link><pubDate>Sat, 18 Apr 2020 21:08:13 +0000</pubDate><guid>https://notes.yoooo.fun/posts/net-switch/</guid><description>&lt;h1 id="switch">switch
+&lt;/h1>&lt;h2 id="overview">Overview
+&lt;/h2>&lt;h3 id="link-type">Link Type
+&lt;/h3>&lt;blockquote>
+&lt;p>The link type of VLAN can be divided into &lt;strong>access link&lt;/strong> and &lt;strong>trunk link&lt;/strong>.&lt;/p>&lt;/blockquote>
+&lt;h4 id="access-link">Access Link
+&lt;/h4>&lt;ul>
+&lt;li>Access link is part of only one VLAN, and normally is for end devices.&lt;/li>
+&lt;li>Any device attached to an access link is unaware of a VLAN membership.&lt;/li>
+&lt;li>An access-link connection can understand only standard Ethernet frames.&lt;/li>
+&lt;li>Switches remove any VLAN information from the frame before it is sent to an access-link device.&lt;/li>
+&lt;/ul>
+&lt;h4 id="trunk-link">Trunk Link
+&lt;/h4>&lt;ul>
+&lt;li>Trunk link can carry multiple VLAN traffic and normally is used to connect switches to other switches or to routers.&lt;/li>
+&lt;/ul>
+&lt;h2 id="access-port">Access Port
+&lt;/h2>&lt;p>l Belong to &lt;strong>one&lt;/strong> VLAN.&lt;/p>
+&lt;p>l Commonly used to connect computer ports.&lt;/p>
+&lt;hr>
+&lt;ul>
+&lt;li>Strip the VLAN information in the packet and forward the packet directly.&lt;/li>
+&lt;/ul>
+&lt;h2 id="trunk-port">Trunk Port
+&lt;/h2>&lt;p>l Allow &lt;strong>multiple&lt;/strong> VLANs through.&lt;/p>
+&lt;p>l Receive and send &lt;strong>multiple&lt;/strong> VLAN packets.&lt;/p>
+&lt;p>l Typically used for connection between switches.&lt;/p>
+&lt;hr>
+&lt;ol>
+&lt;li>
+&lt;p>Compare the PVID of the port and the VLAN information in the packet to be transmitted.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If they are the same, proceed to Step 3, otherwise, proceed to Step 4&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Strip the VLAN information in the packet and forward the packet.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Forward the packet directly.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="hybrid-port">Hybrid Port
+&lt;/h2>&lt;p>l Allow &lt;strong>multiple&lt;/strong> VLANs through.&lt;/p>
+&lt;p>l Receive and send &lt;strong>multiple&lt;/strong> VLAN packets.&lt;/p>
+&lt;p>l Used for connection between switches, or switch and computer.&lt;/p>
+&lt;hr>
+&lt;ol>
+&lt;li>
+&lt;p>Check the VLAN attributes on this port by running the command disp interface to se whether the VLAN attributes is &amp;ldquo;tagged&amp;rdquo; or &amp;ldquo;untagged&amp;rdquo;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If I is untagged, proceed to Step 3, if it is tagged, proceed to step 4.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Strip the VLAN information in the packet and forward the packet.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Forward the packet directly.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="summary">Summary
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Port Type&lt;/th>
+&lt;th style="text-align: left">Support Mode&lt;/th>
+&lt;th>Common use cases&lt;/th>
+&lt;th>Comment&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Access&lt;/td>
+&lt;td style="text-align: left">single untagged VLAN&lt;/td>
+&lt;td>PC/Printer to switch&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Trunk&lt;/td>
+&lt;td style="text-align: left">single untagged VLAN &amp;amp; multiple tagged VLANs&lt;/td>
+&lt;td>switch/hypervisor to switch&lt;/td>
+&lt;td>VLAN 1 can be Tagged (Untagged by default)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Hybrid&lt;/td>
+&lt;td style="text-align: left">Support Untagged VLANs &amp;amp; Tagged VLANs&lt;/td>
+&lt;td>1. Physical Connection: IP Phone to Network Switch Port &amp;amp; a PC to IP Phone’s Switch port; 2. Logical Connection: Voice VLAN as Tagged &amp;amp; Data VLAN as Untagged &amp;amp; Switch port in Trunk mode&lt;/td>
+&lt;td>1. Usually the Untagged VLAN number = Native/Default VLAN number; 2. Support for multi-Untagged Frames, usually require the use of protocol-based VLANs; 3. VLAN 1 can be Tagged (Untagged by default)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="https://notes.yoooo.fun/assets/switch-egg.jpg"
+loading="lazy"
+alt="switch-egg"
+>&lt;/p></description></item></channel></rss>

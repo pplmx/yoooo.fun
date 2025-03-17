@@ -1,0 +1,199 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Docker Architecture"><meta name=keywords content="container,,docker,,dockerd,,containerd,,containerd-shim,,runc"><title>Let's deeply understand how to run a container</title>
+<link rel=canonical href=https://notes.yoooo.fun/posts/docker-world/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="Let's deeply understand how to run a container"><meta property='og:description' content="Docker Architecture"><meta property='og:url' content='https://notes.yoooo.fun/posts/docker-world/'><meta property='og:site_name' content='Aurora'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='docker'><meta property='article:tag' content='container'><meta property='article:published_time' content='2021-03-31T14:48:04+00:00'><meta property='article:modified_time' content='2021-03-31T15:31:10+00:00'><meta name=twitter:title content="Let's deeply understand how to run a container"><meta name=twitter:description content="Docker Architecture"><link rel="shortcut icon" href=/images/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/favicon.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Aurora</a></h1><h2 class=site-description>To infinity and beyond.</h2></div></header><ol class=menu-social><li><a href=https://github.com/pplmx target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#components>Components</a><ol><li><a href=#runc>runc</a></li><li><a href=#containerd-shim>containerd-shim</a></li><li><a href=#containerd>containerd</a></li><li><a href=#dockerd>dockerd</a></li></ol></li><li><a href=#workflow-among-the-above-components>Workflow among the above components</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/docker/>Docker</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/docker-world/>Let's deeply understand how to run a container</a></h2><h3 class=article-subtitle>Docker Architecture</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 31, 2021</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><h1 id=docker>Docker</h1><p><a class=link href=https://www.docker.com/blog/introducing-docker-engine-18-09/ target=_blank rel=noopener>Referenced from here.</a></p><p><img src=/assets/DockerEngineDiagram-1.png loading=lazy alt="Introducing Docker Engine 18.09 - Docker Blog"></p><p><a class=link href=https://mkdev.me/en/posts/the-tool-that-really-runs-your-containers-deep-dive-into-runc-and-oci-specifications target=_blank rel=noopener>Referenced from here.</a></p><p><img src=/assets/differ-container.png loading=lazy alt="Differ Container"></p><p><a class=link href=https://medium.com/@avijitsarkar123/docker-and-oci-runtimes-a9c23a5646d6 target=_blank rel=noopener>Referenced from here.</a></p><p><img src=/assets/docker_oci.png loading=lazy alt="Docker and OCI Runtimes."></p><h2 id=components>Components</h2><ul><li>dockerd</li><li>containerd</li><li>containerd-shim</li><li>runc</li></ul><h3 id=runc>runc</h3><p><code>CLI tool</code> for spawning and running containers according to the <code>OCI specification</code>.</p><h3 id=containerd-shim>containerd-shim</h3><p>The shim allows for <code>daemonless</code> containers. It basically sits as the parent of the container&rsquo;s process to facilitate a few things.</p><ul><li>First it allows the runtimes(i.e. <code>runc</code>) to exit after it starts the container. This way we don&rsquo;t have to have the long running runtime processes
+for containers. When you start <code>mysql</code> you should only see the <code>mysql</code> process and the shim.</li><li>Second it keeps the STDIO and other fds open for the container incase <code>containerd</code> and/or docker both die. If the shim was not running then the
+parent side of the pipes or the TTY master would be closed and the container would exit.</li><li>Finally it allows the container&rsquo;s exit status to be reported back to a higher level tool like docker without having the be the actual parent of the
+container&rsquo;s process and do a <code>wait4</code>.</li></ul><h3 id=containerd>containerd</h3><p><strong>containerd</strong> was introduced in Docker 1.11 and since then took main responsibility of managing containers life-cycle. <code>containerd</code> is the <em>executor
+for containers</em>, but has a wider scope than <em>just executing</em> containers. So it also take care of:</p><ul><li>Image push and pull</li><li>Managing of storage</li><li>Of course executing of Containers by calling <strong>runc</strong> with the right parameters to run containers&mldr;</li><li>Managing of network primitives for interfaces</li><li>Management of network namespaces containers to join existing namespaces</li></ul><h3 id=dockerd>dockerd</h3><p>The Docker daemon - <strong>dockerd</strong> listens for Docker API requests and manages host&rsquo;s Container life-cycles by utilizing <strong>containerd</strong>.</p><p><code>dockerd</code> can listen for Docker Engine API requests via three different types of Socket: <code>unix</code>, <code>tcp</code>, and <code>fd</code>.</p><p>By default, a <code>unix</code> domain socket is created at <code>/var/run/docker.sock</code>, requiring either root permission, or docker group membership.</p><p>On <a class=link href=http://alexander.holbreich.org/tag/systemd/ target=_blank rel=noopener>Systemd</a> based systems, you can communicate with the daemon via <code>Systemd</code> socket activation,
+use <code>dockerd -H fd://</code>.</p><h2 id=workflow-among-the-above-components>Workflow among the above components</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>❯ docker --version
+</span></span><span class=line><span class=cl>Docker version 20.10.5, build 55c4c88
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ sudo docker container ls
+</span></span><span class=line><span class=cl>CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS     NAMES
+</span></span><span class=line><span class=cl>05ebb62bc655   nginx     <span class=s2>&#34;/docker-entrypoint.…&#34;</span>   <span class=m>13</span> days ago   Up <span class=m>13</span> days   80/tcp    nginx2
+</span></span><span class=line><span class=cl>7f3fa77ddad8   nginx     <span class=s2>&#34;/docker-entrypoint.…&#34;</span>   <span class=m>13</span> days ago   Up <span class=m>13</span> days   80/tcp    nginx1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ ps -ef --forest <span class=p>|</span> grep -v <span class=s2>&#34; --color=auto&#34;</span> <span class=p>|</span> grep -A3 -E <span class=s2>&#34;dockerd|containerd&#34;</span>
+</span></span><span class=line><span class=cl>root         <span class=m>714</span>       <span class=m>1</span>  <span class=m>0</span> Mar17 ?        00:17:12 /usr/bin/containerd
+</span></span><span class=line><span class=cl>root        <span class=m>1931</span>       <span class=m>1</span>  <span class=m>0</span> Mar17 ?        00:02:53 /usr/bin/dockerd -H fd:// --containerd<span class=o>=</span>/run/containerd/containerd.sock
+</span></span><span class=line><span class=cl>root        <span class=m>2139</span>       <span class=m>1</span>  <span class=m>0</span> Mar17 ?        00:01:04 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 7f3fa77ddad85e82619b21d6fd9bde8c6fa7cce9e1c063b4f18f258c1206b1e4 -address /run/containerd/containerd.sock
+</span></span><span class=line><span class=cl>root        <span class=m>2163</span>    <span class=m>2139</span>  <span class=m>0</span> Mar17 ?        00:00:00  <span class=se>\_</span> nginx: master process nginx -g daemon off<span class=p>;</span>
+</span></span><span class=line><span class=cl>systemd+    <span class=m>2217</span>    <span class=m>2163</span>  <span class=m>0</span> Mar17 ?        00:00:00      <span class=se>\_</span> nginx: worker process
+</span></span><span class=line><span class=cl>root        <span class=m>2240</span>       <span class=m>1</span>  <span class=m>0</span> Mar17 ?        00:01:05 /usr/bin/containerd-shim-runc-v2 -namespace moby -id 05ebb62bc6557c76f9d4494bbd2262e9fa7f91c3a0bad14677455a158e949f75 -address /run/containerd/containerd.sock
+</span></span><span class=line><span class=cl>root        <span class=m>2261</span>    <span class=m>2240</span>  <span class=m>0</span> Mar17 ?        00:00:00  <span class=se>\_</span> nginx: master process nginx -g daemon off<span class=p>;</span>
+</span></span><span class=line><span class=cl>systemd+    <span class=m>2319</span>    <span class=m>2261</span>  <span class=m>0</span> Mar17 ?        00:00:00      <span class=se>\_</span> nginx: worker <span class=nv>process</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>=================================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ docker --version
+</span></span><span class=line><span class=cl>Docker version 19.03.15, build 99e3ed8919
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ docker container ls
+</span></span><span class=line><span class=cl>CONTAINER ID    IMAGE    COMMAND                  CREATED           STATUS           PORTS     NAMES
+</span></span><span class=line><span class=cl>cbb233ea0045    nginx    <span class=s2>&#34;/docker-entrypoint.…&#34;</span>   <span class=m>11</span> minutes ago    Up <span class=m>11</span> minutes    80/tcp    nginx2
+</span></span><span class=line><span class=cl>fa3468d6e89a    nginx    <span class=s2>&#34;/docker-entrypoint.…&#34;</span>   <span class=m>11</span> minutes ago    Up <span class=m>11</span> minutes    80/tcp    nginx1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ ps -ef --forest <span class=p>|</span> less
+</span></span><span class=line><span class=cl>root      <span class=m>184283</span>       <span class=m>1</span>  <span class=m>0</span> 14:10 ?        00:00:00 /usr/bin/containerd
+</span></span><span class=line><span class=cl>root      <span class=m>184493</span>  <span class=m>184283</span>  <span class=m>0</span> 14:11 ?        00:00:00  <span class=se>\_</span> containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runtime.v1.linux/moby/fa3468d6e89a7ddcbd67a7049b2fd1771555c445ba6e8795a4634cb4795ecdd6 -address /run/containerd/containerd.sock -containerd-binary /usr/bin/containerd -runtime-root /var/run/docker/runtime-runc
+</span></span><span class=line><span class=cl>root      <span class=m>184509</span>  <span class=m>184493</span>  <span class=m>0</span> 14:11 ?        00:00:00  <span class=p>|</span>   <span class=se>\_</span> nginx: master process nginx -g daemon off<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=m>101</span>       <span class=m>184564</span>  <span class=m>184509</span>  <span class=m>0</span> 14:11 ?        00:00:00  <span class=p>|</span>       <span class=se>\_</span> nginx: worker process
+</span></span><span class=line><span class=cl>root      <span class=m>184595</span>  <span class=m>184283</span>  <span class=m>0</span> 14:11 ?        00:00:00  <span class=se>\_</span> containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runtime.v1.linux/moby/cbb233ea004589877970ee3b4bcd08672370c159720617c29c31b943e4a5be3c -address /run/containerd/containerd.sock -containerd-binary /usr/bin/containerd -runtime-root /var/run/docker/runtime-runc
+</span></span><span class=line><span class=cl>root      <span class=m>184611</span>  <span class=m>184595</span>  <span class=m>0</span> 14:11 ?        00:00:00      <span class=se>\_</span> nginx: master process nginx -g daemon off<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=m>101</span>       <span class=m>184663</span>  <span class=m>184611</span>  <span class=m>0</span> 14:11 ?        00:00:00          <span class=se>\_</span> nginx: worker process
+</span></span><span class=line><span class=cl>root      <span class=m>184291</span>       <span class=m>1</span>  <span class=m>0</span> 14:10 ?        00:00:01 /usr/bin/dockerd -H fd:// --containerd<span class=o>=</span>/run/containerd/containerd.sock
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>=================================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ podman version
+</span></span><span class=line><span class=cl>Version:      2.2.1
+</span></span><span class=line><span class=cl>API Version:  <span class=m>2</span>
+</span></span><span class=line><span class=cl>Go Version:   go1.14.12
+</span></span><span class=line><span class=cl>Built:        Mon Feb <span class=m>22</span> 12:51:35 <span class=m>2021</span>
+</span></span><span class=line><span class=cl>OS/Arch:      linux/amd64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ podman container ls
+</span></span><span class=line><span class=cl>CONTAINER ID  IMAGE                           COMMAND               CREATED        STATUS            PORTS   NAMES
+</span></span><span class=line><span class=cl>2fed78dd707e  docker.io/library/nginx:latest  nginx -g daemon o...  <span class=m>2</span> minutes ago  Up <span class=m>2</span> minutes ago          nginx2
+</span></span><span class=line><span class=cl>75103237f3d5  docker.io/library/nginx:latest  nginx -g daemon o...  <span class=m>2</span> minutes ago  Up <span class=m>2</span> minutes ago          nginx1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ runc list
+</span></span><span class=line><span class=cl>ID                                                                 PID         STATUS      BUNDLE                                                                                                                     CREATED                          OWNER
+</span></span><span class=line><span class=cl>2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9   <span class=m>188922</span>      running     /var/lib/containers/storage/overlay-containers/2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9/userdata   2021-03-31T06:36:31.164181537Z   root
+</span></span><span class=line><span class=cl>75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832   <span class=m>188806</span>      running     /var/lib/containers/storage/overlay-containers/75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832/userdata   2021-03-31T06:36:25.812499602Z   root
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ runc state 2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9
+</span></span><span class=line><span class=cl><span class=o>{</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;ociVersion&#34;</span>: <span class=s2>&#34;1.0.2-dev&#34;</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;id&#34;</span>: <span class=s2>&#34;2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9&#34;</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;pid&#34;</span>: 188922,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;status&#34;</span>: <span class=s2>&#34;running&#34;</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;bundle&#34;</span>: <span class=s2>&#34;/var/lib/containers/storage/overlay-containers/2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9/userdata&#34;</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;rootfs&#34;</span>: <span class=s2>&#34;/var/lib/containers/storage/overlay/9fde6f2ab9dee9701adce3862803afe893c009269e74c0c77e18c4454c9184d1/merged&#34;</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;created&#34;</span>: <span class=s2>&#34;2021-03-31T06:36:31.164181537Z&#34;</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;annotations&#34;</span>: <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.container.manager&#34;</span>: <span class=s2>&#34;libpod&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.kubernetes.cri-o.Created&#34;</span>: <span class=s2>&#34;2021-03-31T14:36:30.807867268+08:00&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.kubernetes.cri-o.TTY&#34;</span>: <span class=s2>&#34;false&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.podman.annotations.autoremove&#34;</span>: <span class=s2>&#34;FALSE&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.podman.annotations.init&#34;</span>: <span class=s2>&#34;FALSE&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.podman.annotations.privileged&#34;</span>: <span class=s2>&#34;FALSE&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;io.podman.annotations.publish-all&#34;</span>: <span class=s2>&#34;FALSE&#34;</span>,
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;org.opencontainers.image.stopSignal&#34;</span>: <span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>,
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;owner&#34;</span>: <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span><span class=c1>#</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ ps -ef --forest
+</span></span><span class=line><span class=cl>root      <span class=m>188797</span>       <span class=m>1</span>  <span class=m>0</span> 14:36 ?        00:00:00 /usr/bin/conmon --api-version <span class=m>1</span> -c 75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832 -u 75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832 -r /usr/bin/runc -b /var/lib/containers/storage/overlay-containers/75103237f3d5f8d78f1d34cd32747c08/run/containers/storage/overlay-containers/75103237f3d5f8d78f1d34cd32747c083f8d59eb5df4d09e3e68ab8279fcf832/userdata/conmon.pid --exit-command /usr/bin/podman --exit-command-arg --root --exit-command-arg /var/lib/containers/storage --exit-command-arg --runroot --exit-command-arg /var/run/containers/storage --exit-comm
+</span></span><span class=line><span class=cl>root      <span class=m>188806</span>  <span class=m>188797</span>  <span class=m>0</span> 14:36 ?        00:00:00  <span class=se>\_</span> nginx: master process nginx -g daemon off<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=m>101</span>       <span class=m>188842</span>  <span class=m>188806</span>  <span class=m>0</span> 14:36 ?        00:00:00      <span class=se>\_</span> nginx: worker process
+</span></span><span class=line><span class=cl>root      <span class=m>188913</span>       <span class=m>1</span>  <span class=m>0</span> 14:36 ?        00:00:00 /usr/bin/conmon --api-version <span class=m>1</span> -c 2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9 -u 2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9 -r /usr/bin/runc -b /var/lib/containers/storage/overlay-containers/2fed78dd707e865d4995f2d80dd9ee78/run/containers/storage/overlay-containers/2fed78dd707e865d4995f2d80dd9ee7830776e8adfe62f2b5b2754fa8b950be9/userdata/conmon.pid --exit-command /usr/bin/podman --exit-command-arg --root --exit-command-arg /var/lib/containers/storage --exit-command-arg --runroot --exit-command-arg /var/run/containers/storage --exit-comm
+</span></span><span class=line><span class=cl>root      <span class=m>188922</span>  <span class=m>188913</span>  <span class=m>0</span> 14:36 ?        00:00:00  <span class=se>\_</span> nginx: master process nginx -g daemon off<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=m>101</span>       <span class=m>188955</span>  <span class=m>188922</span>  <span class=m>0</span> 14:36 ?        00:00:00      <span class=se>\_</span> nginx: worker process
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/docker/>Docker</a>
+<a href=/tags/container/>Container</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>Last updated on Mar 31, 2021 15:31 UTC</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/docker-network-conflicts/><div class=article-details><h2 class=article-title>Docker network conflicts with local networks</h2></div></a></article><article><a href=/posts/libc-version-not-found/><div class=article-details><h2 class=article-title>How to handle libc version not found in docker multi-stage build</h2></div></a></article><article><a href=/posts/healthcheck-distroless-img/><div class=article-details><h2 class=article-title>How to healthcheck distroless image</h2></div></a></article><article><a href=/posts/quick-start-6-ldap-ssp/><div class=article-details><h2 class=article-title>Quick Start: SSP</h2></div></a></article><article><a href=/posts/quick-start-1_2-traefik-http3/><div class=article-details><h2 class=article-title>Quick Start: Traefik with HTTP/3</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2017 -
+2025 Aurora</section><section class=powerby><a href=https://yoooo.fun>Mystic</a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

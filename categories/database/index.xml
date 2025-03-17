@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database on Aurora</title><link>https://notes.yoooo.fun/categories/database/</link><description>Recent content in Database on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 13 Mar 2024 15:47:20 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/categories/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Export Data from MySQL by mysqldump</title><link>https://notes.yoooo.fun/posts/mysql-export-data/</link><pubDate>Wed, 13 Mar 2024 15:47:20 +0000</pubDate><guid>https://notes.yoooo.fun/posts/mysql-export-data/</guid><description>&lt;h1 id="how-to-export-data-from-the-mysql">how to export data from the mysql
+&lt;/h1>&lt;h2 id="use-mysqldump">use mysqldump
+&lt;/h2>&lt;p>Just for the mysql/mariadb using:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker container run -it --rm mysql:8 bash -c &lt;span class="s2">&amp;#34;echo -e &amp;#39;[mysqldump]\nuser=aurora\npassword=aurora&amp;#39; &amp;gt; ~/.my.cnf &amp;amp;&amp;amp; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> mysqldump -h 192.168.91.199 your_database_name&amp;#34;&lt;/span> &amp;gt; exported.sql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>For the SQLite compatibility:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker container run -it --rm mysql:8 bash -c &lt;span class="s2">&amp;#34;echo -e &amp;#39;[mysqldump]\nuser=aurora\npassword=aurora&amp;#39; &amp;gt; ~/.my.cnf &amp;amp;&amp;amp; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> mysqldump --compact --no-create-info --skip-add-locks --complete-insert -h 192.168.91.199 your_database_name \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table1 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table2 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table3 \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> table4&amp;#34;&lt;/span> &amp;gt; exported.sql
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Some Compatible Options for SQLite&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## because the sqlite cannot parse the &amp;#34;\&amp;#39;&amp;#34;, we should use double single quote instead&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s2">&amp;#34;s/\\\&amp;#39;/&amp;#39;&amp;#39;/g&amp;#34;&lt;/span> exported.sql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="explanation-in-details">Explanation in Details
+&lt;/h2>&lt;p>&lt;code>docker container run -it --rm mysql:8 bash -c&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>mysql:8&lt;/code> is the image name and tag&lt;/li>
+&lt;li>&lt;code>-it&lt;/code> is to run the container in interactive mode&lt;/li>
+&lt;li>&lt;code>--rm&lt;/code> is to remove the container after it is stopped&lt;/li>
+&lt;li>&lt;code>bash -c&lt;/code> is to run the command in the container&lt;/li>
+&lt;/ul>
+&lt;p>The left is a combined command to create a &lt;code>.my.cnf&lt;/code> file and run &lt;code>mysqldump&lt;/code> command.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>echo -e '[mysqldump]\nuser=aurora\npassword=aurora' &amp;gt; ~/.my.cnf&lt;/code> is to create a &lt;code>.my.cnf&lt;/code> file at &lt;code>$HOME&lt;/code> with the content
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[mysqldump]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user=aurora
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">password=aurora
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>&lt;code>--compact&lt;/code> is to use the compact format, which aims to remove the Comment Syntax, the &lt;code>/*!&lt;/code> and &lt;code>*/&lt;/code> are removed&lt;/li>
+&lt;li>&lt;code>--no-create-info&lt;/code> is to skip the &lt;code>CREATE TABLE&lt;/code> statement, because the statement is not compatible with SQLite&lt;/li>
+&lt;li>&lt;code>--skip-add-locks&lt;/code> is to skip the &lt;code>LOCK TABLES&lt;/code> statement, because the statement is not compatible with SQLite&lt;/li>
+&lt;li>&lt;code>--complete-insert&lt;/code> is to use the &lt;code>INSERT INTO&lt;/code> statement with the column names&lt;/li>
+&lt;li>&lt;code>-h&lt;/code> is to specify the db host&lt;/li>
+&lt;li>&lt;code>your_database_name&lt;/code> is the database name&lt;/li>
+&lt;li>&lt;code>table1 table2 table3 table4&lt;/code> are the exported table names, separated by space; if not specified, all tables will be exported&lt;/li>
+&lt;li>&lt;code>&amp;gt; exported.sql&lt;/code> is to redirect the output to a file named &lt;code>exported.sql&lt;/code>, at the host current directory&lt;/li>
+&lt;/ul></description></item><item><title>delete, truncate and drop</title><link>https://notes.yoooo.fun/posts/db-del-trunc-drop/</link><pubDate>Tue, 23 Jun 2020 08:57:45 +0000</pubDate><guid>https://notes.yoooo.fun/posts/db-del-trunc-drop/</guid><description>&lt;h1 id="delete-truncate-drop">delete truncate drop
+&lt;/h1>&lt;h2 id="delete">delete
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>delete是 &lt;code>DML&lt;/code> ，执行delete操作时，每次从表中删除一行，并且同时将该行的的删除操作记录在redo和undo表空间中以便进行回滚（rollback）和重做操作，但要注意表空间要足够大，需要手动提交（commit）操作才能生效，可以通过rollback撤消操作。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>delete可根据条件删除表中满足条件的数据，如果不指定where子句，那么删除表中所有记录。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>delete语句不影响表所占用的extent，高水线(high watermark)保持原位置不变。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="truncate">truncate
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>truncate是 &lt;code>DDL&lt;/code> ，会隐式提交，所以，不能回滚，不会触发触发器。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>truncate会删除表中所有记录，并且将重新设置高水线和所有的索引，缺省情况下将空间释放到minextents个extent，除非使用reuse
+storage，。不会记录日志，所以执行速度很快，但不能通过rollback撤消操作（如果一不小心把一个表truncate掉，也是可以恢复的，只是不能通过rollback来恢复）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对于外键（foreignkey ）约束引用的表，不能使用 truncate table，而应使用不带 where 子句的 delete 语句。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>truncate table不能用于参与了索引视图的表。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="drop">drop
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>drop是 &lt;code>DDL&lt;/code> ，会隐式提交，所以，不能回滚，不会触发触发器。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>drop语句删除表结构及所有数据，并将表所占用的空间全部释放。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>drop语句将删除表的结构所依赖的约束，触发器，索引，依赖于该表的存储过程/函数将保留,但是变为invalid状态。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="总结">总结
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>在速度上，一般来说，drop&amp;gt; truncate &amp;gt; delete。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在使用drop和truncate时一定要注意，虽然可以恢复，但为了减少麻烦，还是要慎重。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果想删除部分数据用delete，注意带上where子句，回滚段要足够大；&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>
+&lt;p>如果想删除表，当然用drop；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果想保留表而将所有数据删除，如果和事务无关，用truncate即可；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果和事务有关，或者想触发trigger，还是用delete；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果是整理表内部的碎片，可以用truncate跟上reuse stroage，再重新导入/插入数据。&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

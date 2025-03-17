@@ -1,0 +1,436 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="alias git log & common git cmd"><meta name=keywords content="git,log,,git,submodules,,list,top,n,committers"><title>some helpful git cmd & alias</title>
+<link rel=canonical href=https://notes.yoooo.fun/posts/git-help/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="some helpful git cmd & alias"><meta property='og:description' content="alias git log & common git cmd"><meta property='og:url' content='https://notes.yoooo.fun/posts/git-help/'><meta property='og:site_name' content='Aurora'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='git'><meta property='article:tag' content='help'><meta property='article:published_time' content='2020-03-24T20:55:10+00:00'><meta property='article:modified_time' content='2021-04-08T17:44:31+00:00'><meta name=twitter:title content="some helpful git cmd & alias"><meta name=twitter:description content="alias git log & common git cmd"><link rel="shortcut icon" href=/images/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/favicon.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Aurora</a></h1><h2 class=site-description>To infinity and beyond.</h2></div></header><ol class=menu-social><li><a href=https://github.com/pplmx target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#command-git-cli>command git cli</a></li><li><a href=#git-config>git config</a></li><li><a href=#git-customized-log>git customized log</a></li><li><a href=#git-submodule>git submodule</a></li><li><a href=#git-log>git log</a></li><li><a href=#git-other>git other</a></li><li><a href=#some-error-solution>some error solution</a><ol><li><a href=#fix-chinese-char-cannot-be-shown-in-the-right-way>fix Chinese char cannot be shown in the right way</a></li><li><a href=#remote-rejectedfor-gerrit-with-changeid>remote rejected(for gerrit with changeId)</a></li><li><a href=#change-username-and-useremail-in-history>change user.name and user.email in history</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/general/>General</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/git-help/>some helpful git cmd & alias</a></h2><h3 class=article-subtitle>alias git log & common git cmd</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 24, 2020</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><h1 id=git>Git</h1><h2 id=command-git-cli>command git cli</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># presume that your remote called origin</span>
+</span></span><span class=line><span class=cl><span class=c1># Command for deleting remote branches with names containing PATTERN:</span>
+</span></span><span class=line><span class=cl>git branch -r <span class=p>|</span> awk -Forigin/ <span class=s1>&#39;/PATTERN/ {print $2}&#39;</span> <span class=p>|</span> xargs -I <span class=o>{}</span> git push origin :<span class=o>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># list all files in a commit</span>
+</span></span><span class=line><span class=cl>git diff-tree --no-commit-id --name-status -r 6a730fff4b
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># the dash shows that the order in reverse</span>
+</span></span><span class=line><span class=cl>git tag --sort<span class=o>=</span>-v:refname --format<span class=o>=</span><span class=s1>&#39;%(creatordate:short):  %(refname:short)&#39;</span>
+</span></span><span class=line><span class=cl>git tag --sort<span class=o>=</span>-creatordate --format<span class=o>=</span><span class=s1>&#39;%(creatordate:short):  %(refname:short)&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># switch branch</span>
+</span></span><span class=line><span class=cl><span class=c1># if local branch is existed, switch it; or search the remote branch and switch it(if exists in the remote)</span>
+</span></span><span class=line><span class=cl>git switch branch-name
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># create a branch based on the current branch</span>
+</span></span><span class=line><span class=cl>git switch -c branch-name
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># create a branch based on the remote branch</span>
+</span></span><span class=line><span class=cl><span class=c1># like as: git checkout -b branch-name remote-name</span>
+</span></span><span class=line><span class=cl>git switch -c branch-name remote-name
+</span></span></code></pre></td></tr></table></div></div><h2 id=git-config>git config</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># set the mordern editor fot git</span>
+</span></span><span class=line><span class=cl>git config --global core.editor <span class=s2>&#34;code -w&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># use rebase action when pull</span>
+</span></span><span class=line><span class=cl>git config --global pull.rebase <span class=nb>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># pull the submodules recursively when pulling</span>
+</span></span><span class=line><span class=cl>git config --global fetch.recursesubmodules <span class=nb>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git config --global submodule.recurse <span class=nb>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># recurse the submodules by 4 threads</span>
+</span></span><span class=line><span class=cl>git config --global submodule.fetchjobs <span class=m>4</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># fetch the multiple submodules or remote</span>
+</span></span><span class=line><span class=cl><span class=c1># the above config can override the parallel in the submodule case</span>
+</span></span><span class=line><span class=cl>git config --global fetch.parallel <span class=m>4</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># prune the untrack-branches</span>
+</span></span><span class=line><span class=cl>git config --global fetch.prune <span class=nb>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># list all tags in order, if with the dash, the order in reverse</span>
+</span></span><span class=line><span class=cl>git config --global tag.sort v:refname
+</span></span><span class=line><span class=cl>git config --global tag.sort -v:refname
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># list all alias ==&gt; git alias</span>
+</span></span><span class=line><span class=cl>git config --global alias.alias <span class=s2>&#34;! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># show commit details ==&gt; git ld</span>
+</span></span><span class=line><span class=cl><span class=c1># --oneline &lt;==&gt; --pretty=oneline --abbrev-commit</span>
+</span></span><span class=line><span class=cl>git config --global alias.ld <span class=s2>&#34;log --stat --graph --pretty=oneline --abbrev-commit&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># or</span>
+</span></span><span class=line><span class=cl>git config --global alias.ld <span class=s2>&#34;log --stat --graph --oneline&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># perfect &#34;git log&#34; ==&gt; git lg</span>
+</span></span><span class=line><span class=cl>git config --global alias.lg <span class=s2>&#34;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># git log with flow ==&gt; git lf</span>
+</span></span><span class=line><span class=cl>git config --global alias.lf <span class=s2>&#34;log --graph --pretty=format:&#39;%C(red)%h%Creset %C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>All the above global config will be written in <code>~/.gitconfig</code>. Here is my config. FYI.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ cat ~/.gitconfig
+</span></span><span class=line><span class=cl><span class=o>[</span>core<span class=o>]</span>
+</span></span><span class=line><span class=cl>        <span class=nv>editor</span> <span class=o>=</span> code -w
+</span></span><span class=line><span class=cl>        <span class=nv>symlinks</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>pull<span class=o>]</span>
+</span></span><span class=line><span class=cl>        <span class=nv>rebase</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>alias<span class=o>]</span>
+</span></span><span class=line><span class=cl>        <span class=nv>ld</span> <span class=o>=</span> log --stat --graph --oneline
+</span></span><span class=line><span class=cl>        <span class=nv>lg</span> <span class=o>=</span> log --color --graph --pretty<span class=o>=</span>format:<span class=s1>&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span> --abbrev-commit
+</span></span><span class=line><span class=cl>        <span class=nv>lf</span> <span class=o>=</span> log --graph --pretty<span class=o>=</span>format:<span class=s1>&#39;%C(red)%h%Creset %C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span> --abbrev-commit --date<span class=o>=</span>short --all
+</span></span><span class=line><span class=cl><span class=o>[</span>user<span class=o>]</span>
+</span></span><span class=line><span class=cl>        <span class=nv>name</span> <span class=o>=</span> your_name
+</span></span><span class=line><span class=cl>        <span class=nv>email</span> <span class=o>=</span> your_email
+</span></span><span class=line><span class=cl><span class=o>[</span>fetch<span class=o>]</span>
+</span></span><span class=line><span class=cl>        <span class=nv>parallel</span> <span class=o>=</span> <span class=m>4</span>
+</span></span><span class=line><span class=cl>        <span class=nv>prune</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>tag<span class=o>]</span>
+</span></span><span class=line><span class=cl>        <span class=nv>sort</span> <span class=o>=</span> v:refname
+</span></span></code></pre></td></tr></table></div></div><h2 id=git-customized-log>git customized log</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Number of commits by author</span>
+</span></span><span class=line><span class=cl>$ git shortlog -s --author <span class=s1>&#39;Author Name&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># List of authors and commits to a repository sorted alphabetically</span>
+</span></span><span class=line><span class=cl>$ git shortlog -s -n
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># List of commit comments by author</span>
+</span></span><span class=line><span class=cl><span class=c1># This also shows the total number of commits by the author</span>
+</span></span><span class=line><span class=cl>$ git shortlog -n --author <span class=s1>&#39;Author Name&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># list the first 5 committers who commit the most a year for current branch</span>
+</span></span><span class=line><span class=cl><span class=c1># with email info</span>
+</span></span><span class=line><span class=cl>git log --since<span class=o>=</span><span class=s2>&#34;1 year ago&#34;</span> <span class=p>|</span> fgrep Author <span class=p>|</span> sort <span class=p>|</span> uniq -c <span class=p>|</span> sort -n -r <span class=p>|</span> sed -e <span class=s1>&#39;s,Author: ,,&#39;</span> <span class=p>|</span> head -n5
+</span></span><span class=line><span class=cl><span class=c1># without email info</span>
+</span></span><span class=line><span class=cl>git log --since<span class=o>=</span><span class=s2>&#34;1 year ago&#34;</span> <span class=p>|</span> fgrep Author <span class=p>|</span> sed -e <span class=s1>&#39;s, &lt;.*&gt;,,&#39;</span> <span class=p>|</span> sort <span class=p>|</span> uniq -c <span class=p>|</span> sort -n -r <span class=p>|</span> sed -e <span class=s1>&#39;s,Author: ,,&#39;</span> <span class=p>|</span> head -n5
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># for master branch all time</span>
+</span></span><span class=line><span class=cl>git log master <span class=p>|</span> fgrep Author <span class=p>|</span> sed -e <span class=s1>&#39;s, &lt;.*&gt;,,&#39;</span> <span class=p>|</span> sort <span class=p>|</span> uniq -c <span class=p>|</span> sort -n -r <span class=p>|</span> sed -e <span class=s1>&#39;s,Author: ,,&#39;</span> <span class=p>|</span> head -n5
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># list of add lines, remove lines, total lines by author</span>
+</span></span><span class=line><span class=cl>git log --author<span class=o>=</span>mystic --pretty<span class=o>=</span>tformat: --numstat <span class=p>|</span> gawk -v <span class=nv>red</span><span class=o>=</span><span class=s1>&#39;\033[01;31m&#39;</span> -v <span class=nv>green</span><span class=o>=</span><span class=s1>&#39;\033[01;32m&#39;</span> -v <span class=nv>blue</span><span class=o>=</span><span class=s1>&#39;\033[01;34m&#39;</span> <span class=s1>&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf green&#34;Added Lines: +++%s\n&#34;red&#34;Removed Lines: ---%s\n&#34; blue&#34;Total Lines: ===%s\n&#34;, add, subs, loc }&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=git-submodule>git submodule</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>main_repo_url</span><span class=o>=</span><span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># clone a repo including all its submodules</span>
+</span></span><span class=line><span class=cl>git clone --recurse-submodules <span class=s2>&#34;</span><span class=si>${</span><span class=nv>main_repo_url</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>git clone --recursive <span class=s2>&#34;</span><span class=si>${</span><span class=nv>main_repo_url</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># If you already have cloned a repository and now want to load it’s submodules you have to use submodule update.</span>
+</span></span><span class=line><span class=cl>git submodule update --init
+</span></span><span class=line><span class=cl><span class=c1># if there are nested submodules:</span>
+</span></span><span class=line><span class=cl>git submodule update --init --recursive
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># download up to 8 submodules at once</span>
+</span></span><span class=line><span class=cl>git submodule update --init --recursive --jobs <span class=m>8</span>
+</span></span><span class=line><span class=cl>git clone --recursive --jobs <span class=m>8</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>main_repo_url</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># short version</span>
+</span></span><span class=line><span class=cl>git submodule update --init --recursive -j <span class=m>8</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># pull all changes in the repo including changes in the submodules</span>
+</span></span><span class=line><span class=cl>git pull --recurse-submodules
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># update all submodules</span>
+</span></span><span class=line><span class=cl>git submodule update --remote
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># operate for every submodule</span>
+</span></span><span class=line><span class=cl>git submodule foreach <span class=s1>&#39;command&#39;</span>
+</span></span><span class=line><span class=cl><span class=c1># e.g.</span>
+</span></span><span class=line><span class=cl>git submodule foreach <span class=s1>&#39;git stash&#39;</span>
+</span></span><span class=line><span class=cl>git submodule foreach <span class=s1>&#39;git checkout -b new_branch&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># create submodule</span>
+</span></span><span class=line><span class=cl>git submodule add <span class=s2>&#34;submodule_url&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># init and generate .gitsubmodules</span>
+</span></span><span class=line><span class=cl>git submodule init
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ************ get all submodules ************</span>
+</span></span><span class=line><span class=cl>git submodule status
+</span></span><span class=line><span class=cl>git submodule status --recursive
+</span></span><span class=line><span class=cl><span class=c1># by read .gitmodules</span>
+</span></span><span class=line><span class=cl>git config --file .gitmodules --get-regexp path <span class=p>|</span> awk <span class=s1>&#39;{ print $2 }&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=git-log>git log</h2><p><a class=link href=https://www.jianshu.com/p/0805b5d5d893 target=_blank rel=noopener>Git Log Usage</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git log --pretty<span class=o>=</span>format:<span class=s2>&#34;%h - %an, %ar : %s&#34;</span>
+</span></span><span class=line><span class=cl>git log --pretty<span class=o>=</span>format:<span class=s2>&#34;%h %s&#34;</span> --graph
+</span></span><span class=line><span class=cl><span class=c1># if used the following, please configure alias at first</span>
+</span></span><span class=line><span class=cl>git lg
+</span></span><span class=line><span class=cl>git lg -p
+</span></span><span class=line><span class=cl>git lf
+</span></span><span class=line><span class=cl>git ld
+</span></span></code></pre></td></tr></table></div></div><h2 id=git-other>git other</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># delete the file from the git history</span>
+</span></span><span class=line><span class=cl><span class=c1># https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/removing-sensitive-data-from-a-repository</span>
+</span></span><span class=line><span class=cl><span class=c1># BTW, You need to run this command from the toplevel of the working tree.</span>
+</span></span><span class=line><span class=cl>git filter-branch <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	--force <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	--index-filter <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	<span class=s2>&#34;git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	--prune-empty <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	--tag-name-filter <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	cat -- <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	--all
+</span></span><span class=line><span class=cl><span class=c1># then</span>
+</span></span><span class=line><span class=cl>git push origin --force --all
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># count total commits</span>
+</span></span><span class=line><span class=cl>git rev-list --all --count
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># reset to the previous</span>
+</span></span><span class=line><span class=cl>git reset --hard commit_id
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># merge multiple commit into one</span>
+</span></span><span class=line><span class=cl><span class=c1># HEAD~3 means that only show three `git log` info</span>
+</span></span><span class=line><span class=cl>git rebase -i HEAD~3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># set upstream, if branch_name is current branch, it can be ignored</span>
+</span></span><span class=line><span class=cl>git branch --set-upstream-to<span class=o>=</span>&lt;upstream&gt; <span class=o>[</span>branch_name<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=c1># or</span>
+</span></span><span class=line><span class=cl>git branch -u &lt;upstream&gt; <span class=o>[</span>branch_name<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># only rollback the specified file</span>
+</span></span><span class=line><span class=cl>git log --oneline a.txt
+</span></span><span class=line><span class=cl><span class=c1># or:</span>
+</span></span><span class=line><span class=cl>git lg a.txt
+</span></span><span class=line><span class=cl>git reset 575af8dfd a.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># filter author or commmitter</span>
+</span></span><span class=line><span class=cl>git lg --author<span class=o>=</span>mystic
+</span></span><span class=line><span class=cl>git lg --committer<span class=o>=</span>mystic
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># regenerate change id</span>
+</span></span><span class=line><span class=cl>git commit --amend
+</span></span><span class=line><span class=cl><span class=c1># Manually delete the change id line, save and close</span>
+</span></span><span class=line><span class=cl>git commit --amend --no-edit
+</span></span></code></pre></td></tr></table></div></div><h2 id=some-error-solution>some error solution</h2><blockquote><p>git pull
+error: cannot lock ref &lsquo;refs/remotes/origin/****&rsquo;: is at eaabc706c45b474e4e04e6d9de54a5a7bd2d16cb but expected
+c06606dd5b8c3d3fddc84f8c21f139a04586a1af</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># you should run</span>
+</span></span><span class=line><span class=cl><span class=c1># Automatically prune local branches that have been removed on the remote server</span>
+</span></span><span class=line><span class=cl>git remote prune origin
+</span></span><span class=line><span class=cl><span class=c1># git gc --prune=now</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=fix-chinese-char-cannot-be-shown-in-the-right-way>fix Chinese char cannot be shown in the right way</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global core.quotepath <span class=nb>false</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=remote-rejectedfor-gerrit-with-changeid>remote rejected(for gerrit with changeId)</h3><blockquote><p>To ssh://
+! [remote rejected] HEAD -> refs/for/xxx
+error: failed to push some refs to</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git commit --amend <span class=c1># manually remove the old changeId by this command</span>
+</span></span><span class=line><span class=cl>git commit --amend --no-edit <span class=c1># generate changeId automatically</span>
+</span></span><span class=line><span class=cl><span class=c1># then git push to your specified branch</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=change-username-and-useremail-in-history>change user.name and user.email in history</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># pip install git-filter-repo</span>
+</span></span><span class=line><span class=cl>git filter-repo --mailmap ~/my_mailmap
+</span></span><span class=line><span class=cl>git remote add origin &lt;Your Github Repo URL&gt;
+</span></span><span class=line><span class=cl>git push origin --all --force
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>cat ~/my_mailmap
+</span></span><span class=line><span class=cl>Name For User &lt;email@addre.ss&gt;
+</span></span><span class=line><span class=cl>&lt;new@ema.il&gt; &lt;old1@ema.il&gt;
+</span></span><span class=line><span class=cl>New Name And &lt;new@ema.il&gt; &lt;old2@ema.il&gt;
+</span></span><span class=line><span class=cl>New Name And &lt;new@ema.il&gt; Old Name And &lt;old3@ema.il&gt;
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/git/>Git</a>
+<a href=/tags/help/>Help</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>Last updated on Apr 08, 2021 17:44 UTC</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/todo-new-os/><div class=article-details><h2 class=article-title>TODO on a new OS</h2></div></a></article><article><a href=/posts/self-signed-cert/><div class=article-details><h2 class=article-title>Create Self-signed Certificate with custom subject</h2></div></a></article><article><a href=/posts/windows-terminal-settings/><div class=article-details><h2 class=article-title>A settings.json file for Windows Terminal</h2></div></a></article><article><a href=/posts/xshell-highlights/><div class=article-details><h2 class=article-title>XShell highlights</h2></div></a></article><article><a href=/posts/rabbitmq-lost-user-info/><div class=article-details><h2 class=article-title>RabbitMQ lost user info</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2017 -
+2025 Aurora</section><section class=powerby><a href=https://yoooo.fun>Mystic</a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

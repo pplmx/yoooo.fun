@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Os on Aurora</title><link>https://notes.yoooo.fun/tags/os/</link><description>Recent content in Os on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 15 May 2020 15:25:01 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/os/index.xml" rel="self" type="application/rss+xml"/><item><title>Thread in OS</title><link>https://notes.yoooo.fun/posts/thread-in-os/</link><pubDate>Fri, 15 May 2020 14:55:32 +0000</pubDate><guid>https://notes.yoooo.fun/posts/thread-in-os/</guid><description>&lt;h1 id="overview">Overview
+&lt;/h1>&lt;h2 id="whats-thread">What&amp;rsquo;s thread?
+&lt;/h2>&lt;blockquote>
+&lt;p>A thread is a path of execution within a process. A process can contain multiple threads.&lt;/p>
+&lt;p>&lt;strong>Thread&lt;/strong> is an execution unit which consists of its own program counter, a stack, and a set of registers. Threads are also known as Lightweight
+processes. Threads are popular way to improve application through parallelism. The CPU switches rapidly back and forth among the threads giving
+illusion that the threads are running in parallel.&lt;/p>
+&lt;p>As each thread has its own independent resource for process execution, multpile processes can be executed parallely by increasing number of
+threads.&lt;/p>
+&lt;p>A thread is a flow of execution through the process code, with its own program counter that keeps track of which instruction to execute next,
+system registers which hold its current working variables, and a stack which contains the execution history.&lt;/p>
+&lt;p>A thread shares with its peer threads few information like code segment, data segment and open files. When one thread alters a code segment memory
+item, all other threads see that.&lt;/p>
+&lt;p>A thread is also called a &lt;strong>lightweight process&lt;/strong>. Threads provide a way to improve application performance through parallelism. Threads represent
+a software approach to improving performance of operating system by reducing the overhead thread is equivalent to a classical process.&lt;/p>
+&lt;p>Each thread belongs to exactly one process and no thread can exist outside a process. Each thread represents a separate flow of control. Threads
+have been successfully used in implementing network servers and web server. They also provide a suitable foundation for parallel execution of
+applications on shared memory multiprocessors. The following figure shows the working of a single-threaded and a multithreaded process.&lt;/p>&lt;/blockquote>
+&lt;p>&lt;img src="https://notes.yoooo.fun/assets/single-and-multithreaded-process.png"
+loading="lazy"
+alt="Single Threaded and Multithreaded Process"
+>&lt;/p>
+&lt;h2 id="why-multithreading">Why multithreading?
+&lt;/h2>&lt;blockquote>
+&lt;p>A thread is also known as lightweight process. The idea is to achieve parallelism by dividing a process into multiple threads. For example, in a
+browser, multiple tabs can be different threads. MS Word uses multiple threads: one thread to format the text, another thread to process inputs,
+etc.&lt;/p>&lt;/blockquote>
+&lt;h2 id="difference-between-process-and-thread">Difference between Process and Thread
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>S.N.&lt;/th>
+&lt;th>Process&lt;/th>
+&lt;th>Thread&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1&lt;/td>
+&lt;td>Process is heavy weight or resource intensive.&lt;/td>
+&lt;td>Thread is light weight, taking lesser resources than a process.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>2&lt;/td>
+&lt;td>Process switching needs interaction with operating system.&lt;/td>
+&lt;td>Thread switching does not need to interact with operating system.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>3&lt;/td>
+&lt;td>In multiple processing environments, each process executes the same code but has its own memory and file resources.&lt;/td>
+&lt;td>All threads can share same set of open files, child processes.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>4&lt;/td>
+&lt;td>If one process is blocked, then no other process can execute until the first process is unblocked.&lt;/td>
+&lt;td>While one thread is blocked and waiting, a second thread in the same task can run.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>5&lt;/td>
+&lt;td>Multiple processes without using threads use more resources.&lt;/td>
+&lt;td>Multiple threaded processes use fewer resources.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>6&lt;/td>
+&lt;td>In multiple processes each process operates independently of the others.&lt;/td>
+&lt;td>One thread can read, write or change another thread&amp;rsquo;s data.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="pros-of-thread-over-process">Pros of Thread over Process
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;em>Responsiveness&lt;/em>&lt;/p>
+&lt;blockquote>
+&lt;p>If the process is divided into multiple threads, if one thread completes its execution, then its output can be immediately returned.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>Faster context switch&lt;/em>&lt;/p>
+&lt;blockquote>
+&lt;p>Context switch time between threads is lower compared to process context switch. Process context switching requires more overhead from the CPU.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>Effective utilization of multiprocessor system&lt;/em>&lt;/p>
+&lt;blockquote>
+&lt;p>If we have multiple threads in a single process, then we can schedule multiple threads on multiple processor. This will make process execution
+faster.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>Resource sharing&lt;/em>&lt;/p>
+&lt;blockquote>
+&lt;p>Resources like code, data, and files can be shared among all threads within a process.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>Communication&lt;/em>&lt;/p>
+&lt;blockquote>
+&lt;p>Communication between multiple threads is easier, as the threads shares common address space. while in process we have to follow some specific
+communication technique for communication between two process.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>Enhanced throughput of the system&lt;/em>&lt;/p>
+&lt;blockquote>
+&lt;p>If a process is divided into multiple threads, and each thread function is considered as one job, then the number of jobs completed per unit of
+time is increased, thus increasing the throughput of the system.&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="thread-state">Thread State
+&lt;/h1>&lt;ul>
+&lt;li>
+&lt;p>Creation&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Ready&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Running&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Blocked&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Dead&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

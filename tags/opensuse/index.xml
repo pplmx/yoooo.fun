@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Opensuse on Aurora</title><link>https://notes.yoooo.fun/tags/opensuse/</link><description>Recent content in Opensuse on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 09 May 2020 17:20:58 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/opensuse/index.xml" rel="self" type="application/rss+xml"/><item><title>Some Info about SUSE</title><link>https://notes.yoooo.fun/posts/opensuse/</link><pubDate>Sat, 09 May 2020 17:15:26 +0000</pubDate><guid>https://notes.yoooo.fun/posts/opensuse/</guid><description>&lt;h1 id="zypper">zypper
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># update all packages&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo zypper refresh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or sudo zypper ref&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo zypper update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or sudo zypper up&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list repos&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper lr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># add a repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper ar https://mirrors.aliyun.com/opensuse/update/leap/15.2/oss/ aliyun-suse-oss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># remove a repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper rr aliyun-suse-oss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># enable the first repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper mr -e &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># disable the second repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper mr -d &lt;span class="m">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># enable caching for all repos&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper mr -ka
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># disable caching for all repos&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper mr -Ka
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># disable gpg check for all repos&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zypper mr -Ga
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="zypper-some-directories-info">zypper some directories info
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">/etc/zypp/zypper.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/zypp/locks
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Directory containing repository definition (*.repo) files.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/zypp/repos.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Directory containing service definition (*.service) files.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/zypp/services.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># System directory containing zypper extensions
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/usr/lib/zypper/commands
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Directory for storing raw metadata contained in repositories.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/var/cache/zypp/raw
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Directory containing preparsed metadata in form of solv files.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/var/cache/zypp/solv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># If keeppackages property is set for a repository (see the modifyrepo command)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># all the RPM file downloaded during installation will be kept here.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/var/cache/zypp/packages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Installation history log.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/var/log/zypp/history
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

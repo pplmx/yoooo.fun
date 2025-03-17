@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rabbitmq on Aurora</title><link>https://notes.yoooo.fun/tags/rabbitmq/</link><description>Recent content in Rabbitmq on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 06 Jan 2024 22:21:46 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml"/><item><title>RabbitMQ lost user info</title><link>https://notes.yoooo.fun/posts/rabbitmq-lost-user-info/</link><pubDate>Tue, 23 Jun 2020 10:02:28 +0000</pubDate><guid>https://notes.yoooo.fun/posts/rabbitmq-lost-user-info/</guid><description>&lt;h1 id="rabbitmq">RabbitMQ
+&lt;/h1>&lt;h2 id="lost-user-info">lost user info
+&lt;/h2>&lt;blockquote>
+&lt;p>After rebooting, the rabbit user info lost.&lt;/p>&lt;/blockquote>
+&lt;h3 id="cause">Cause
+&lt;/h3>&lt;blockquote>
+&lt;p>Because RabbitMQ stores info by hostname.&lt;/p>
+&lt;p>Hostname had been changed, so RabbitMQ getting info by the new hostname failed&lt;/p>&lt;/blockquote>
+&lt;h3 id="solution">Solution
+&lt;/h3>&lt;blockquote>
+&lt;p>To add fixed node&lt;/p>&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;NODENAME=rabbit@info&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/rabbitmq/rabbitmq-env.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;127.0.0.1 info&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/hosts
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ps axu &lt;span class="p">|&lt;/span> grep rabbitmq &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $2}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sudo xargs &lt;span class="nb">kill&lt;/span> -9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo service rabbitmq-server start
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

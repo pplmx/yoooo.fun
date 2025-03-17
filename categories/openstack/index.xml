@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Openstack on Aurora</title><link>https://notes.yoooo.fun/categories/openstack/</link><description>Recent content in Openstack on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 23 Oct 2020 10:37:50 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/categories/openstack/index.xml" rel="self" type="application/rss+xml"/><item><title>Horizon Image Based on Mitaka</title><link>https://notes.yoooo.fun/posts/docker-horizon/</link><pubDate>Thu, 27 Aug 2020 17:06:35 +0000</pubDate><guid>https://notes.yoooo.fun/posts/docker-horizon/</guid><description>&lt;h1 id="horizon">Horizon
+&lt;/h1>&lt;p>&lt;strong>All accounts&amp;rsquo; password is &lt;code>root&lt;/code>.&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create container and expose some ports&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container run -d --privileged --name ho &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -p 80:80 -p 5000:5000 -p 35357:35357 &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --add-host info:127.0.0.1 --add-host controller:127.0.0.1 &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> purplemystic/mitaka_horizon init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># restart rabbitmq and apache2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># mysql and apache2 use domain: controller&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># rabbitmq use domain: info(For more information: https://blog.yoooo.fun/rabbitmq-lost-user-info.html)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container &lt;span class="nb">exec&lt;/span> -it ho bash -c &lt;span class="s2">&amp;#34;service mysql restart; service rabbitmq-server restart; service memcached restart; service apache2 restart&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container &lt;span class="nb">exec&lt;/span> -it ho bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># login to ho, and source openrc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/admin-openrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># access by browser&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure your /etc/hosts&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;127.0.0.1 info controller&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/hosts
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Finally, you can login by browser&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">http://127.0.0.1/horizon
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>OpenStack Volume</title><link>https://notes.yoooo.fun/posts/openstack-volume/</link><pubDate>Fri, 24 Jul 2020 15:18:53 +0000</pubDate><guid>https://notes.yoooo.fun/posts/openstack-volume/</guid><description>&lt;h1 id="openstack-volume">OpenStack Volume
+&lt;/h1>&lt;h2 id="fyi">FYI
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list the compute nodes where the servers locate&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server list --long -c ID -c Name -c Host -c &lt;span class="s1">&amp;#39;Power State&amp;#39;&lt;/span> -c &lt;span class="s1">&amp;#39;Networks&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># list the instance names that are servers&amp;#39; alias&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server show vm4qos1 -c id -c name -c &lt;span class="s1">&amp;#39;OS-EXT-SRV-ATTR:host&amp;#39;&lt;/span> -c &lt;span class="s1">&amp;#39;OS-EXT-SRV-ATTR:instance_name&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># merge the above two command&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># get some servers&amp;#39; instance_name, host and so on&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server list -c ID -c Name &lt;span class="p">|&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> grep vm4qos* &lt;span class="p">|&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> awk -F&lt;span class="s1">&amp;#39;|&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39;{ print $2 }&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> sed &lt;span class="s1">&amp;#39;s@^[[:space:]]*@@g;s@[[:space:]]*$@@g&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> xargs -n1 openstack server show -c id -c name -c addresses -c &lt;span class="s1">&amp;#39;OS-EXT-SRV-ATTR:host&amp;#39;&lt;/span> -c &lt;span class="s1">&amp;#39;OS-EXT-SRV-ATTR:instance_name&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or nova list, the same as above&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># fields can get from `nova show some-vm`&amp;#39;s Property&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nova list --fields name,OS-EXT-SRV-ATTR:instance_name,OS-EXT-SRV-ATTR:host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nova list --fields name,OS-EXT-SRV-ATTR:instance_name,OS-EXT-SRV-ATTR:host --name vm4qos*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="prepare-environment-for-qos">Prepare Environment for QoS
+&lt;/h2>&lt;p>&lt;strong>pre_env4qos.sh&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Firstly, create network&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">netw_id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>openstack network create cc_net_1 -c id &lt;span class="p">|&lt;/span> awk -F&lt;span class="s1">&amp;#39;|&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39;{ print $3 }&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;1,3d;$d;s@^[[:space:]]*@@g;s@[[:space:]]*$@@g&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># neutron subnet-create --name cc_net_1_sub ${netw_id} 192.168.1.0/24&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack subnet create cc_net_1_sub --network &lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span> --subnet-range 192.168.1.0/24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 1. create volume type&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> create frontend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> create frontend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> create backend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> create backend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2.1. create a QoS-1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos create qos1 --consumer front-end &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>--property &lt;span class="nv">read_iops_sec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2000&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>--property &lt;span class="nv">write_iops_sec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2048&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2.2. create a QoS-111&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos create qos111 --consumer back-end &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>--property &lt;span class="nv">read_iops_sec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2000&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>--property &lt;span class="nv">write_iops_sec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">2048&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3. associate QoS and volume type&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos associate qos1 frontend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos associate qos1 frontend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos associate qos111 backend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos associate qos111 backend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4. create volumes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type frontend_qos_1 --size &lt;span class="m">1&lt;/span> volume01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type frontend_qos_1 --size &lt;span class="m">1&lt;/span> volume02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type frontend_qos_2 --size &lt;span class="m">2&lt;/span> volume03
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type frontend_qos_2 --size &lt;span class="m">2&lt;/span> volume04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type backend_qos_1 --size &lt;span class="m">1&lt;/span> volume11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type backend_qos_1 --size &lt;span class="m">1&lt;/span> volume12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type backend_qos_2 --size &lt;span class="m">2&lt;/span> volume13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume create --type backend_qos_2 --size &lt;span class="m">2&lt;/span> volume14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 5. create a vm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos1 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos2 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos3 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos4 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos11 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos12 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos13 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server create vm4qos14 --flavor &lt;span class="m">3&lt;/span> --image BAT-image --nic net-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">netw_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># wait for creating VMs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Creating VMs, please wait for 80s.&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sleep &lt;span class="m">80&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 6. attach a volume for a vm&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># openstack server add volume INSTANCE_ID VOLUME_ID&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos1 volume01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos2 volume02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos3 volume03
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos4 volume04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos11 volume11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos12 volume12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos13 volume13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server add volume vm4qos14 volume14
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="remove-env-for-qos">Remove Env for QoS
+&lt;/h2>&lt;p>&lt;strong>del_env4qos.sh&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ******** reset env ********&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># delete server&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack server delete vm4qos14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># wait for deleting VMs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Deleting VMs, please wait for 80s.&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sleep &lt;span class="m">80&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># delete volume&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume03
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume delete volume14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># delete volume type and qos&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> delete frontend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> delete frontend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> delete backend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume &lt;span class="nb">type&lt;/span> delete backend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos delete qos1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos delete qos111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># remove network&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack subnet list &lt;span class="p">|&lt;/span> grep cc_net_1_sub &lt;span class="p">|&lt;/span> awk -F&lt;span class="s1">&amp;#39;|&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39;{ print $2 }&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s@^[[:space:]]*@@g;s@[[:space:]]*$@@g&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> xargs -n1 openstack subnet delete
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack network list &lt;span class="p">|&lt;/span> grep cc_net_1 &lt;span class="p">|&lt;/span> awk -F&lt;span class="s1">&amp;#39;|&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39;{ print $2 }&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s@^[[:space:]]*@@g;s@[[:space:]]*$@@g&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> xargs -n1 openstack network delete
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="update-qos">Update QoS
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">openstack volume qos &lt;span class="nb">set&lt;/span> --property &lt;span class="s2">&amp;#34;read_iops_sec=10000&amp;#34;&lt;/span> --property &lt;span class="s2">&amp;#34;write_iops_sec=8000&amp;#34;&lt;/span> qos1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos &lt;span class="nb">set&lt;/span> --property &lt;span class="s2">&amp;#34;read_bytes_sec=2000&amp;#34;&lt;/span> --property &lt;span class="s2">&amp;#34;write_bytes_sec=2048&amp;#34;&lt;/span> qos1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos &lt;span class="nb">unset&lt;/span> --property &lt;span class="s2">&amp;#34;read_iops_sec&amp;#34;&lt;/span> --property &lt;span class="s2">&amp;#34;write_iops_sec&amp;#34;&lt;/span> qos1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos disassociate qos1 --volume-type frontend_qos_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos disassociate qos1 --all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos associate qos1 frontend_qos_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openstack volume qos associate qos1 frontend_qos_2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

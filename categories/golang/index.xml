@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Golang on Aurora</title><link>https://notes.yoooo.fun/categories/golang/</link><description>Recent content in Golang on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Nov 2023 13:25:42 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/categories/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>Call cxx-static-lib in Go</title><link>https://notes.yoooo.fun/posts/golang-call-cxx-static-lib/</link><pubDate>Mon, 27 Nov 2023 13:25:42 +0000</pubDate><guid>https://notes.yoooo.fun/posts/golang-call-cxx-static-lib/</guid><description>&lt;h1 id="how-to-compile-and-call-a-cxx-static-library-in-golang">How to compile and call a CXX-static library in Golang
+&lt;/h1>&lt;h2 id="touch-some-files-first">touch some files first
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create a directory for this project&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p ./hi/lib&lt;span class="p">;&lt;/span> &lt;span class="nb">cd&lt;/span> ./hi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch ./main.go ./lib/hi.h ./lib/hi.cpp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="create-a-header-file-hih">Create a header file: hi.h
+&lt;/h2>&lt;p>In comparison with &lt;a class="link" href="https://blog.yoooo.fun/golang-call-c-static-lib.html" target="_blank" rel="noopener"
+>c-static-lib&lt;/a>, the header file here has some extra contents&lt;/p>
+&lt;blockquote>
+&lt;p>extern &amp;ldquo;C&amp;rdquo; { &amp;hellip; }&lt;/p>&lt;/blockquote>
+&lt;p>mainly to be compatible with C++ compilers.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#ifndef HI_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define HI_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#ifdef __cplusplus
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="k">extern&lt;/span> &lt;span class="s">&amp;#34;C&amp;#34;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">print_hi&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#ifdef __cplusplus
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif &lt;/span>&lt;span class="c1">// HI_H
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="create-a-source-file-hicpp">Create a source file: hi.cpp
+&lt;/h2>&lt;p>Different from &lt;a class="link" href="https://blog.yoooo.fun/golang-call-c-static-lib.html" target="_blank" rel="noopener"
+>c-static-lib&lt;/a>, the c++ source file must include the header file.&lt;/p>
+&lt;blockquote>
+&lt;p>#include &amp;ldquo;hi.h&amp;rdquo;&lt;/p>&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;#34;hi.h&amp;#34;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">print_hi&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;hi, from C++&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="create-a-main-file-maingo">Create a main file: main.go
+&lt;/h2>&lt;p>Compared to &lt;a class="link" href="https://blog.yoooo.fun/golang-call-cxx-static-lib.html" target="_blank" rel="noopener"
+>c-static-lib&lt;/a>, the LDFLAGS here has an extra &lt;code>-l stdc++&lt;/code> to link the C++
+standard library.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">package&lt;/span> &lt;span class="nx">main&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">#cgo CFLAGS: -I ${SRCDIR}/lib
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">#cgo LDFLAGS: -L ${SRCDIR}/lib -l hi -l stdc++
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">#include &amp;#34;hi.h&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="s">&amp;#34;C&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">func&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">C&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">print_hi&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="compile-the-source-file-into-a-static-library">Compile the source file into a static library
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">g++ -c ./lib/hi.cpp -o ./lib/hi.o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ar rcs ./lib/libhi.a ./lib/hi.o
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="run">Run
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># go run directly&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">go run main.go
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or build and run&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">go build -o bin/hi main.go &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./bin/hi
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="summary">Summary
+&lt;/h2>&lt;p>The key points are different from &lt;a class="link" href="https://blog.yoooo.fun/golang-call-c-static-lib.html" target="_blank" rel="noopener"
+>call c-static-lib&lt;/a>:&lt;/p>
+&lt;ul>
+&lt;li>use &lt;code>extern &amp;quot;C&amp;quot; { ... }&lt;/code> in header file to be compatible with C++ compilers&lt;/li>
+&lt;li>source file must include the header file&lt;/li>
+&lt;li>add &lt;code>-l stdc++&lt;/code> to &lt;code>LDFLAGS&lt;/code>&lt;/li>
+&lt;li>use &lt;code>g++&lt;/code> to compile the source file into a static library&lt;/li>
+&lt;/ul>
+&lt;p>If you are not sure the static lib is &lt;code>c&lt;/code> or &lt;code>c++&lt;/code>,
+your golang code can always use the &lt;code>c++&lt;/code> way to call it, which is more compatible.&lt;/p>
+&lt;blockquote>
+&lt;p>Always add &lt;code>-l stdc++&lt;/code> to &lt;code>LDFLAGS&lt;/code>&lt;/p>&lt;/blockquote>
+&lt;h2 id="fyi">FYI
+&lt;/h2>&lt;p>&lt;a class="link" href="https://github.com/pplmx/cgo_demo" target="_blank" rel="noopener"
+>Source Code&lt;/a>&lt;/p></description></item><item><title>Call c-static-lib in Go</title><link>https://notes.yoooo.fun/posts/golang-call-c-static-lib/</link><pubDate>Fri, 24 Nov 2023 10:29:42 +0000</pubDate><guid>https://notes.yoooo.fun/posts/golang-call-c-static-lib/</guid><description>&lt;h1 id="how-to-compile-and-call-a-c-static-lib-in-golang">How to compile and call a C-static lib in Golang
+&lt;/h1>&lt;h2 id="touch-some-files-first">touch some files first
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># create a directory for this project&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p ./hi/lib&lt;span class="p">;&lt;/span> &lt;span class="nb">cd&lt;/span> ./hi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch ./main.go ./lib/hi.h ./lib/hi.c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="create-a-header-file-hih">Create a header file: hi.h
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#ifndef HI_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define HI_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">print_hi&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif &lt;/span>&lt;span class="c1">// HI_H
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="create-a-source-file-hic">Create a source file: hi.c
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">print_hi&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;hi, from C&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="create-a-main-file-maingo">Create a main file: main.go
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">package&lt;/span> &lt;span class="nx">main&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">#cgo CFLAGS: -I ${SRCDIR}/lib
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">#cgo LDFLAGS: -L ${SRCDIR}/lib -l hi
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">#include &amp;#34;hi.h&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="s">&amp;#34;C&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">func&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">C&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">print_hi&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="compile-the-source-file-into-a-static-library">Compile the source file into a static library
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">gcc -c ./lib/hi.c -o ./lib/hi.o
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ar rcs ./lib/libhi.a ./lib/hi.o
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="run">Run
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># go run directly&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">go run main.go
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or build and run&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">go build -o bin/hi main.go &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./bin/hi
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="fyi">FYI
+&lt;/h2>&lt;p>&lt;a class="link" href="https://github.com/pplmx/cgo_demo" target="_blank" rel="noopener"
+>Source Code&lt;/a>&lt;/p></description></item><item><title>Why go build/test is so slow on Windows</title><link>https://notes.yoooo.fun/posts/golang-build-slow-on-windows/</link><pubDate>Fri, 24 Nov 2023 10:25:42 +0000</pubDate><guid>https://notes.yoooo.fun/posts/golang-build-slow-on-windows/</guid><description>&lt;style>
+r { color: Red }
+o { color: Orange }
+g { color: Lime }
+aquamarine { color: aquamarine }
+pp { color: Violet }
+aqua { color: aqua }
+&lt;/style>
+&lt;h1 id="why-go-build-or-go-test-is-so-slow-on-windows">Why &lt;code>go build&lt;/code> or &lt;code>go test&lt;/code> is &lt;o>so slow&lt;/o> on Windows
+&lt;/h1>&lt;h2 id="problem">Problem
+&lt;/h2>&lt;p>When you run &lt;code>go build&lt;/code> or &lt;code>go test&lt;/code> on Windows, it is very slow.&lt;/p>
+&lt;p>If &lt;code>go build&lt;/code> costs &lt;g>10s&lt;/g> on Linux, it may cost &lt;r>70s or more&lt;/r> on Windows, which is so annoying.&lt;/p>
+&lt;h2 id="reason">Reason
+&lt;/h2>&lt;p>The reason is that Windows Defender scans the files generated by &lt;code>go build&lt;/code> or &lt;code>go test&lt;/code> in real time, which causes the slow.&lt;/p>
+&lt;h2 id="solution">Solution
+&lt;/h2>&lt;p>Exclude the files used by &lt;code>go&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>%userprofile%\go\&lt;/code>&lt;/li>
+&lt;li>&lt;code>%localappdata%\go-build\&lt;/code>&lt;/li>
+&lt;li>&lt;code>&amp;lt;YOUR GO CODE DIR&amp;gt;&lt;/code>, e.g. &lt;code>%userprofile%\JetBrains\&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>Open Windows Defender Security Center&lt;/li>
+&lt;li>Click &amp;ldquo;&lt;pp>Virus &amp;amp; threat protection&lt;/pp>&amp;rdquo;&lt;/li>
+&lt;li>Click &amp;ldquo;&lt;pp>Virus &amp;amp; threat protection settings&lt;/pp>&amp;rdquo;&lt;/li>
+&lt;li>Click &amp;ldquo;&lt;pp>Add or remove exclusions&lt;/pp>&amp;rdquo;&lt;/li>
+&lt;li>Click &amp;ldquo;&lt;pp>Add an exclusion&lt;/pp>&amp;rdquo;&lt;/li>
+&lt;li>Click &amp;ldquo;&lt;pp>Folder&lt;/pp>&amp;rdquo;&lt;/li>
+&lt;li>Select the above folders one by one&lt;/li>
+&lt;/ol>
+&lt;h2 id="btw">BTW
+&lt;/h2>&lt;p>Maybe you can also exclude the process &lt;code>go.exe&lt;/code> in &amp;ldquo;&lt;pp>Exclusions&lt;/pp>&amp;rdquo; page, but I haven&amp;rsquo;t tried it.&lt;/p></description></item></channel></rss>

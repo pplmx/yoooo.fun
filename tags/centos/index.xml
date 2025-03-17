@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Centos on Aurora</title><link>https://notes.yoooo.fun/tags/centos/</link><description>Recent content in Centos on Aurora</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Jun 2020 11:04:34 +0000</lastBuildDate><atom:link href="https://notes.yoooo.fun/tags/centos/index.xml" rel="self" type="application/rss+xml"/><item><title>Some repos in aliyun</title><link>https://notes.yoooo.fun/posts/aliyun-repo/</link><pubDate>Sat, 18 Apr 2020 20:02:12 +0000</pubDate><guid>https://notes.yoooo.fun/posts/aliyun-repo/</guid><description>&lt;h1 id="aliyun-repo">aliyun repo
+&lt;/h1>&lt;h2 id="pip-repo">pip Repo
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ====== linux ======&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir ~/.pip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &amp;gt; ~/.pip/pip.conf &lt;span class="s">&amp;lt;&amp;lt; EOF
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[global]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">index-url=https://mirrors.aliyun.com/pypi/simple/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">extra-index-url=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[list]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">format=columns
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ====== windows ======&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir &lt;span class="nv">$APPDATA&lt;/span>/pip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch &lt;span class="nv">$APPDATA&lt;/span>/pip/pip.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or (This is a legacy configuration)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir &lt;span class="nv">$HOME&lt;/span>/pip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch &lt;span class="nv">$HOME&lt;/span>/pip/pip.ini
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="centos8-repo">centos8 Repo
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[AppStream]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - AppStream
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[BaseOS]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - Base
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/centos/$releasever/BaseOS/$basearch/os/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[extras]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - extras
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/centos/$releasever/extras/$basearch/os/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[centosplus]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - centosplus
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/centos/$releasever/centosplus/$basearch/os/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[HighAvailability]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - HighAvailability
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/centos/$releasever/HighAvailability/$basearch/os/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[PowerTools]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - PowerTools
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/centos/$releasever/PowerTools/$basearch/os/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[epel]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=CentOS-$releasever - aliyun - epel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=https://mirrors.aliyun.com/epel/$releasever/Everything/$basearch/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="ubuntu1804-repo">ubuntu18.04 Repo
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">deb https://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb-src https://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb https://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb-src https://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb https://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb-src https://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb https://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb-src https://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb https://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">deb-src https://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

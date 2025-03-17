@@ -1,0 +1,378 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="spider QQ shuoshuo by python"><meta name=keywords content="spider,,python"><title>抓取好友说说,进行简单的分析</title>
+<link rel=canonical href=https://notes.yoooo.fun/posts/grab-qzone/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="抓取好友说说,进行简单的分析"><meta property='og:description' content="spider QQ shuoshuo by python"><meta property='og:url' content='https://notes.yoooo.fun/posts/grab-qzone/'><meta property='og:site_name' content='Aurora'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='spider'><meta property='article:tag' content='data analysis'><meta property='article:published_time' content='2017-12-14T09:25:22+00:00'><meta property='article:modified_time' content='2020-11-11T16:31:07+00:00'><meta name=twitter:title content="抓取好友说说,进行简单的分析"><meta name=twitter:description content="spider QQ shuoshuo by python"><link rel="shortcut icon" href=/images/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/favicon.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Aurora</a></h1><h2 class=site-description>To infinity and beyond.</h2></div></header><ol class=menu-social><li><a href=https://github.com/pplmx target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/python/>Python</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/grab-qzone/>抓取好友说说,进行简单的分析</a></h2><h3 class=article-subtitle>spider QQ shuoshuo by python</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Dec 14, 2017</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><h1 id=something-needed-before-action>Something needed before action</h1><pre><code>需要下载chromedriver.exe
+需要用到selenium,jieba,wordcloud,BeautifulSoup,xlrd,xlwt,xlutils等模块
+都可以使用pip install 模块名 方式安装,如果安装失败,可以自己下载whl文件,并将whl文件
+放在python的安装目录Scripts下,再通过pip install 本地地址.whl,安装所需模块
+</code></pre><h1 id=in-action>In action</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl><span class=c1># Created by PyCharm</span>
+</span></span><span class=line><span class=cl><span class=c1># @author  : mystic</span>
+</span></span><span class=line><span class=cl><span class=c1># @date    : 2017/12/12 8:33</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>    抓取QQ空间说说
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>csv</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>re</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>collections</span> <span class=kn>import</span> <span class=n>Counter</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>jieba</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>xlrd</span> <span class=k>as</span> <span class=nn>xlrd</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>xlwt</span> <span class=k>as</span> <span class=nn>xlwt</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>bs4</span> <span class=kn>import</span> <span class=n>BeautifulSoup</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>numpy</span> <span class=kn>import</span> <span class=n>array</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>scipy.misc</span> <span class=kn>import</span> <span class=n>imread</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium</span> <span class=kn>import</span> <span class=n>webdriver</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>wordcloud</span> <span class=kn>import</span> <span class=n>WordCloud</span><span class=p>,</span> <span class=n>ImageColorGenerator</span><span class=p>,</span> <span class=n>STOPWORDS</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>xlutils.copy</span> <span class=kn>import</span> <span class=n>copy</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>is_existed</span><span class=p>(</span><span class=n>path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>w</span> <span class=o>=</span> <span class=n>xlwt</span><span class=o>.</span><span class=n>Workbook</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>w</span><span class=o>.</span><span class=n>add_sheet</span><span class=p>(</span><span class=s1>&#39;Sheet1&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>w</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>write_data</span><span class=p>(</span><span class=n>data1</span><span class=p>,</span> <span class=n>data2</span><span class=p>,</span> <span class=n>path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>f</span> <span class=o>=</span> <span class=n>xlrd</span><span class=o>.</span><span class=n>open_workbook</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>sheet</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>sheet_by_name</span><span class=p>(</span><span class=s1>&#39;Sheet1&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>src</span> <span class=o>=</span> <span class=n>copy</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>row</span> <span class=o>=</span> <span class=n>sheet</span><span class=o>.</span><span class=n>nrows</span>
+</span></span><span class=line><span class=cl>    <span class=n>src</span><span class=o>.</span><span class=n>get_sheet</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>row</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>data1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>src</span><span class=o>.</span><span class=n>get_sheet</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>row</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=n>data2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>src</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 登录QQ空间</span>
+</span></span><span class=line><span class=cl><span class=c1># noinspection PyBroadException</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_shuoshuo</span><span class=p>(</span><span class=n>my_qq</span><span class=p>,</span> <span class=n>my_pwd</span><span class=p>,</span> <span class=n>friend_qq</span><span class=p>,</span> <span class=n>path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>is_existed</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用selenium</span>
+</span></span><span class=line><span class=cl>    <span class=n>driver</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>Chrome</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>driver</span><span class=o>.</span><span class=n>maximize_window</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>set_page_load_timeout</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s1>&#39;https://user.qzone.qq.com/</span><span class=si>{}</span><span class=s1>/311&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>friend_qq</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>u</span><span class=s1>&#39;网页启动异常,请重新打开&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;login_div&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>u</span><span class=s1>&#39;非好友无法进入空间,无权限抓取内容&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>switch_to</span><span class=o>.</span><span class=n>frame</span><span class=p>(</span><span class=s1>&#39;login_frame&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;switcher_plogin&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;u&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>clear</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 输入个人QQ</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;u&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>send_keys</span><span class=p>(</span><span class=n>my_qq</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;p&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>clear</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 输入个人密码</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;p&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>send_keys</span><span class=p>(</span><span class=n>my_pwd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;login_button&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>driver</span><span class=o>.</span><span class=n>implicitly_wait</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 判断好友是否设置了权限</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s1>&#39;QM_OwnerInfo_Icon&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>u</span><span class=s1>&#39;空间加载异常,请重新打开&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>switch_to</span><span class=o>.</span><span class=n>frame</span><span class=p>(</span><span class=s1>&#39;app_canvas_frame&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>next_page</span> <span class=o>=</span> <span class=s1>&#39;page&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=n>page</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>while</span> <span class=n>next_page</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>pages</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>page_source</span>
+</span></span><span class=line><span class=cl>                <span class=n>soup</span> <span class=o>=</span> <span class=n>BeautifulSoup</span><span class=p>(</span><span class=n>pages</span><span class=p>,</span> <span class=s1>&#39;lxml&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>shuoshuo_send_times</span> <span class=o>=</span> <span class=n>soup</span><span class=o>.</span><span class=n>select</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;ol#msgList li.feed div.box.bgr3 &gt; div.ft div.info a.c_tx.c_tx3.goDetail&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>shuoshuos</span> <span class=o>=</span> <span class=n>soup</span><span class=o>.</span><span class=n>select</span><span class=p>(</span><span class=s1>&#39;ol#msgList li.feed div.bd pre.content&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=nb>print</span><span class=p>(</span><span class=sa>u</span><span class=s1>&#39;正在抓取第</span><span class=si>%d</span><span class=s1>页的内容&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&#39;</span> <span class=o>%</span> <span class=n>page</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>shuoshuos</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>                    <span class=n>data</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                        <span class=s1>&#39;time&#39;</span><span class=p>:</span> <span class=n>shuoshuo_send_times</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=s1>&#39;title&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>                        <span class=s1>&#39;shuos&#39;</span><span class=p>:</span> <span class=n>shuoshuos</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=o>.</span><span class=n>text</span>
+</span></span><span class=line><span class=cl>                    <span class=p>}</span>
+</span></span><span class=line><span class=cl>                    <span class=n>write_data</span><span class=p>(</span><span class=n>data</span><span class=p>[</span><span class=s1>&#39;time&#39;</span><span class=p>],</span> <span class=n>data</span><span class=p>[</span><span class=s1>&#39;shuos&#39;</span><span class=p>],</span> <span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>next_page</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_link_text</span><span class=p>(</span><span class=sa>u</span><span class=s1>&#39;下一页&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>page</span> <span class=o>=</span> <span class=n>page</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                <span class=n>next_page</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>driver</span><span class=o>.</span><span class=n>implicitly_wait</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=sa>u</span><span class=s1>&#39;抓取到</span><span class=si>%d</span><span class=s1>页面结束&#39;</span> <span class=o>%</span> <span class=n>page</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>shuoshuo_analysis</span><span class=p>(</span><span class=n>file_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 读取csv文件</span>
+</span></span><span class=line><span class=cl>    <span class=c1># csv模块读取csv文件</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=s1>&#39;rt&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;UTF-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>file</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>read_csv</span> <span class=o>=</span> <span class=n>csv</span><span class=o>.</span><span class=n>reader</span><span class=p>(</span><span class=n>file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>all_moods</span> <span class=o>=</span> <span class=p>[</span><span class=n>mood</span> <span class=k>for</span> <span class=n>mood</span> <span class=ow>in</span> <span class=n>read_csv</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>all_moods</span> <span class=o>=</span> <span class=n>array</span><span class=p>(</span><span class=n>all_moods</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>shuoshuos</span> <span class=o>=</span> <span class=n>all_moods</span><span class=p>[:,</span> <span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>phrases</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 分割(以特殊字符,如逗号,感叹号等,进行分割)+合拼成一维列表(将所有说说文字内容合并)</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>shuoshuo</span> <span class=ow>in</span> <span class=n>shuoshuos</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>phrases</span> <span class=o>+=</span> <span class=n>re</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;[^\u4E00-\u9FA5\w]+&#39;</span><span class=p>,</span> <span class=n>shuoshuo</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 去除空串</span>
+</span></span><span class=line><span class=cl>        <span class=n>phrases</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=nb>filter</span><span class=p>(</span><span class=k>lambda</span> <span class=n>phrase</span><span class=p>:</span> <span class=n>phrase</span> <span class=o>!=</span> <span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=n>phrases</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>words</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>p</span> <span class=ow>in</span> <span class=n>phrases</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>words</span> <span class=o>+=</span> <span class=n>jieba</span><span class=o>.</span><span class=n>cut</span><span class=p>(</span><span class=n>p</span><span class=p>,</span> <span class=n>HMM</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>words</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>words</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=nb>set</span><span class=p>(</span><span class=n>words</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nb>set</span><span class=p>(</span><span class=n>words</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 去除长度为1的词</span>
+</span></span><span class=line><span class=cl>        <span class=c1># words = list(filter(lambda word: len(word) &gt; 1, words))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>Counter</span><span class=p>(</span><span class=n>words</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>back_color</span> <span class=o>=</span> <span class=n>imread</span><span class=p>(</span><span class=s1>&#39;pokemon.jpg&#39;</span><span class=p>)</span>  <span class=c1># 解析该图片</span>
+</span></span><span class=line><span class=cl>        <span class=n>wc</span> <span class=o>=</span> <span class=n>WordCloud</span><span class=p>(</span><span class=n>background_color</span><span class=o>=</span><span class=s1>&#39;white&#39;</span><span class=p>,</span>  <span class=c1># 背景颜色</span>
+</span></span><span class=line><span class=cl>                       <span class=n>max_words</span><span class=o>=</span><span class=mi>1000</span><span class=p>,</span>  <span class=c1># 最大词数</span>
+</span></span><span class=line><span class=cl>                       <span class=n>mask</span><span class=o>=</span><span class=n>back_color</span><span class=p>,</span>  <span class=c1># 以该参数值作图绘制词云，这个参数不为空时，width和height会被忽略</span>
+</span></span><span class=line><span class=cl>                       <span class=n>max_font_size</span><span class=o>=</span><span class=mi>100</span><span class=p>,</span>  <span class=c1># 显示字体的最大值</span>
+</span></span><span class=line><span class=cl>                       <span class=n>stopwords</span><span class=o>=</span><span class=n>STOPWORDS</span><span class=o>.</span><span class=n>add</span><span class=p>(</span><span class=s1>&#39;苟利国&#39;</span><span class=p>),</span>  <span class=c1># 使用内置的屏蔽词，再添加&#39;苟利国&#39;</span>
+</span></span><span class=line><span class=cl>                       <span class=n>font_path</span><span class=o>=</span><span class=s2>&#34;C:/Windows/Fonts/STFANGSO.ttf&#34;</span><span class=p>,</span>  <span class=c1># 解决显示口字型乱码问题，可进入C:/Windows/Fonts/目录更换字体</span>
+</span></span><span class=line><span class=cl>                       <span class=n>random_state</span><span class=o>=</span><span class=mi>42</span><span class=p>,</span>  <span class=c1># 为每个词返回一个PIL颜色</span>
+</span></span><span class=line><span class=cl>                       <span class=c1># width=1000,  # 图片的宽</span>
+</span></span><span class=line><span class=cl>                       <span class=c1># height=860  #图片的长</span>
+</span></span><span class=line><span class=cl>                       <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>wc</span><span class=o>.</span><span class=n>generate</span><span class=p>(</span><span class=s1>&#39; &#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>words</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 基于彩色图像生成相应彩色</span>
+</span></span><span class=line><span class=cl>        <span class=n>image_colors</span> <span class=o>=</span> <span class=n>ImageColorGenerator</span><span class=p>(</span><span class=n>back_color</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 显示图片</span>
+</span></span><span class=line><span class=cl>        <span class=n>plt</span><span class=o>.</span><span class=n>imshow</span><span class=p>(</span><span class=n>wc</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 关闭坐标轴</span>
+</span></span><span class=line><span class=cl>        <span class=n>plt</span><span class=o>.</span><span class=n>axis</span><span class=p>(</span><span class=s1>&#39;off&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 绘制词云</span>
+</span></span><span class=line><span class=cl>        <span class=n>plt</span><span class=o>.</span><span class=n>figure</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>plt</span><span class=o>.</span><span class=n>imshow</span><span class=p>(</span><span class=n>wc</span><span class=o>.</span><span class=n>recolor</span><span class=p>(</span><span class=n>color_func</span><span class=o>=</span><span class=n>image_colors</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>plt</span><span class=o>.</span><span class=n>axis</span><span class=p>(</span><span class=s1>&#39;off&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 保存图片</span>
+</span></span><span class=line><span class=cl>        <span class=n>wc</span><span class=o>.</span><span class=n>to_file</span><span class=p>(</span><span class=s1>&#39;wordcloud.png&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 爬取QQ空间好友动态,并保存到本地</span>
+</span></span><span class=line><span class=cl>    <span class=c1># myself = input(&#39;Please input your QQ: &#39;)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># upwd = input(&#39;Please input your password: &#39;)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># friend = input(&#39;Please input your friend QQ: &#39;)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># save_path = &#39;d:/&#39; + friend + &#39;.csv&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># get_shuoshuo(myself, upwd, friend, save_path)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 进行说说分析,并生成词云</span>
+</span></span><span class=line><span class=cl>    <span class=n>shuoshuo_analysis</span><span class=p>(</span><span class=s1>&#39;d:/me.csv&#39;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=something-worth-noting>Something worth noting</h1><pre><code>1.python版本: 3.6.3
+2.生成的csv文件,在shuoshuo_analysis()中直接调用,会报错,至少我这边是这样的
+  解决方案:
+    对打开生成的csv文件,对其另存为普通的csv文件[不是那个utf8格式的csv]
+    然后用记事本打开,复制里面的内容;再用sublime打开(应该是乱码的),
+    将复制的内容覆盖原有的乱码内容,同时save as utf-8
+    shuoshuo_analysis()调用这个文件
+  为什么不在最初就保存为utf-8格式的csv文件呢?
+    直接保存为csv utf-8格式,打开不会乱码,但是在读取时,第一行数据有问题,其他正常
+3.制作词云图片时,选择的背景图片,最好是对比度比较明显的
+</code></pre><p><a class=link href=https://github.com/pplmx/data_mining.git target=_blank rel=noopener>Github Source Code</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/spider/>Spider</a>
+<a href=/tags/data-analysis/>Data Analysis</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>Last updated on Nov 11, 2020 16:31 UTC</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/grab-neteasecloudmusic/><div class=article-details><h2 class=article-title>抓取网易云音乐歌单</h2></div></a></article><article><a href=/posts/python-dependency-management/><div class=article-details><h2 class=article-title>Understanding Python Dependency Management: Groups vs Optional Dependencies</h2></div></a></article><article><a href=/posts/python-auto-release-custom-func-resource/><div class=article-details><h2 class=article-title>Auto release custom func resource in Python</h2></div></a></article><article><a href=/posts/copy-list-python/><div class=article-details><h2 class=article-title>How to Copy a List in Python</h2></div></a></article><article><a href=/posts/install-python-optimal/><div class=article-details><h2 class=article-title>Install Python from Source Code</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2017 -
+2025 Aurora</section><section class=powerby><a href=https://yoooo.fun>Mystic</a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
